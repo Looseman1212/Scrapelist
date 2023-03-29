@@ -1,0 +1,17 @@
+/* google font import */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,300;1,400&display=swap');
+
+/* establishing some variables for colors */
+$pink: #E6AACE;
+$black: #0D1821;
+$darkblue: #344966;
+$white: #FFFFFF;
+$bandcamp: #1EA0C3;
+$spotify: #1FD760;
+
+/* setting all elements to have the same font */
+* {
+  font-family: 'Lato', sans-serif;
+}
+
+@import 'pagesStyling/home'
