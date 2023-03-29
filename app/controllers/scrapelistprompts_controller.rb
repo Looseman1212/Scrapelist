@@ -1,0 +1,2 @@
+class ScrapelistpromptsController < ApplicationController
+end
