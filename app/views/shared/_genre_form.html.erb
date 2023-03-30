@@ -1,0 +1,59 @@
+<div class="container">
+  <h1>Create a new Easy path Scrapelist</h1>
+  <h3>Pick a genre</h3>
+  <form action="/scrapelist/new_easy" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="DA7pwQgUWXSQrdyRzNozDXj04mAg2uaQsx3K8aZ9io62jj-H5ojDLOAzqLjBS7UKbWoQaYbGtvhxQhfKDXvm6A" autocomplete="off">
+    <input type='radio' value='all' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_all'>
+    <label for='scrapelistprompt_all'>all</label>
+    <input type='radio' value='acoustic' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_acoustic'>
+    <label for='scrapelistprompt_acoustic'>acoustic</label>
+    <input type='radio' value='alternative' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_alternative'>
+    <label for='scrapelistprompt_alternative'>alternative</label>
+    <input type='radio' value='ambient' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_ambient'>
+    <label for='scrapelistprompt_ambient'>ambient</label>
+    <input type='radio' value='blues' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_blues'>
+    <label for='scrapelistprompt_blues'>blues</label>
+    <input type='radio' value='classical' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_classical'>
+    <label for='scrapelistprompt_classical'>classical</label>
+    <input type='radio' value='country' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_country'>
+    <label for='scrapelistprompt_country'>country</label>
+    <input type='radio' value='devotional' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_devotional'>
+    <label for='scrapelistprompt_devotional'>devotional</label>
+    <input type='radio' value='electronic' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_electronic'>
+    <label for='scrapelistprompt_electronic'>electronic</label>
+    <input type='radio' value='experimental' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_experimental'>
+    <label for='scrapelistprompt_experimental'>experimental</label>
+    <input type='radio' value='folk' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_folk'>
+    <label for='scrapelistprompt_folk'>folk</label>
+    <input type='radio' value='funk' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_funk'>
+    <label for='scrapelistprompt_funk'>funk</label>
+    <input type='radio' value='hip-hop-rap' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_hip-hop/rap'>
+    <label for='scrapelistprompt_hip-hop/rap'>hip-hop/rap</label>
+    <input type='radio' value='jazz' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_jazz'>
+    <label for='scrapelistprompt_jazz'>jazz</label>
+    <input type='radio' value='latin' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_latin'>
+    <label for='scrapelistprompt_latin'>latin</label>
+    <input type='radio' value='metal' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_metal'>
+    <label for='scrapelistprompt_metal'>metal</label>
+    <input type='radio' value='pop' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_pop'>
+    <label for='scrapelistprompt_pop'>pop</label>
+    <input type='radio' value='punk' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_punk'>
+    <label for='scrapelistprompt_punk'>punk</label>
+    <input type='radio' value='r-b-soul' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_r&b/soul'>
+    <label for='scrapelistprompt_r&b/soul'>r&b/soul</label>
+    <input type='radio' value='reggae' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_reggae'>
+    <label for='scrapelistprompt_reggae'>reggae</label>
+    <input type='radio' value='rock' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_rock'>
+    <label for='scrapelistprompt_rock'>rock</label>
+    <input type='radio' value='soundtrack' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_soundtrack'>
+    <label for='scrapelistprompt_soundtrack'>soundtrack</label>
+    <input type='radio' value='world' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_world'>
+    <label for='scrapelistprompt_world'>world</label>
+    <input type="submit" name="commit" value="submit" data-disable-with="submit">
+  </form>
+
+  <!--- <%= form_with model: @scrapelist do |f| %>
+    <%= f.label :XYZ %>
+    <%= f.radio_button :genre, :XYZ %>
+    <%= f.submit %>
+  <% end %> --->
+</div>
