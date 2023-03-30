@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   get 'scrapelists/:id', to: 'scrapelistprompts#show', as: 'one_scrapelist'
   # resources :scrapelistprompts, only: [:index, :show]
   get 'scrapelist/new_easy', to: 'scrapelistprompts#new_easy', as: 'new_scrapelist_easy'
-  post 'scrapelists', to: 'scrapelistprompts#new_easy'
+  post 'scrapelist/new_easy', to: 'scrapelistprompts#create_easy', as: 'scrapelistprompts'
 end
