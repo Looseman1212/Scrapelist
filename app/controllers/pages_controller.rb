@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def login
     authorise = 'https://accounts.spotify.com/authorize'
-    clientID = ENV[SPOTIFY_CLIENT_ID]
+    clientID = ENV['SPOTIFY_CLIENT_ID']
     url = authorise
     url += "?client_id=#{clientID}"
     url += '&response_type=code'
