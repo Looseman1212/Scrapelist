@@ -43,10 +43,7 @@ class ScrapelistpromptsController < ApplicationController
     access_token = response['access_token']
 
     # Save the access token to the session
-    session[:access_token] = access_token
-
-    # Redirect the user to the home page
-    redirect_to root_path
+    session[:access_token] = access_token # need to research this session term for rails
   end
 
   def show
