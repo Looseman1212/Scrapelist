@@ -26,7 +26,7 @@
   text-align: center;
   width: 80%;
   margin: auto;
-  padding-top: 7%;
+  padding-top: 10%;
   font-size: 19pt;
   font-weight: 700;
 }
@@ -36,6 +36,7 @@
   height: 60%;
   // background-color: white;
   margin: auto;
+  // padding-top: 9%;
   display: flex;
   justify-content: space-between;
   align-items:flex-start;
@@ -91,8 +92,102 @@
   font-weight: 700;
 }
 
-// .picky-diagram {
-  // [a1, a2, a3]
-  // [b1, b2, b3]
-  // [c1, c2, c3]
-  // may be a way of solving this diagram problem?
+.picky-diagram {
+  width: 80%;
+  height: 60%;
+  margin: 56px auto 0px auto;
+  .row-1, .row-2, .row-3, .row-4, .row-5 {
+    height: 16%;
+    width: 100%;
+    margin-bottom: 3px;
+  }
+  .row-1 {
+    // background-color: $spotify;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .dot {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: block;
+    }
+    #pink {
+      background-color: #D161A4;
+    }
+    .arrow {
+      color: $bandcamp;
+      font-size: 30pt;
+    }
+  }
+  .row-2 {
+    // background-color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .b1 {
+      width: 0px;
+    }
+    #mix-match {
+      color: white;
+      font-size: 1rem;
+      font-weight: 300;
+      font-style: italic;
+    }
+    .arrow {
+      color: $bandcamp;
+      font-size: 30pt;
+      padding-right: 35px;
+    }
+  }
+  .row-3 {
+    // background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .dot {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: block;
+    }
+    #pink {
+      background-color: #D161A4;
+    }
+    .arrow {
+      color: $bandcamp;
+      font-size: 30pt;
+    }
+  }
+  .row-4 {
+    // background-color: red;
+    .arrow {
+      color: $bandcamp;
+      font-size: 30pt;
+      padding: 6px 0px 0px 66px;
+      margin: 0;
+    }
+  }
+  .row-5 {
+    // background-color: $bandcamp;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    #picky-spotify-appears {
+      color: white;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    .dot {
+      background-color: $spotify;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: block;
+      margin-left: 21px;
+      #green {
+        background-color: $spotify;
+      }
+    }
+  }
+}
