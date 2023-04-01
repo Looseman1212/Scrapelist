@@ -1,4 +1,15 @@
 class ScrapelistpromptsController < ApplicationController
+
+  def index
+    @scrapelists = Scrapelistprompt.all
+  end
+
+  def show
+    @scrapelist = Scrapelistprompt.find(params[:id])
+  end
+
+  def choose; end
+
   def new_easy
     @scrapelist = Scrapelistprompt.new
   end
@@ -19,13 +30,6 @@ class ScrapelistpromptsController < ApplicationController
     end
   end
 
-  def index
-    @scrapelists = Scrapelistprompt.all
-  end
-
-  def show
-    @scrapelist = Scrapelistprompt.find(params[:id])
-  end
 
   private
 

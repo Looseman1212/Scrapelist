@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'scrapelists', to: 'scrapelistprompts#index', as: 'all_scrapelists'
   get 'scrapelists/:id', to: 'scrapelistprompts#show', as: 'one_scrapelist'
   # resources :scrapelistprompts, only: [:index, :show]
+  get 'scrapelist/choice_page', to: 'scrapelistprompts#choose', as: 'choice_page'
   get 'scrapelist/new_easy', to: 'scrapelistprompts#new_easy', as: 'new_scrapelist_easy'
   post 'scrapelist/new_easy', to: 'scrapelistprompts#create_easy', as: 'scrapelistprompts'
 end
