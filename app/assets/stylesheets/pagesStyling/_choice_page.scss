@@ -1,0 +1,193 @@
+.choices-pink-backdrop {
+  background-color: $pink;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+.choices-container {
+  width: 70%;
+  height: 78%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.easy-route, .picky-route {
+  background-color: $darkblue;
+  width: 45%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.easy-text {
+  color: white;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  padding-top: 10%;
+  font-size: 19pt;
+  font-weight: 700;
+}
+
+.easy-diagram {
+  width: 80%;
+  height: 60%;
+  // background-color: white;
+  margin: auto;
+  // padding-top: 9%;
+  display: flex;
+  justify-content: space-between;
+  align-items:flex-start;
+  .graphics {
+    width: 30%;
+    .dot {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 7%;
+    }
+    #pink {
+      background-color: #D161A4;
+      margin-top: 13%;
+    }
+    .arrow {
+      padding-left: 28%;
+      color: $bandcamp;
+      font-size: 30pt;
+      margin-top: 27%;
+      margin-bottom: 27%;
+    }
+    #green {
+      background-color: $spotify;
+    }
+  }
+  .descriptions {
+    width: 70%;
+    color: white;
+    font-size: 15pt;
+    .top {
+      margin-top: 15%;
+    }
+    .middle {
+      margin-top: 25%;
+      font-style: italic;
+      font-weight: 300;
+    }
+    .bottom {
+      margin-top: 25%;
+    }
+  }
+}
+
+.picky-text {
+  color: white;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  padding-top: 10%;
+  font-size: 19pt;
+  font-weight: 700;
+}
+
+.picky-diagram {
+  width: 80%;
+  height: 60%;
+  margin: 56px auto 0px auto;
+  .row-1, .row-2, .row-3, .row-4, .row-5 {
+    height: 16%;
+    width: 100%;
+    margin-bottom: 3px;
+  }
+  .row-1 {
+    // background-color: $spotify;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .dot {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: block;
+    }
+    #pink {
+      background-color: #D161A4;
+    }
+    .arrow {
+      color: $bandcamp;
+      font-size: 30pt;
+    }
+  }
+  .row-2 {
+    // background-color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .b1 {
+      width: 0px;
+    }
+    #mix-match {
+      color: white;
+      font-size: 1rem;
+      font-weight: 300;
+      font-style: italic;
+    }
+    .arrow {
+      color: $bandcamp;
+      font-size: 30pt;
+      padding-right: 35px;
+    }
+  }
+  .row-3 {
+    // background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .dot {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: block;
+    }
+    #pink {
+      background-color: #D161A4;
+    }
+    .arrow {
+      color: $bandcamp;
+      font-size: 30pt;
+    }
+  }
+  .row-4 {
+    // background-color: red;
+    .arrow {
+      color: $bandcamp;
+      font-size: 30pt;
+      padding: 6px 0px 0px 66px;
+      margin: 0;
+    }
+  }
+  .row-5 {
+    // background-color: $bandcamp;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    #picky-spotify-appears {
+      color: white;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    .dot {
+      background-color: $spotify;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: block;
+      margin-left: 21px;
+      #green {
+        background-color: $spotify;
+      }
+    }
+  }
+}

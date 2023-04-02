@@ -1,6 +1,17 @@
 require 'httparty'
 
 class ScrapelistpromptsController < ApplicationController
+
+  def index
+    @scrapelists = Scrapelistprompt.all
+  end
+
+  def show
+    @scrapelist = Scrapelistprompt.find(params[:id])
+  end
+
+  def choose; end
+
   def new_easy
     @scrapelist = Scrapelistprompt.new
   end
@@ -44,10 +55,6 @@ class ScrapelistpromptsController < ApplicationController
 
     # Save the access token to the session
     session[:access_token] = access_token # need to research this session term for rails
-  end
-
-  def show
-    @scrapelist = Scrapelistprompt.find(params[:id])
   end
 
   private
