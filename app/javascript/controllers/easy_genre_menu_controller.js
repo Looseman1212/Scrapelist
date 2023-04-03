@@ -10,8 +10,22 @@ export default class extends Controller {
 
   scrollUp() {
     console.log('clicked up');
-    const x = document.querySelectorAll('.easy-genre-menu-group');
-    console.log(x);
+    const upButton = document.querySelector('.up-easy-menu-action');
+    const downButton = document.querySelector('.down-easy-menu-action');
+    const genreGroup = document.querySelectorAll('.easy-genre-menu-group');
+    genreGroup[GROUPCOUNT].setAttribute('id', 'inactive-list-group');
+    if (genreGroup[GROUPCOUNT - 1] != null) {
+      genreGroup[GROUPCOUNT - 1].removeAttribute('id', 'inactive-list-group');
+    }
+    GROUPCOUNT -= 1;
+    console.log(GROUPCOUNT);
+    // upButton.removeAttribute('id', 'inactive-button');
+    if (GROUPCOUNT == 0) {
+      upButton.setAttribute('id', 'inactive-button');
+    } else {
+      upButton.removeAttribute('id', 'inactive-button');
+      downButton.removeAttribute('id', 'inactive-button');
+    }
   }
 
   scrollDown() {
@@ -19,17 +33,20 @@ export default class extends Controller {
     const upButton = document.querySelector('.up-easy-menu-action');
     const downButton = document.querySelector('.down-easy-menu-action');
     const genreGroup = document.querySelectorAll('.easy-genre-menu-group');
-    genreGroup[GROUPCOUNT].setAttribute('id', 'inactive');
+    genreGroup[GROUPCOUNT].setAttribute('id', 'inactive-list-group');
     if (genreGroup[GROUPCOUNT + 1] != null) {
-      genreGroup[GROUPCOUNT + 1].removeAttribute('id', 'inactive');
+      genreGroup[GROUPCOUNT + 1].removeAttribute('id', 'inactive-list-group');
     } else if (genreGroup[GROUPCOUNT - 1] != null) {
-      genreGroup[GROUPCOUNT - 1].setAttribute('id', 'inactive');
+      genreGroup[GROUPCOUNT - 1].setAttribute('id', 'inactive-list-group');
     }
     GROUPCOUNT += 1;
     console.log(GROUPCOUNT);
-    upButton.removeAttribute('id', 'inactive');
+    upButton.removeAttribute('id', 'inactive-button');
     if (GROUPCOUNT == 2) {
-      downButton.setAttribute('id', 'inactive');
+      downButton.setAttribute('id', 'inactive-button');
+    } else {
+      downButton.removeAttribute('id', 'inactive-button');
+      upButton.removeAttribute('id', 'inactive-button');
     }
   }
 }

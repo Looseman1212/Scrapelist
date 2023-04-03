@@ -153,6 +153,10 @@ input[type="radio"]:checked + label { // changes the colour of the label when th
   }
 }
 
-#inactive { // hide anything with id inactive
+#inactive-list-group { // id selector for hiding list groups
   display: none;
+}
+
+#inactive-button { // id selector for hiding buttons
+  visibility: hidden;
 }
