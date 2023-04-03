@@ -6,9 +6,9 @@
           <h1>Scrapelist!</h1>
         </div>
         <div class="start-container">
-          <a href="/" class="start-button">
-            <p>Connect your Spotify account and get started!</p>
-          </a>
+          <%= link_to login_path, class: "start-button" do %>
+              <p>Connect your Spotify account and get started!</p>
+          <% end %>
         </div>
       </div>
       <div class="statement">
