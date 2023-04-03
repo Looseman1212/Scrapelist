@@ -6,6 +6,9 @@ let GROUPCOUNT = 0;
 export default class extends Controller {
   connect() {
     console.log('easy-genre-menu controller connected')
+    // const surpriseButton = document.getElementById('scrapelistprompt_genre_surprise');
+    // selectRandomRadioButton(surpriseButton);
+    // console.log(surpriseButton);
   }
 
   scrollUp() {
@@ -47,6 +50,22 @@ export default class extends Controller {
     } else {
       downButton.removeAttribute('id', 'inactive-button');
       upButton.removeAttribute('id', 'inactive-button');
+    }
+  }
+
+  selectSurprise() {
+    const radioButtons = document.getElementsByName('scrapelistprompt[genre]');
+    const surpriseButton = document.getElementById('scrapelistprompt_genre_surprise');
+    const rand = Math.floor(Math.random() * (radioButtons.length - 1));
+    // console.log(radioButtons[5]);
+    // console.log(rand);
+    if (rand == 0) {
+      surpriseButton.value = "acoustic"
+      console.log(surpriseButton);
+    } else {
+      const randomValue = radioButtons[rand].value;
+      surpriseButton.value = randomValue;
+      console.log(surpriseButton);
     }
   }
 }

@@ -1,7 +1,7 @@
 <div class="easy-genre-page-wrapper">
   <div class="new-easy-genre-container">
     <div class="easy-selection-container">
-      <form action="/scrapelist/new_easy" accept-charset="UTF-8" method="post" class="easy-genre-menu" id="easy-genre-selection-form">
+      <form action="/scrapelist/new_easy" accept-charset="UTF-8" method="post" class="easy-genre-menu" id="easy-genre-selection-form"  data-controller="easy-genre-menu">
         <input type="hidden" name="authenticity_token" value="DA7pwQgUWXSQrdyRzNozDXj04mAg2uaQsx3K8aZ9io62jj-H5ojDLOAzqLjBS7UKbWoQaYbGtvhxQhfKDXvm6A" autocomplete="off">
         <div class="easy-genre-menu-group easy-genre-menu-group-one">
           <input type='radio' value='all' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_all'>
@@ -54,8 +54,10 @@
           <label for='scrapelistprompt_genre_soundtrack'>SOUNDTRACK</label>
           <input type='radio' value='world' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_world'>
           <label for='scrapelistprompt_genre_world'>WORLD</label>
+          <input type='radio' value='' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_surprise'>
+          <label for='scrapelistprompt_genre_surprise' data-action="click->easy-genre-menu#selectSurprise">SURPRISE ME</label>
         </div>
-        <div class="easy-genre-menu-controls" data-controller="easy-genre-menu">
+        <div class="easy-genre-menu-controls">
           <div class="up-down-controls">
             <div id="inactive-button" class="up-easy-menu-action" data-action="click->easy-genre-menu#scrollUp"><p class="arrow">&#x2191;</p></div>
             <div class="menu-controls-instructions"><p>Click for more genres...</p></div>
