@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import EasyGenreMenuController from "./easy_genre_menu_controller"
+application.register("easy-genre-menu", EasyGenreMenuController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
