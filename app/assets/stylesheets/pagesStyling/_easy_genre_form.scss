@@ -52,19 +52,19 @@ label {
 }
 
 .easy-genre-menu-group-two {
-  display: none;
-  // display: flex; // this is what it needs to change to in the javascript controller
-  // flex-direction: column;
-  // justify-content: space-between;
-  // align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .easy-genre-menu-group-three {
-  display: none;
-  // display: flex; // this is what it needs to change to in the javascript controller
-  // flex-direction: column;
-  // justify-content: space-between;
-  // align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 input[type="radio"] { // hide radio button
@@ -94,7 +94,7 @@ input[type="radio"]:checked + label { // changes the colour of the label when th
       font-weight: 300;
       font-style: italic;
     }
-    #up-easy-menu-action, #down-easy-menu-action {
+    .up-easy-menu-action, .down-easy-menu-action {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -151,4 +151,8 @@ input[type="radio"]:checked + label { // changes the colour of the label when th
       }
     }
   }
+}
+
+#inactive { // hide anything with id inactive
+  display: none;
 }
