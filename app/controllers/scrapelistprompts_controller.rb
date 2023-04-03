@@ -10,7 +10,29 @@ class ScrapelistpromptsController < ApplicationController
     @scrapelist = Scrapelistprompt.find(params[:id])
   end
 
-  def choose; end
+  def choose
+  # Extract the authorization code from the query parameters
+  authorization_code = params[:code]
+
+  # Make a request to the Spotify API token endpoint to exchange the authorization code for an access token
+  response = HTTParty.post("https://accounts.spotify.com/api/token", {
+    headers: {
+      "Authorization" => "Basic #{Base64.strict_encode64("#{ENV['SPOTIFY_CLIENT_ID']}:#{ENV['SPOTIFY_CLIENT_SECRET']}")}",
+      "Content-Type" => "application/x-www-form-urlencoded"
+    },
+    body: {
+      grant_type: "authorization_code",
+      code: authorization_code,
+      redirect_uri: 'http://127.0.0.1:3000/scrapelist/choice_page'
+    }
+  })
+
+  # Extract the access token from the response
+  access_token = response['access_token']
+
+  # Save the access token to the session
+  session[:access_token] = access_token # need to research this session term for rails
+  end
 
   def new_easy
     @scrapelist = Scrapelistprompt.new
@@ -34,27 +56,6 @@ class ScrapelistpromptsController < ApplicationController
 
   def index
     @scrapelists = Scrapelistprompt.all
-    # Extract the authorization code from the query parameters
-    authorization_code = params[:code]
-
-    # Make a request to the Spotify API token endpoint to exchange the authorization code for an access token
-    response = HTTParty.post("https://accounts.spotify.com/api/token", {
-      headers: {
-        "Authorization" => "Basic #{Base64.strict_encode64("#{ENV['SPOTIFY_CLIENT_ID']}:#{ENV['SPOTIFY_CLIENT_SECRET']}")}",
-        "Content-Type" => "application/x-www-form-urlencoded"
-      },
-      body: {
-        grant_type: "authorization_code",
-        code: authorization_code,
-        redirect_uri: 'http://127.0.0.1:3000/scrapelists'
-      }
-    })
-
-    # Extract the access token from the response
-    access_token = response['access_token']
-
-    # Save the access token to the session
-    session[:access_token] = access_token # need to research this session term for rails
   end
 
   private

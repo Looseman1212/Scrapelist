@@ -1,21 +1,23 @@
 <div class="choices-pink-backdrop">
   <div class="choices-container">
     <div class="easy-route">
-      <div class="easy-text">
-        <h3>The easy route: Just pick a genre, and a new playlist with recent Bandcamp releases is created in your Spotify account right away!</h3>
-      </div>
-      <div class="easy-diagram">
-        <div class="graphics">
-          <span class="dot" id="pink"></span>
-          <p class="arrow">&#x2193;</p>
-          <span class="dot" id="green"></span>
+      <%= link_to new_scrapelist_easy_path do %>
+        <div class="easy-text">
+          <h3>The easy route: Just pick a genre, and a new playlist with recent Bandcamp releases is created in your Spotify account right away!</h3>
         </div>
-        <div class="descriptions">
-          <p class="top">You pick a genre</p>
-          <p class="middle">The magic happens..</p>
-          <p class="bottom">A new Spotify playlist appears!</p>
+        <div class="easy-diagram">
+          <div class="graphics">
+            <span class="dot" id="pink"></span>
+            <p class="arrow">&#x2193;</p>
+            <span class="dot" id="green"></span>
+          </div>
+          <div class="descriptions">
+            <p class="top">You pick a genre</p>
+            <p class="middle">The magic happens..</p>
+            <p class="bottom">A new Spotify playlist appears!</p>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
     <div class="picky-route">
       <div class="picky-text">
