@@ -61,6 +61,13 @@
             padding: 1.5em 1.7em;
             background-color: $spotify;
             border-radius: 3em;
+            box-shadow: -4px 4px 5px rgba(0, 0, 0, 0.3);
+            transition: 0.2s;
+            &:hover {
+              background-color: #3BE376;
+              outline: 1px solid $spotify;
+              box-shadow: none;
+            }
           }
         }
       }
@@ -78,7 +85,7 @@
         background-color: $darkblue;
         border-radius: 0.5em;
         overflow-y: auto;
-        .song-card-link-wrapper {
+        .song-card-link-wrapper { // remove default styling from rails link_to tag
           text-decoration: none;
           color: $black;
         }
@@ -92,6 +99,12 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
+          transition: 0.2s;
+          &:hover {
+            background-color: $bandcamp;
+            color: white;
+            outline: 3px solid #9F2D71;
+          }
           .song-art-container {
             width: 20%;
             height: 100%;
