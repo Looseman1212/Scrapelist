@@ -14,8 +14,8 @@ class ScrapelistpromptsController < ApplicationController
     # getting the url created
     url_page_one = @scrapelist.bandcamp_query
     url_page_two = @scrapelist.query_two
-    scrape_bandcamp(url_page_one)
-    scrape_bandcamp(url_page_two)
+    # scrape_bandcamp(url_page_one) # two lines commented out while styling
+    # scrape_bandcamp(url_page_two)
     # create an instance variable where we can access the songs
     @songs = Song.where(scrapelistprompt_id: @scrapelist.id)
   end

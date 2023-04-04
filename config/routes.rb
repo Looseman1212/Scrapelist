@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get 'scrapelist/choice_page', to: 'scrapelistprompts#choose', as: 'choice_page'
   get 'scrapelist/new_easy', to: 'scrapelistprompts#new_easy', as: 'new_scrapelist_easy'
   post 'scrapelist/new_easy', to: 'scrapelistprompts#create_easy', as: 'scrapelistprompts'
+  post 'scrapelist/send_to_spotify', to: 'scrapelistprompts#send_to_spotify', as: 'send_to_spotify'
 end

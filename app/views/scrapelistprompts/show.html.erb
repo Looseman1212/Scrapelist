@@ -1,4 +1,31 @@
-<h1>Bandcamp url produced:</h1>
+ <div class="show-wrapper">
+  <div class="show-container">
+    <div class="text-wrapper">
+      <div class="text-container">
+        <div class="show-title">
+          <h2>Heres what we got:</h2>
+        </div>
+        <div class="show-explanation">
+          <p>Have a scroll on the right through the tracks we got from Bandcamp, keep in mind that not every song on Bandcamp is on Spotify so what is shown here may not completely resemble what you will see in your Spotify playlist</p>
+        </div>
+        <div class="spotify-button">
+          <%= link_to "Create Spotify Playlist", send_to_spotify_path, class: "show-spotify-btn" %>
+        </div>
+      </div>
+    </div>
+    <div class="songs-container">
+    </div>
+  </div>
+ </div>
+
+
+
+
+
+
+
+
+<!-- <h1>Bandcamp url produced:</h1>
 <p><%= @scrapelist.bandcamp_query %></p>
 <p><%= @scrapelist.query_two %></p>
 <br>
@@ -9,4 +36,4 @@
   <p>Song: <%= s.title %></p>
   <p>Album: <%= s.album %></p>
   <br>
-<% end %>
+<% end %> -->
