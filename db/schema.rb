@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_29_232328) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_04_012012) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_232328) do
     t.datetime "updated_at", null: false
     t.string "bandcamp_query"
     t.integer "page_number"
+    t.string "query_two"
+    t.string "query_three"
+    t.string "query_four"
+    t.string "query_five"
   end
 
   create_table "songs", force: :cascade do |t|
@@ -34,6 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_232328) do
     t.bigint "scrapelistprompt_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "album_art"
     t.index ["scrapelistprompt_id"], name: "index_songs_on_scrapelistprompt_id"
   end
 

@@ -252,6 +252,9 @@ GEM
       unf_ext
     unf_ext (0.0.8.2)
     version_gem (1.1.2)
+    watir (7.2.2)
+      regexp_parser (>= 1.2, < 3)
+      selenium-webdriver (~> 4.2)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -280,6 +283,7 @@ DEPENDENCIES
   httparty
   jbuilder
   jsbundling-rails
+  nokogiri (~> 1.14, >= 1.14.2)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
@@ -291,6 +295,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  watir (~> 7.2, >= 7.2.2)
   web-console
   webdrivers
 
