@@ -8,14 +8,14 @@ class ScrapelistpromptsController < ApplicationController
     @scrapelists = Scrapelistprompt.all
   end
 
-  def show
+  def show # if the scraping isn't happening, lines 17 and 18 may be commented out!
     # finding the scrapelistprompt by id
     @scrapelist = Scrapelistprompt.find(params[:id])
     # getting the url created
     url_page_one = @scrapelist.bandcamp_query
     url_page_two = @scrapelist.query_two
-    # scrape_bandcamp(url_page_one) # two lines commented out while styling
-    # scrape_bandcamp(url_page_two)
+    scrape_bandcamp(url_page_one) # two functions for scraping
+    scrape_bandcamp(url_page_two)
     # create an instance variable where we can access the songs
     @songs = Song.where(scrapelistprompt_id: @scrapelist.id)
   end
