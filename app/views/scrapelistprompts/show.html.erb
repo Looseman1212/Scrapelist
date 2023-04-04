@@ -1,2 +1,10 @@
 <h1>Bandcamp url produced:</h1>
 <p><%= @scrapelist.bandcamp_query %></p>
+<br>
+<h1>Songs scraped:</h1>
+<p><% @songs.each do |s| %></p>
+  <p>Artist: <%= s.artist %></p>
+  <p>Song: <%= s.title %></p>
+  <p>Album: <%= s.album %></p>
+  <br>
+<% end %>

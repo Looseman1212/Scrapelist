@@ -1,4 +1,6 @@
 require 'httparty'
+require 'watir'
+require 'nokogiri'
 
 class ScrapelistpromptsController < ApplicationController
 
@@ -7,7 +9,36 @@ class ScrapelistpromptsController < ApplicationController
   end
 
   def show
+    # finding the scrapelistprompt by id
     @scrapelist = Scrapelistprompt.find(params[:id])
+    # getting the url created
+    url_created = @scrapelist.bandcamp_query
+    # creating a new browser and passing it the url
+    browser = Watir::Browser.new
+    browser.goto(url_created)
+    # grabbing a group of links to songs from the page
+    links = browser.links(class: 'item-link')
+    # iterating over each link and clicking it
+    links.each do |l|
+      l.click
+      # create a Nokogiri object after clicking
+      html_doc = Nokogiri::HTML(browser.html)
+      # grab song details from the page
+      artist = html_doc.at_css('.detail-artist').content.match(/by\s(.+)/)[1]
+      album = html_doc.at_css('.detail-album').content
+      title = html_doc.at_css('.title').content
+      # create a song object and save it to the database
+      song = Song.new
+      song[:title] = title
+      song[:album] = album
+      song[:artist] = artist
+      song[:scrapelistprompt_id] = @scrapelist.id
+      song.save!
+    end
+    # close the browser after making all song instances in the database
+    browser.close
+    # create an instance variable where we can access the songs
+    @songs = Song.where(scrapelistprompt_id: @scrapelist.id)
   end
 
   def choose
