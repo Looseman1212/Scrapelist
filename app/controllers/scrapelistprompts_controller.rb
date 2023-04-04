@@ -12,8 +12,10 @@ class ScrapelistpromptsController < ApplicationController
     # finding the scrapelistprompt by id
     @scrapelist = Scrapelistprompt.find(params[:id])
     # getting the url created
-    url_created = @scrapelist.bandcamp_query
-    scrape_bandcamp(url_created)
+    url_page_one = @scrapelist.bandcamp_query
+    url_page_two = @scrapelist.query_two
+    scrape_bandcamp(url_page_one)
+    scrape_bandcamp(url_page_two)
     # create an instance variable where we can access the songs
     @songs = Song.where(scrapelistprompt_id: @scrapelist.id)
   end
@@ -55,6 +57,10 @@ class ScrapelistpromptsController < ApplicationController
     @scrapelist.time_frame = 0
     @scrapelist.spotify_account = 'TODO'
     @scrapelist.bandcamp_query = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
+    @scrapelist.query_two = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 1}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
+    @scrapelist.query_three = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 2}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
+    @scrapelist.query_four = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 3}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
+    @scrapelist.query_five = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 4}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
     if @scrapelist.save!
       redirect_to one_scrapelist_path(@scrapelist)
     else
