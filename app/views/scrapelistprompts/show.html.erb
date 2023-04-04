@@ -3,7 +3,7 @@
     <div class="text-wrapper">
       <div class="text-container">
         <div class="show-title">
-          <h2>Heres what we got:</h2>
+          <h2>Heres what we got for <%= @scrapelist.genre %>:</h2>
         </div>
         <div class="show-explanation">
           <p>Have a scroll on the right through the tracks we got from Bandcamp, keep in mind that not every song on Bandcamp is on Spotify so what is shown here may not completely resemble what you will see in your Spotify playlist</p>
@@ -15,18 +15,20 @@
     </div>
     <div class="songs-wrapper">
       <div class="songs-container">
-        <div class="song-card">
-          <div class="song-art-container">
-            <img src="https://upload.wikimedia.org/wikipedia/en/5/54/AphexTwinICareBecauseYouDo.jpg" alt="placeholder">
-          </div>
-          <div class="song-info-container">
-            <div class="song-info">
-              <p>Artist: Aphex Twin</p>
-              <p>Song: I Care Because You Do</p>
-              <p>Album: Selected Ambient Works Volume II</p>
+        <% @songs.each do |s| %>
+          <div class="song-card">
+            <div class="song-art-container">
+              <%= image_tag s.album_art %>
+            </div>
+            <div class="song-info-container">
+              <div class="song-info">
+                <p>Artist: <strong><%= s.artist %></strong></p>
+                <p>Song: <strong><%= s.title %></strong></p>
+                <p>Album: <strong><%= s.album %></strong></p>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

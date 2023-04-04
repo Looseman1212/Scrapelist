@@ -35,7 +35,7 @@
         .show-explanation {
           height: fit-content;
           margin: 0;
-          padding: 5%;
+          padding: 5% 5% 0 5%;
           color: $black;
           text-align: center;
           font-size: 16pt;
@@ -76,6 +76,7 @@
         height: 90%;
         margin: auto;
         background-color: $darkblue;
+        overflow-y: auto;
         .song-card {
           width: 89%;
           height: 15%;
@@ -116,4 +117,13 @@
       }
     }
   }
+}
+
+.songs-container::-webkit-scrollbar { // hides scrollbar on chrome, safari, and opera
+  display: none;
+}
+
+.songs-container { // hides scrollbar on IE, edge, andfirefox
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
