@@ -8,13 +8,13 @@ class ScrapelistpromptsController < ApplicationController
     @scrapelists = Scrapelistprompt.all
   end
 
-  def show
+  def show # if the scraping isn't happening, lines 17 and 18 may be commented out!
     # finding the scrapelistprompt by id
     @scrapelist = Scrapelistprompt.find(params[:id])
     # getting the url created
     url_page_one = @scrapelist.bandcamp_query
     url_page_two = @scrapelist.query_two
-    scrape_bandcamp(url_page_one)
+    scrape_bandcamp(url_page_one) # two functions for scraping
     scrape_bandcamp(url_page_two)
     # create an instance variable where we can access the songs
     @songs = Song.where(scrapelistprompt_id: @scrapelist.id)
@@ -94,12 +94,14 @@ class ScrapelistpromptsController < ApplicationController
       album = html_doc.at_css('.detail-album').content
       title = html_doc.at_css('.title').content
       art = html_doc.at_css('.detail-art').attribute('href')
+      link = html_doc.at_css('.detail-album').children.attribute('href')
       # create a song object and save it to the database
       song = Song.new
       song[:title] = title
       song[:album] = album
       song[:artist] = artist
       song[:album_art] = art
+      song[:music_link] = link
       song[:scrapelistprompt_id] = @scrapelist.id
       song.save!
     end
