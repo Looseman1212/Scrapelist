@@ -8,36 +8,112 @@
     width: 70%;
     height: 78%;
     margin: auto;
-    background-color: white;
+    // background-color: white;
     display: flex;
     justify-content: space-between;
     .text-wrapper {
       width: 50%;
       height: 100%;
-      background-color: blue;
-      .show-title {
+      // background-color: blue;
+      display: flex;
+      align-items: center;
+      .text-container {
+        height: fit-content;
         width: 100%;
-        height: 10%;
-        color: black;
-        background-color: green;
-      }
-      .show-explanation {
-        width: 100%;
-        height: 40%;
-        color: black;
-        background-color: yellow;
-      }
-      .show-spotify-btn {
-        width: 100%;
-        height: 20%;
-        color: black;
-        background-color: orange;
+        // background-color: purple;
+        .show-title {
+          width: 100%;
+          height: fit-content;
+          color: $black;
+          font-size: 20pt;
+          text-align: center;
+          // background-color: green;
+          h2 {
+            margin-bottom: 0.1em;
+          }
+        }
+        .show-explanation {
+          height: fit-content;
+          margin: 0;
+          padding: 5%;
+          color: $black;
+          text-align: center;
+          font-size: 16pt;
+          // background-color: yellow;
+          p {
+            margin: 0;
+            padding: 0;
+          }
+        }
+        .show-spotify-button-container {
+          width: 100%;
+          display: flex;
+          color: $black;
+          // background-color: orange;
+          .show-spotify-btn {
+            width: 50%;
+            height: fit-content;
+            font-size: 14pt;
+            text-align: center;
+            text-decoration: none;
+            color: $black;
+            margin: 6% auto;
+            padding: 1.5em 1.7em;
+            background-color: $spotify;
+            border-radius: 3em;
+          }
+        }
       }
     }
-    .songs-container {
+    .songs-wrapper {
       width: 50%;
       height: 100%;
-      background-color: red;
+      // background-color: red;
+      display: flex;
+      align-items: center;
+      .songs-container {
+        width: 90%;
+        height: 90%;
+        margin: auto;
+        background-color: $darkblue;
+        .song-card {
+          width: 89%;
+          height: 15%;
+          margin: 4% auto;
+          padding: 1.5%;
+          background-color: #d9d9d9;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .song-art-container {
+            width: 20%;
+            height: 100%;
+            // float: left;
+            // background-color: green;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .song-info-container {
+            width: 80%;
+            height: 90%;
+            padding: 0.5em 0 0.5em 0.5em;
+            .song-info {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              p {
+                font-size: 10pt;
+                margin: 0 0 0.2em 0;
+                padding: 0;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -8,12 +8,26 @@
         <div class="show-explanation">
           <p>Have a scroll on the right through the tracks we got from Bandcamp, keep in mind that not every song on Bandcamp is on Spotify so what is shown here may not completely resemble what you will see in your Spotify playlist</p>
         </div>
-        <div class="spotify-button">
-          <%= link_to "Create Spotify Playlist", send_to_spotify_path, class: "show-spotify-btn" %>
+        <div class="show-spotify-button-container">
+          <%= link_to "Click to create your Spotify playlist!", send_to_spotify_path, class: "show-spotify-btn" %>
         </div>
       </div>
     </div>
-    <div class="songs-container">
+    <div class="songs-wrapper">
+      <div class="songs-container">
+        <div class="song-card">
+          <div class="song-art-container">
+            <img src="https://upload.wikimedia.org/wikipedia/en/5/54/AphexTwinICareBecauseYouDo.jpg" alt="placeholder">
+          </div>
+          <div class="song-info-container">
+            <div class="song-info">
+              <p>Artist: Aphex Twin</p>
+              <p>Song: I Care Because You Do</p>
+              <p>Album: Selected Ambient Works Volume II</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
  </div>
