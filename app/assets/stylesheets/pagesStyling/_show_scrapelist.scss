@@ -78,6 +78,10 @@
         background-color: $darkblue;
         border-radius: 0.5em;
         overflow-y: auto;
+        .song-card-link-wrapper {
+          text-decoration: none;
+          color: $black;
+        }
         .song-card {
           width: 89%;
           height: 15%;

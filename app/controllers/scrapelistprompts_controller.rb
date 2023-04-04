@@ -94,12 +94,14 @@ class ScrapelistpromptsController < ApplicationController
       album = html_doc.at_css('.detail-album').content
       title = html_doc.at_css('.title').content
       art = html_doc.at_css('.detail-art').attribute('href')
+      link = html_doc.at_css('.detail-album').children.attribute('href')
       # create a song object and save it to the database
       song = Song.new
       song[:title] = title
       song[:album] = album
       song[:artist] = artist
       song[:album_art] = art
+      song[:music_link] = link
       song[:scrapelistprompt_id] = @scrapelist.id
       song.save!
     end

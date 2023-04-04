@@ -6,7 +6,7 @@
           <h2>Heres what we got for <%= @scrapelist.genre %>:</h2>
         </div>
         <div class="show-explanation">
-          <p>Have a scroll on the right through the tracks we got from Bandcamp, keep in mind that not every song on Bandcamp is on Spotify so what is shown here may not completely resemble what you will see in your Spotify playlist</p>
+          <p>Have a scroll on the right and click to check out the tracks we got from Bandcamp. Please keep in mind not every song that is on Bandcamp is on Spotify, so what is shown here may not completely resemble what you will see in your Spotify playlist</p>
         </div>
         <div class="show-spotify-button-container">
           <%= link_to "Click to create your Spotify playlist!", send_to_spotify_path, class: "show-spotify-btn" %>
@@ -16,18 +16,20 @@
     <div class="songs-wrapper">
       <div class="songs-container">
         <% @songs.each do |s| %>
-          <div class="song-card">
-            <div class="song-art-container">
-              <%= image_tag s.album_art %>
-            </div>
-            <div class="song-info-container">
-              <div class="song-info">
-                <p>Artist: <strong><%= s.artist %></strong></p>
-                <p>Song: <strong><%= s.title %></strong></p>
-                <p>Album: <strong><%= s.album %></strong></p>
+          <%= link_to s.music_link, target: "_blank", class: "song-card-link-wrapper" do %>
+            <div class="song-card">
+              <div class="song-art-container">
+                <%= image_tag s.album_art %>
+              </div>
+              <div class="song-info-container">
+                <div class="song-info">
+                  <p>Artist: <strong><%= s.artist %></strong></p>
+                  <p>Song: <strong><%= s.title %></strong></p>
+                  <p>Album: <strong><%= s.album %></strong></p>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>
