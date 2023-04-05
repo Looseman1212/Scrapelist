@@ -27,7 +27,6 @@ class ScrapelistpromptsController < ApplicationController
     setAccessTokenForSession(authorization_code)
     # set the user account details for the session with this function
     grabUserAccountDetails(session[:access_token])
-    raise
   end
 
   def new_easy
@@ -52,6 +51,18 @@ class ScrapelistpromptsController < ApplicationController
     else
       render :new_easy, status: :unprocessable_entity
     end
+  end
+
+  def new_picky; end
+
+  def create_picky; end
+
+  def send_to_spotify
+    @scrapelist = Scrapelistprompt.find(params[:id])
+    # create an instance variable to store the songs in the scrapelist, and an array to store the spotify ids found
+    @songs = Song.where(scrapelistprompt_id: params[:id])
+    spotify_uris = grabSongURIs(@songs)
+    createSpotifyPlaylist(spotify_uris, @scrapelist.genre)
   end
 
   private
@@ -85,9 +96,9 @@ class ScrapelistpromptsController < ApplicationController
       song = Song.new
       song[:title] = title
       song[:album] = album
-      song[:artist] = artist
       song[:album_art] = art
       song[:music_link] = link
+      song[:artist] = artist
       song[:scrapelistprompt_id] = @scrapelist.id
       song.save!
     end
@@ -125,5 +136,78 @@ class ScrapelistpromptsController < ApplicationController
 
     # Set the user's details in the session
     session[:user_details] = user_details
+  end
+
+  def grabSongURIs(songs)
+    # array for storing the spotify URI's
+    spotify_uris = []
+
+    # spotify_artists = [] # this line is for debugging purposes
+
+    # search for each song in the scrapelist on spotify
+    @songs.each do |song|
+      # Set the search parameters
+      query = {
+        q: "track:#{song.title} album:#{song.album} artist:#{song.artist}",
+        type: 'track'
+      }
+      # Set the request headers, including the access token
+      headers = {
+        "Authorization" => "Bearer #{session[:access_token]}",
+        "Content-Type" => "application/json"
+      }
+      # make the request
+      response = HTTParty.get("https://api.spotify.com/v1/search", query: query, headers: headers)
+      # Parse the response body as JSON and extract the search results
+      results = JSON.parse(response.body)["tracks"]["items"]
+      # save the URI from the first result to the array if it isnt null
+      spotify_uris << results[0]["uri"] unless results[0].nil?
+
+      # spotify_artists << results[0]["artists"][0]["name"] unless results[0].nil? # this line is for debugging purposes
+
+    end
+    spotify_uris
+
+    # spotify_artists # this line is for debugging purposes
+  end
+
+  def createSpotifyPlaylist(uris, scrapelist_genre)
+    access_token = session[:access_token]
+    user_id = session[:user_details]["id"]
+    endpoint = "https://api.spotify.com/v1/users/#{user_id}/playlists"
+
+    # Set up the request headers
+    headers = {
+      'Authorization' => "Bearer #{access_token}",
+      'Content-Type' => 'application/json'
+    }
+
+    # create and format a time for the playlist name
+    time = Time.now
+    formatted_time = time.strftime('%A %B %d%<suffix>s %Y')
+    formatted_time.sub!(/\d{2}(st|nd|rd|th)/, '\1')
+
+    # Set up the request body
+    body = {
+      name: "#{scrapelist_genre} Scrapelist made #{formatted_time}",
+      description: "A new playlist made with Scrapelist!",
+      public: false
+    }.to_json
+
+    response = HTTParty.post(
+      "https://api.spotify.com/v1/users/#{user_id}/playlists",
+      headers: headers,
+      body: body
+    )
+
+
+    # if statement to catch failure
+    if response.code == 201
+      playlist_id = response.parsed_response['id']
+      raise
+      return playlist_id
+    else
+      return response.message
+    end
   end
 end
