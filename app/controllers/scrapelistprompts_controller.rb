@@ -204,7 +204,6 @@ class ScrapelistpromptsController < ApplicationController
     # if statement to catch failure
     if response.code == 201
       playlist_id = response.parsed_response['id']
-      raise
       return playlist_id
     else
       return response.message
