@@ -148,25 +148,32 @@ class ScrapelistpromptsController < ApplicationController
 
     # search for each song in the scrapelist on spotify
     @songs.each do |song|
+      # regex to separate collaborating artists if there are any (which is represented by 'x', 'X', or '/' between artist names)
+      # if there are not, then the whole artist will be returned as the first element in artist_array
+      artist_names = song.artist
+      artist_regex = /(?:\s+x\s+|\s+\/\s+|\s+X\s+)/
+      artist_array = artist_names.split(artist_regex).map(&:strip)
+
       # Set the search parameters
       query = {
-        q: "track:#{song.title} album:#{song.album} artist:#{song.artist}",
+        q: "artist:#{artist_array[0]} track:#{song.title}", # only searching with artist and track has been returning better results
         type: 'track'
       }
+
       # Set the request headers, including the access token
       headers = {
-        "Authorization" => "Bearer #{session[:access_token]}",
-        "Content-Type" => "application/json"
+        'Authorization' => "Bearer #{session[:access_token]}",
+        'Content-Type' => 'application/json'
       }
+
       # make the request
-      response = HTTParty.get("https://api.spotify.com/v1/search", query: query, headers: headers)
+      response = HTTParty.get('https://api.spotify.com/v1/search', query: query, headers: headers)
       # Parse the response body as JSON and extract the search results
       results = JSON.parse(response.body)["tracks"]["items"]
       # save the URI from the first result to the array if it isnt null
-      spotify_uris << results[0]["uri"] unless results[0].nil?
+      spotify_uris << results[0]['uri'] unless results[0].nil?
 
       # spotify_artists << results[0]["artists"][0]["name"] unless results[0].nil? # this line is for debugging purposes
-
     end
     spotify_uris
 
