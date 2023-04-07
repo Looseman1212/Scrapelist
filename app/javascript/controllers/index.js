@@ -9,3 +9,6 @@ application.register("easy-genre-menu", EasyGenreMenuController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import PickyGenreMenuController from "./picky_genre_menu_controller"
+application.register("picky-genre-menu", PickyGenreMenuController)
