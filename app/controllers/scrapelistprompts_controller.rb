@@ -64,7 +64,12 @@ class ScrapelistpromptsController < ApplicationController
     spotify_uris = grab_song_URIs(@songs)
     # create a new playlist, then populate it with the songs
     new_playlist = create_spotify_playlist(@scrapelist.genre)
-    populate_new_playlist(new_playlist, spotify_uris)
+    # if statement to catch failure
+    if populate_new_playlist(new_playlist[:playlist_id], spotify_uris) == 201
+      redirect_to new_playlist[:external_url], allow_other_host: true
+    else
+      render :show, status: :unprocessable_entity
+    end
   end
 
   private
@@ -144,8 +149,6 @@ class ScrapelistpromptsController < ApplicationController
     # array for storing the spotify URI's
     spotify_uris = []
 
-    # spotify_artists = [] # this line is for debugging purposes
-
     # search for each song in the scrapelist on spotify
     @songs.each do |song|
       # regex to separate collaborating artists if there are any (which is represented by 'x', 'X', or '/' between artist names)
@@ -172,12 +175,8 @@ class ScrapelistpromptsController < ApplicationController
       results = JSON.parse(response.body)["tracks"]["items"]
       # save the URI from the first result to the array if it isnt null
       spotify_uris << results[0]['uri'] unless results[0].nil?
-
-      # spotify_artists << results[0]["artists"][0]["name"] unless results[0].nil? # this line is for debugging purposes
     end
     spotify_uris
-
-    # spotify_artists # this line is for debugging purposes
   end
 
   def create_spotify_playlist(scrapelist_genre)
@@ -209,14 +208,9 @@ class ScrapelistpromptsController < ApplicationController
       body: body
     )
 
-    # if statement to catch failure
-    if response.code == 201
-      playlist_id = response.parsed_response['id']
-      return playlist_id
-    else
-      response.message
-      raise
-    end
+    playlist_id = response.parsed_response['id']
+    external_url = response.parsed_response['external_urls']['spotify']
+    { playlist_id:, external_url: }
   end
 
   def populate_new_playlist(playlist, songs)
@@ -236,12 +230,9 @@ class ScrapelistpromptsController < ApplicationController
 
     # send post request
     response = HTTParty.post(
-    endpoint, headers: headers, body: body
+      endpoint, headers:, body:
     )
 
-    if response.code != 201
-      response.message
-      raise
-    end
+    response.code
   end
 end
