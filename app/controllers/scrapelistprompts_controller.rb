@@ -52,9 +52,13 @@ class ScrapelistpromptsController < ApplicationController
     end
   end
 
-  def new_picky; end
+  def new_picky
+    @scrapelist = Scrapelistprompt.new
+  end
 
-  def create_picky; end
+  def create_picky
+    @scrapelist = Scrapelistprompt.new(scrapelist_params_easy)
+  end
 
   def send_to_spotify
     # create instance variables to store the current scrapelist and the songs which are in it
@@ -79,7 +83,7 @@ class ScrapelistpromptsController < ApplicationController
   end
 
   def scrapelist_params_picky
-    params.require(:scrapelistprompt).permit(:spotify_account, :genre, :subgenre, :release_order, :time_frame, :location)
+    params.require(:scrapelistprompt).permit(:genre, :subgenre, :release_order, :time_frame, :location)
   end
 
   def scrape_bandcamp(link)
