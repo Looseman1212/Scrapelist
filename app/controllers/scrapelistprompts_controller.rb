@@ -22,7 +22,7 @@ class ScrapelistpromptsController < ApplicationController
   def choose
     # Extract the authorization code from the query parameters
     authorization_code = params[:code]
-    # set the access token for the session with this function
+    # set the access token for the session with this function using the authorization code
     set_access_token_for_session(authorization_code)
     # set the user account details for the session with this function
     grab_user_account_details(session[:access_token])
@@ -154,7 +154,7 @@ class ScrapelistpromptsController < ApplicationController
     spotify_uris = []
 
     # search for each song in the scrapelist on spotify
-    @songs.each do |song|
+    songs.each do |song|
       # regex to separate collaborating artists if there are any (which is represented by 'x', 'X', or '/' between artist names)
       # if there are not, then the whole artist will be returned as the first element in artist_array
       artist_names = song.artist
