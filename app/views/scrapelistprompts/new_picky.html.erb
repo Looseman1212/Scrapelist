@@ -1,7 +1,7 @@
-<div class="picky-genre-page-wrapper">
-  <div class="new-picky-genre-container">
+<div class="picky-genre-page-wrapper" data-controller="picky-genre-menu">
+  <div class="new-picky-genre-container" data-picky-genre-menu-target="windowone">
     <div class="picky-selection-container">
-      <form action="/scrapelist/new_picky" accept-charset="UTF-8" method="post" class="picky-genre-menu" id="picky-genre-selection-form"  data-controller="picky-genre-menu">
+      <form action="/scrapelist/new_picky" accept-charset="UTF-8" method="post" class="picky-genre-menu" id="picky-genre-selection-form">
         <input type="hidden" name="authenticity_token" value="DA7pwQgUWXSQrdyRzNozDXj04mAg2uaQsx3K8aZ9io62jj-H5ojDLOAzqLjBS7UKbWoQaYbGtvhxQhfKDXvm6A" autocomplete="off">
         <div class="picky-genre-menu-group picky-genre-menu-group-one">
           <input type='radio' value='all' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_all'>
@@ -73,12 +73,59 @@
         <p class="picky-instructions-three">You will be able to see a list of all the songs scraped, and can investigate the songs that weren`t available on Spotify if you so choose!</p>
         <div class="picky-form-next-step">
           <%# <input type="submit" name="commit" value="Create your new Scrapelist" data-disable-with="submit" form="picky-genre-selection-form"> %>
-          <button class="picky-next-btn">Next</button>
+          <button class="picky-next-btn" id="next-btn" data-action="click->picky-genre-menu#nextWindow" data-picky-genre-menu-target="nextbtn">Next</button>
         </div>
       </div>
     </div>
   </div>
-  <div class="picky-selectors-container display-none">
-    <h1>Content goes here</h1>
+  <div id="display-none" class="picky-selectors-container" data-picky-genre-menu-target="windowtwo">
+    <div class="subgenre-container">
+      <h1>Subgenre? <em>(if you do not wish to be so specific, pick all)</em></h1>
+      <div class="subgenre-buttons-container">
+        <h1>insert subgenre buttons here</h1>
+      </div>
+    </div>
+    <div class="release-type-container">
+      <h1>What kind of releases would you like to see?</h1>
+      <div class="release-type-buttons-container">
+        <%= form_with model: @scrapelist do |f| %>
+          <%= f.radio_button :release_order, 'top', checked: true  %>
+          <%= f.label :release_order, 'Best-selling', value: 'top', class: 'release-type-btn' %>
+          <%= f.radio_button :release_order, 'new' %>
+          <%= f.label :release_order, 'New Arrivals', value: 'new', class: 'release-type-btn' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="when-container">
+      <h1>When? <em>(Pick the time frame you would like)</em></h1>
+      <div class="when-buttons-container">
+        <%= form_with model: @scrapelist do |f| %>
+          <%= f.radio_button :time_frame, '-1', checked: true  %>
+          <%= f.label :time_frame, 'Today', value: '-1', class: 'when-btn' %>
+          <%= f.radio_button :time_frame, '0' %>
+          <%= f.label :time_frame, 'This week', value: '0', class: 'when-btn' %>
+          <%= f.radio_button :time_frame, '761' %>
+          <%= f.label :time_frame, 'Last week', value: '761', class: 'when-btn' %>
+          <%= f.radio_button :time_frame, '760' %>
+          <%= f.label :time_frame, '2 weeks ago', value: '760', class: 'when-btn' %>
+          <%= f.radio_button :time_frame, '759' %>
+          <%= f.label :time_frame, '3 weeks ago', value: '759', class: 'when-btn' %>
+          <%= f.radio_button :time_frame, '758' %>
+          <%= f.label :time_frame, '4 weeks ago', value: '758', class: 'when-btn' %>
+          <%= f.radio_button :time_frame, '757' %>
+          <%= f.label :time_frame, '5 weeks ago', value: '757', class: 'when-btn' %>
+          <%= f.radio_button :time_frame, '756' %>
+          <%= f.label :time_frame, '6 weeks ago', value: '756', class: 'when-btn' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="navigation-buttons-container">
+      <div class="back-button-container">
+        <button class="picky-nav-btn-windowtwo" id="back-btn-windowtwo" data-action="click->picky-genre-menu#backWindow" data-picky-genre-menu-target="backbtnwindowtwo">Back</button>
+      </div>
+      <div class="next-button-container">
+        <button class="picky-nav-btn-windowtwo" id="next-btn-windowtwo" data-action="click->picky-genre-menu#nextWindow" data-picky-genre-menu-target="nextbtnwindowtwo">Next</button>
+      </div>
+    </div>
   </div>
 </div>

@@ -4,6 +4,8 @@ let GROUPCOUNT = 0;
 
 // Connects to data-controller="picky-genre-menu"
 export default class extends Controller {
+  static targets = ["nextbtn", "windowone", "windowtwo", "backbtnwindowtwo", "nextbtnwindowtwo"]
+
   connect() {
     console.log('hello');
     // reset the iterator to 0 whenever the controller is connected
@@ -73,5 +75,13 @@ export default class extends Controller {
       surpriseButton.value = randomValue;
       console.log(surpriseButton);
     }
+  }
+
+  nextWindow() {
+    console.log('next button clicked');
+    // hide windowone
+    this.windowoneTarget.setAttribute('id', 'display-none');
+    // show windowtwo
+    this.windowtwoTarget.removeAttribute('id', 'display-none');
   }
 }
