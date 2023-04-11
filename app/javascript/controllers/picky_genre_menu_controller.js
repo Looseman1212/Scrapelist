@@ -9,8 +9,9 @@ export default class extends Controller {
 
   connect() {
     console.log('hello');
-    // reset the iterator to 0 whenever the controller is connected
+    // reset the iterators to 0 whenever the controller is connected
     GROUPCOUNT = 0;
+    WINDOWCOUNT = 0;
   }
 
   scrollUp() {
@@ -78,7 +79,9 @@ export default class extends Controller {
     }
   }
 
-  nextWindow() {
+  nextWindow(event) {
+    // stop the form from being submitted too early
+    event.preventDefault();
     console.log('next button clicked');
     // define the windows
     const windows = document.querySelectorAll('.form-window');
@@ -90,9 +93,21 @@ export default class extends Controller {
     }
     // redefine the iterator after the change is shown to reflect where on the menu the user currently is
     WINDOWCOUNT += 1;
-    // // hide windowone
-    // this.windowoneTarget.setAttribute('id', 'display-none');
-    // // show windowtwo
-    // this.windowtwoTarget.removeAttribute('id', 'display-none');
+  }
+
+  previousWindow(event) {
+    // stop the form from being submitted too early
+    event.preventDefault();
+    console.log('back button clicked');
+    // define the windows
+    const windows = document.querySelectorAll('.form-window');
+    // hide the current window
+    windows[WINDOWCOUNT].setAttribute('id', 'display-none');
+    // show the previous window if there is one
+    if (windows[WINDOWCOUNT - 1] != null) {
+      windows[WINDOWCOUNT - 1].removeAttribute('id', 'display-none');
+    }
+    // redefine the iterator after the change is shown to reflect where on the menu the user currently is
+    WINDOWCOUNT -= 1;
   }
 }

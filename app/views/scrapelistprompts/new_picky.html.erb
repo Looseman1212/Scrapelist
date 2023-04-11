@@ -1,132 +1,213 @@
-<div class="picky-genre-page-wrapper" data-controller="picky-genre-menu">
-  <div class="new-picky-genre-container form-window" data-picky-genre-menu-target="windowone">
-    <div class="picky-selection-container">
-      <%= form_with model: @scrapelist, html: { class: 'picky-genre-menu', id: 'picky-genre-selection-form' } do |f| %>
-        <div class="picky-genre-menu-group picky-genre-menu-group-one">
-          <%= f.radio_button :genre, 'all', checked: true %>
-          <%= f.label :genre, 'ALL', value: 'all' %>
-          <%= f.radio_button :genre, 'acoustic' %>
-          <%= f.label :genre, 'ACOUSTIC', value: 'acoustic' %>
-          <%= f.radio_button :genre, 'alternative' %>
-          <%= f.label :genre, 'ALTERNATIVE', value: 'alternative' %>
-          <%= f.radio_button :genre, 'ambient' %>
-          <%= f.label :genre, 'AMBIENT', value: 'ambient' %>
-          <%= f.radio_button :genre, 'blues' %>
-          <%= f.label :genre, 'BLUES', value: 'blues' %>
-          <%= f.radio_button :genre, 'classical' %>
-          <%= f.label :genre, 'CLASSICAL', value: 'classical' %>
-          <%= f.radio_button :genre, 'country' %>
-          <%= f.label :genre, 'COUNTRY', value: 'country' %>
-          <%= f.radio_button :genre, 'devotional' %>
-          <%= f.label :genre, 'DEVOTIONAL', value: 'devotional' %>
-        </div>
-        <div id="inactive-list-group" class="picky-genre-menu-group picky-genre-menu-group-two">
-          <%= f.radio_button :genre, 'electronic' %>
-          <%= f.label :genre, 'ELECTRONIC', value: 'electronic' %>
-          <%= f.radio_button :genre, 'experimental' %>
-          <%= f.label :genre, 'EXPERIMENTAL', value: 'experimental' %>
-          <%= f.radio_button :genre, 'folk' %>
-          <%= f.label :genre, 'FOLK', value: 'folk' %>
-          <%= f.radio_button :genre, 'funk' %>
-          <%= f.label :genre, 'FUNK', value: 'funk' %>
-          <%= f.radio_button :genre, 'hip-hop-rap' %>
-          <%= f.label :genre, 'HIP-HOP/RAP', value: 'hip-hop-rap' %>
-          <%= f.radio_button :genre, 'jazz' %>
-          <%= f.label :genre, 'JAZZ', value: 'jazz' %>
-          <%= f.radio_button :genre, 'latin' %>
-          <%= f.label :genre, 'LATIN', value: 'latin' %>
-          <%= f.radio_button :genre, 'metal' %>
-          <%= f.label :genre, 'METAL', value: 'metal' %>
-        </div>
-        <div id="inactive-list-group" class="picky-genre-menu-group picky-genre-menu-group-three">
-          <%= f.radio_button :genre, 'pop' %>
-          <%= f.label :genre, 'POP', value: 'pop' %>
-          <%= f.radio_button :genre, 'punk' %>
-          <%= f.label :genre, 'PUNK', value: 'punk' %>
-          <%= f.radio_button :genre, 'r-b-soul' %>
-          <%= f.label :genre, 'R&B/SOUL', value: 'r-b-soul' %>
-          <%= f.radio_button :genre, 'reggae' %>
-          <%= f.label :genre, 'REGGAE', value: 'reggae' %>
-          <%= f.radio_button :genre, 'rock' %>
-          <%= f.label :genre, 'ROCK', value: 'rock' %>
-          <%= f.radio_button :genre, 'soundtrack' %>
-          <%= f.label :genre, 'SOUNDTRACK', value: 'soundtrack' %>
-          <%= f.radio_button :genre, 'world' %>
-          <%= f.label :genre, 'WORLD', value: 'world' %>
-          <input type='radio' value='' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_surprise'>
-          <label for='scrapelistprompt_genre_surprise' data-action="click->picky-genre-menu#selectSurprise">SURPRISE ME</label>
-        </div>
-        <div class="picky-genre-menu-controls">
-          <div class="up-down-controls">
-            <div id="inactive-button" class="up-picky-menu-action" data-action="click->picky-genre-menu#scrollUp"><p class="arrow">&#x2191;</p></div>
-            <div class="menu-controls-instructions"><p>Click for more genres...</p></div>
-            <div class="down-picky-menu-action" data-action="click->picky-genre-menu#scrollDown"><p class="arrow">&#x2193;</p></div>
+<%= form_with model: @scrapelist, html: { id: 'picky-options-selection-form' } do |f| %>
+  <div class="picky-genre-page-wrapper" data-controller="picky-genre-menu">
+    <div class="new-picky-genre-container form-window" data-picky-genre-menu-target="windowone">
+      <div class="picky-selection-container">
+        <div class="picky-genre-menu">
+          <div class="picky-genre-menu-group picky-genre-menu-group-one">
+            <%= f.radio_button :genre, 'all', checked: true %>
+            <%= f.label :genre, 'ALL', value: 'all' %>
+            <%= f.radio_button :genre, 'acoustic' %>
+            <%= f.label :genre, 'ACOUSTIC', value: 'acoustic' %>
+            <%= f.radio_button :genre, 'alternative' %>
+            <%= f.label :genre, 'ALTERNATIVE', value: 'alternative' %>
+            <%= f.radio_button :genre, 'ambient' %>
+            <%= f.label :genre, 'AMBIENT', value: 'ambient' %>
+            <%= f.radio_button :genre, 'blues' %>
+            <%= f.label :genre, 'BLUES', value: 'blues' %>
+            <%= f.radio_button :genre, 'classical' %>
+            <%= f.label :genre, 'CLASSICAL', value: 'classical' %>
+            <%= f.radio_button :genre, 'country' %>
+            <%= f.label :genre, 'COUNTRY', value: 'country' %>
+            <%= f.radio_button :genre, 'devotional' %>
+            <%= f.label :genre, 'DEVOTIONAL', value: 'devotional' %>
+          </div>
+          <div id="inactive-list-group" class="picky-genre-menu-group picky-genre-menu-group-two">
+            <%= f.radio_button :genre, 'electronic' %>
+            <%= f.label :genre, 'ELECTRONIC', value: 'electronic' %>
+            <%= f.radio_button :genre, 'experimental' %>
+            <%= f.label :genre, 'EXPERIMENTAL', value: 'experimental' %>
+            <%= f.radio_button :genre, 'folk' %>
+            <%= f.label :genre, 'FOLK', value: 'folk' %>
+            <%= f.radio_button :genre, 'funk' %>
+            <%= f.label :genre, 'FUNK', value: 'funk' %>
+            <%= f.radio_button :genre, 'hip-hop-rap' %>
+            <%= f.label :genre, 'HIP-HOP/RAP', value: 'hip-hop-rap' %>
+            <%= f.radio_button :genre, 'jazz' %>
+            <%= f.label :genre, 'JAZZ', value: 'jazz' %>
+            <%= f.radio_button :genre, 'latin' %>
+            <%= f.label :genre, 'LATIN', value: 'latin' %>
+            <%= f.radio_button :genre, 'metal' %>
+            <%= f.label :genre, 'METAL', value: 'metal' %>
+          </div>
+          <div id="inactive-list-group" class="picky-genre-menu-group picky-genre-menu-group-three">
+            <%= f.radio_button :genre, 'pop' %>
+            <%= f.label :genre, 'POP', value: 'pop' %>
+            <%= f.radio_button :genre, 'punk' %>
+            <%= f.label :genre, 'PUNK', value: 'punk' %>
+            <%= f.radio_button :genre, 'r-b-soul' %>
+            <%= f.label :genre, 'R&B/SOUL', value: 'r-b-soul' %>
+            <%= f.radio_button :genre, 'reggae' %>
+            <%= f.label :genre, 'REGGAE', value: 'reggae' %>
+            <%= f.radio_button :genre, 'rock' %>
+            <%= f.label :genre, 'ROCK', value: 'rock' %>
+            <%= f.radio_button :genre, 'soundtrack' %>
+            <%= f.label :genre, 'SOUNDTRACK', value: 'soundtrack' %>
+            <%= f.radio_button :genre, 'world' %>
+            <%= f.label :genre, 'WORLD', value: 'world' %>
+            <input type='radio' value='' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_surprise'>
+            <label for='scrapelistprompt_genre_surprise' data-action="click->picky-genre-menu#selectSurprise">SURPRISE ME</label>
+          </div>
+          <div class="picky-genre-menu-controls">
+            <div class="up-down-controls">
+              <div id="inactive-button" class="up-picky-menu-action" data-action="click->picky-genre-menu#scrollUp"><p class="arrow">&#x2191;</p></div>
+              <div class="menu-controls-instructions"><p>Click for more genres...</p></div>
+              <div class="down-picky-menu-action" data-action="click->picky-genre-menu#scrollDown"><p class="arrow">&#x2193;</p></div>
+            </div>
           </div>
         </div>
-      <% end %>
+      </div>
+      <div class="picky-dialogue">
+        <div class="picky-dialogue-contents">
+          <p class="picky-instructions-one">First, pick a genre. Keep in mind that next you will have the option to pick a subgenre</p>
+          <p class="picky-instructions-two">* Only songs that are available on Spotify will be added. *</p>
+          <p class="picky-instructions-three">You will be able to see a list of all the songs scraped, and can investigate the songs that weren`t available on Spotify if you so choose!</p>
+          <div class="picky-form-next-step">
+            <%# <input type="submit" name="commit" value="Create your new Scrapelist" data-disable-with="submit" form="picky-genre-selection-form"> %>
+            <button class="picky-next-btn" id="next-btn" data-action="click->picky-genre-menu#nextWindow" data-picky-genre-menu-target="nextbtn">Next</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="picky-dialogue">
-      <div class="picky-dialogue-contents">
-        <p class="picky-instructions-one">First, pick a genre. Keep in mind that next you will have the option to pick a subgenre</p>
-        <p class="picky-instructions-two">* Only songs that are available on Spotify will be added. *</p>
-        <p class="picky-instructions-three">You will be able to see a list of all the songs scraped, and can investigate the songs that weren`t available on Spotify if you so choose!</p>
-        <div class="picky-form-next-step">
-          <%# <input type="submit" name="commit" value="Create your new Scrapelist" data-disable-with="submit" form="picky-genre-selection-form"> %>
-          <button class="picky-next-btn" id="next-btn" data-action="click->picky-genre-menu#nextWindow" data-picky-genre-menu-target="nextbtn">Next</button>
+    <div id="display-none" class="picky-selectors-container form-window" data-picky-genre-menu-target="windowtwo">
+      <div class="subgenre-container">
+        <h1>Subgenre? <em>(if you do not wish to be so specific, pick all)</em></h1>
+        <div class="subgenre-buttons-container">
+          <%= f.radio_button :subgenre, '', checked: true  %>
+          <%= f.label :subgenre, 'All', value: '', class: 'subgenre-type-btn' %>
+        </div>
+      </div>
+      <div class="release-type-container">
+        <h1>What kind of releases would you like to see?</h1>
+        <div class="release-type-buttons-container">
+            <%= f.radio_button :release_order, 'top', checked: true  %>
+            <%= f.label :release_order, 'Best-selling', value: 'top', class: 'release-type-btn' %>
+            <%= f.radio_button :release_order, 'new' %>
+            <%= f.label :release_order, 'New Arrivals', value: 'new', class: 'release-type-btn' %>
+        </div>
+      </div>
+      <div class="when-container">
+        <h1>When? <em>(Pick the time frame you would like)</em></h1>
+        <div class="when-buttons-container">
+            <%= f.radio_button :time_frame, '-1', checked: true  %>
+            <%= f.label :time_frame, 'Today', value: '-1', class: 'when-btn' %>
+            <%= f.radio_button :time_frame, '0' %>
+            <%= f.label :time_frame, 'This week', value: '0', class: 'when-btn' %>
+            <%= f.radio_button :time_frame, '761' %>
+            <%= f.label :time_frame, 'Last week', value: '761', class: 'when-btn' %>
+            <%= f.radio_button :time_frame, '760' %>
+            <%= f.label :time_frame, '2 weeks ago', value: '760', class: 'when-btn' %>
+            <%= f.radio_button :time_frame, '759' %>
+            <%= f.label :time_frame, '3 weeks ago', value: '759', class: 'when-btn' %>
+            <%= f.radio_button :time_frame, '758' %>
+            <%= f.label :time_frame, '4 weeks ago', value: '758', class: 'when-btn' %>
+            <%= f.radio_button :time_frame, '757' %>
+            <%= f.label :time_frame, '5 weeks ago', value: '757', class: 'when-btn' %>
+            <%= f.radio_button :time_frame, '756' %>
+            <%= f.label :time_frame, '6 weeks ago', value: '756', class: 'when-btn' %>
+        </div>
+      </div>
+      <div class="navigation-buttons-container">
+        <div class="back-button-container">
+          <button class="picky-nav-btn-windowtwo" id="back-btn-windowtwo" data-action="click->picky-genre-menu#previousWindow" data-picky-genre-menu-target="backbtnwindowtwo">Back</button>
+        </div>
+        <div class="next-button-container">
+          <button class="picky-nav-btn-windowtwo" id="next-btn-windowtwo" data-action="click->picky-genre-menu#nextWindow" data-picky-genre-menu-target="nextbtnwindowtwo">Next</button>
+        </div>
+      </div>
+    </div>
+    <div id="display-none" class="location-selector-container form-window">
+      <h1>Location <em>(Where shall the artists come from?)</em></h1>
+      <div class="location-form-buttons">
+          <%= f.radio_button :location, '0', checked: true  %>
+          <%= f.label :location, 'ANYWHERE', value: '0', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2759794' %>
+          <%= f.label :location, 'AMSTERDAM', value: '2759794', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4180439' %>
+          <%= f.label :location, 'ATLANTA', value: '4180439', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4671654' %>
+          <%= f.label :location, 'AUSTIN', value: '4671654', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4347778' %>
+          <%= f.label :location, 'BALTIMORE', value: '4347778', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2950159' %>
+          <%= f.label :location, 'BERLIN', value: '2950159', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4930956' %>
+          <%= f.label :location, 'BOSTON', value: '4930956', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5110302' %>
+          <%= f.label :location, 'BROOKLYN', value: '5110302', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4887398' %>
+          <%= f.label :location, 'CHICAGO', value: '4887398', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5419384' %>
+          <%= f.label :location, 'DENVER', value: '5419384', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4990729' %>
+          <%= f.label :location, 'DETROIT', value: '4990729', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2964574' %>
+          <%= f.label :location, 'DUBLIN', value: '2964574', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '3333231' %>
+          <%= f.label :location, 'GLASGOW', value: '3333231', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2643743' %>
+          <%= f.label :location, 'LONDON', value: '2643743', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5368361' %>
+          <%= f.label :location, 'LOS ANGELES', value: '5368361', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '3117735' %>
+          <%= f.label :location, 'MADRID', value: '3117735', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2643123' %>
+          <%= f.label :location, 'MANCHESTER', value: '2643123', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2158177' %>
+          <%= f.label :location, 'MELBOURNE', value: '2158177', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '3530597' %>
+          <%= f.label :location, 'MEXICO CITY', value: '3530597', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4164138' %>
+          <%= f.label :location, 'MIAMI', value: '4164138', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5037649' %>
+          <%= f.label :location, 'MINNEAPOLIS', value: '5037649', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '6077243' %>
+          <%= f.label :location, 'MONTREAL', value: '6077243', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4644585' %>
+          <%= f.label :location, 'NASHVILLE', value: '4644585', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4335045' %>
+          <%= f.label :location, 'NEW ORLEANS', value: '4335045', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5128581' %>
+          <%= f.label :location, 'NEW YORK CITY', value: '5128581', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5378538' %>
+          <%= f.label :location, 'OAKLAND', value: '5378538', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2988507' %>
+          <%= f.label :location, 'PARIS', value: '2988507', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4560349' %>
+          <%= f.label :location, 'PHILADELPHIA', value: '4560349', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5746545' %>
+          <%= f.label :location, 'PORTLAND', value: '5746545', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5391959' %>
+          <%= f.label :location, 'SAN FRANCISCO', value: '5391959', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5809844' %>
+          <%= f.label :location, 'SEATTLE', value: '5809844', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2147714' %>
+          <%= f.label :location, 'SYDNEY', value: '2147714', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '6167865' %>
+          <%= f.label :location, 'TORONTO', value: '6167865', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '6173331' %>
+          <%= f.label :location, 'VANCOUVER', value: '6173331', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4140963' %>
+          <%= f.label :location, 'WASHINGTON D.C.', value: '4140963', class: 'location-type-btn' %>
+      </div>
+      <div class="location-nav-container">
+        <div class="back-button-container">
+          <button class="location-nav-btn" data-action="click->picky-genre-menu#previousWindow">Back</button>
+        </div>
+        <div class="create-button-container">
+          <%#= link_to "Create your new Scrapelist!", scrapelistprompts_path, class: 'create-btn' %>
+          <input type="submit" name="commit" value="Create your new Scrapelist" class="create-btn" data-disable-with="submit" form="picky-options-selection-form">
         </div>
       </div>
     </div>
   </div>
-  <div id="display-none" class="picky-selectors-container form-window" data-picky-genre-menu-target="windowtwo">
-    <div class="subgenre-container">
-      <h1>Subgenre? <em>(if you do not wish to be so specific, pick all)</em></h1>
-      <div class="subgenre-buttons-container">
-        <h1>insert subgenre buttons here</h1>
-      </div>
-    </div>
-    <div class="release-type-container">
-      <h1>What kind of releases would you like to see?</h1>
-      <div class="release-type-buttons-container">
-        <%= form_with model: @scrapelist do |f| %>
-          <%= f.radio_button :release_order, 'top', checked: true  %>
-          <%= f.label :release_order, 'Best-selling', value: 'top', class: 'release-type-btn' %>
-          <%= f.radio_button :release_order, 'new' %>
-          <%= f.label :release_order, 'New Arrivals', value: 'new', class: 'release-type-btn' %>
-        <% end %>
-      </div>
-    </div>
-    <div class="when-container">
-      <h1>When? <em>(Pick the time frame you would like)</em></h1>
-      <div class="when-buttons-container">
-        <%= form_with model: @scrapelist do |f| %>
-          <%= f.radio_button :time_frame, '-1', checked: true  %>
-          <%= f.label :time_frame, 'Today', value: '-1', class: 'when-btn' %>
-          <%= f.radio_button :time_frame, '0' %>
-          <%= f.label :time_frame, 'This week', value: '0', class: 'when-btn' %>
-          <%= f.radio_button :time_frame, '761' %>
-          <%= f.label :time_frame, 'Last week', value: '761', class: 'when-btn' %>
-          <%= f.radio_button :time_frame, '760' %>
-          <%= f.label :time_frame, '2 weeks ago', value: '760', class: 'when-btn' %>
-          <%= f.radio_button :time_frame, '759' %>
-          <%= f.label :time_frame, '3 weeks ago', value: '759', class: 'when-btn' %>
-          <%= f.radio_button :time_frame, '758' %>
-          <%= f.label :time_frame, '4 weeks ago', value: '758', class: 'when-btn' %>
-          <%= f.radio_button :time_frame, '757' %>
-          <%= f.label :time_frame, '5 weeks ago', value: '757', class: 'when-btn' %>
-          <%= f.radio_button :time_frame, '756' %>
-          <%= f.label :time_frame, '6 weeks ago', value: '756', class: 'when-btn' %>
-        <% end %>
-      </div>
-    </div>
-    <div class="navigation-buttons-container">
-      <div class="back-button-container">
-        <button class="picky-nav-btn-windowtwo" id="back-btn-windowtwo" data-action="click->picky-genre-menu#backWindow" data-picky-genre-menu-target="backbtnwindowtwo">Back</button>
-      </div>
-      <div class="next-button-container">
-        <button class="picky-nav-btn-windowtwo" id="next-btn-windowtwo" data-action="click->picky-genre-menu#nextWindow" data-picky-genre-menu-target="nextbtnwindowtwo">Next</button>
-      </div>
-    </div>
-  </div>
-  <div id="display-none" class="location-selector-container form-window">
-  </div>
-</div>
+<% end %>

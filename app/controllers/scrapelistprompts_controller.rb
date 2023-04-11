@@ -19,6 +19,10 @@ class ScrapelistpromptsController < ApplicationController
     @songs = Song.where(scrapelistprompt_id: @scrapelist.id)
   end
 
+  def show_test
+    @scrapelist = Scrapelistprompt.find(params[:id])
+  end
+
   def choose
     # Extract the authorization code from the query parameters
     authorization_code = params[:code]
@@ -57,7 +61,12 @@ class ScrapelistpromptsController < ApplicationController
   end
 
   def create_picky
-    @scrapelist = Scrapelistprompt.new(scrapelist_params_easy)
+    @scrapelist = Scrapelistprompt.new(scrapelist_params_picky)
+    if @scrapelist.save!
+      redirect_to one_scrapelist_test_path(@scrapelist)
+    else
+      render :new_picky, status: :unprocessable_entity
+    end
   end
 
   def send_to_spotify

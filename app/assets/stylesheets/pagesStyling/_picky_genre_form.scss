@@ -169,6 +169,11 @@
     .subgenre-buttons-container {
       background-color: white;
       width: 100%;
+      line-height: 3.9em;
+      .subgenre-type-btn {
+        margin: 0 5px;
+        padding: 15px 55px;
+      }
     }
   }
   .release-type-container {
@@ -210,6 +215,56 @@
       color: white;
       font-size: 1.2em;
       background-color: $bandcamp;
+      border-radius: 20px;
+    }
+  }
+}
+
+.location-selector-container { // window three!
+  // background-color: red;
+  position: relative;
+  width: 70%;
+  height: 78%;
+  margin: auto;
+  h1 { // set margin styling for headings in this window
+    margin: 0;
+  }
+  .location-form-buttons {
+    // background-color: blue;
+    width: 100%;
+    height: 80%;
+    line-height: 4em;
+    padding-top: 20px;
+    padding-left: 5px;
+    .location-type-btn {
+      margin: 0 5px;
+      padding: 15px 55px;
+    }
+  }
+  .location-nav-container {
+    // background-color: yellow;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .location-nav-btn {
+      margin: 0 5px;
+      padding: 9px 55px;
+      color: white;
+      font-size: 1.2em;
+      background-color: $bandcamp;
+      border-radius: 20px;
+    }
+    .create-btn {
+      margin: 0 5px;
+      padding: 9px 55px;
+      color: white;
+      font-size: 1.2em;
+      text-decoration: none;
+      background-color: $spotify;
       border-radius: 20px;
     }
   }
