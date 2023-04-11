@@ -131,10 +131,10 @@ input[type="radio"]:checked + label { // changes the colour of the label when th
       font-weight: 400;
       font-style: italic;
     }
-    .picky-form-submission {
+    .picky-form-next-step {
       text-align: center;
-      input[type=submit] {
-        background-color: $spotify;
+      .picky-next-btn {
+        background-color: $darkblue;
         box-shadow: -4px 4px 5px rgba(0, 0, 0, 0.3);
         border-radius: 20px;
         color: white;
@@ -142,10 +142,10 @@ input[type="radio"]:checked + label { // changes the colour of the label when th
         text-decoration: none;
         margin: 4px 2px;
         cursor: pointer;
-        transition: 0.2s;
+        transition: 0.05s;
         &:hover {
-          background-color: #3BE376;
-          outline: 1px solid $spotify;
+          background-color: $bandcamp;
+          outline: 1px solid $darkblue;
           box-shadow: none;
         }
       }
@@ -159,4 +159,8 @@ input[type="radio"]:checked + label { // changes the colour of the label when th
 
 #inactive-button { // id selector for hiding buttons
   visibility: hidden;
+}
+
+.display-none { // class selector for hiding elements
+  display: none;
 }
