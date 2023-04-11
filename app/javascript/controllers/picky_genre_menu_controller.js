@@ -5,7 +5,7 @@ let WINDOWCOUNT = 0;
 
 // Connects to data-controller="picky-genre-menu"
 export default class extends Controller {
-  static targets = ["nextbtn", "windowone", "windowtwo", "backbtnwindowtwo", "nextbtnwindowtwo"]
+  static targets = ["nextbtn", "windowone", "windowtwo", "whindowthree", "backbtnwindowtwo", "nextbtnwindowtwo"]
 
   connect() {
     console.log('hello');
@@ -93,6 +93,7 @@ export default class extends Controller {
     }
     // redefine the iterator after the change is shown to reflect where on the menu the user currently is
     WINDOWCOUNT += 1;
+
   }
 
   previousWindow(event) {
