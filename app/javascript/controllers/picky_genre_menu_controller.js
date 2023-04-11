@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 let GROUPCOUNT = 0;
+let WINDOWCOUNT = 0;
 
 // Connects to data-controller="picky-genre-menu"
 export default class extends Controller {
@@ -79,9 +80,19 @@ export default class extends Controller {
 
   nextWindow() {
     console.log('next button clicked');
-    // hide windowone
-    this.windowoneTarget.setAttribute('id', 'display-none');
-    // show windowtwo
-    this.windowtwoTarget.removeAttribute('id', 'display-none');
+    // define the windows
+    const windows = document.querySelectorAll('.form-window');
+    // hide the current window
+    windows[WINDOWCOUNT].setAttribute('id', 'display-none');
+    // show the next window if there is one
+    if (windows[WINDOWCOUNT + 1] != null) {
+      windows[WINDOWCOUNT + 1].removeAttribute('id', 'display-none');
+    }
+    // redefine the iterator after the change is shown to reflect where on the menu the user currently is
+    WINDOWCOUNT += 1;
+    // // hide windowone
+    // this.windowoneTarget.setAttribute('id', 'display-none');
+    // // show windowtwo
+    // this.windowtwoTarget.removeAttribute('id', 'display-none');
   }
 }

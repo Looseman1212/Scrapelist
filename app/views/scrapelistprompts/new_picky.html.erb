@@ -1,59 +1,58 @@
 <div class="picky-genre-page-wrapper" data-controller="picky-genre-menu">
-  <div class="new-picky-genre-container" data-picky-genre-menu-target="windowone">
+  <div class="new-picky-genre-container form-window" data-picky-genre-menu-target="windowone">
     <div class="picky-selection-container">
-      <form action="/scrapelist/new_picky" accept-charset="UTF-8" method="post" class="picky-genre-menu" id="picky-genre-selection-form">
-        <input type="hidden" name="authenticity_token" value="DA7pwQgUWXSQrdyRzNozDXj04mAg2uaQsx3K8aZ9io62jj-H5ojDLOAzqLjBS7UKbWoQaYbGtvhxQhfKDXvm6A" autocomplete="off">
+      <%= form_with model: @scrapelist, html: { class: 'picky-genre-menu', id: 'picky-genre-selection-form' } do |f| %>
         <div class="picky-genre-menu-group picky-genre-menu-group-one">
-          <input type='radio' value='all' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_all'>
-          <label for='scrapelistprompt_genre_all'>ALL</label>
-          <input type='radio' value='acoustic' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_acoustic'>
-          <label for='scrapelistprompt_genre_acoustic'>ACOUSTIC</label>
-          <input type='radio' value='alternative' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_alternative'>
-          <label for='scrapelistprompt_genre_alternative'>ALTERNATIVE</label>
-          <input type='radio' value='ambient' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_ambient'>
-          <label for='scrapelistprompt_genre_ambient'>AMBIENT</label>
-          <input type='radio' value='blues' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_blues'>
-          <label for='scrapelistprompt_genre_blues'>BLUES</label>
-          <input type='radio' value='classical' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_classical'>
-          <label for='scrapelistprompt_genre_classical'>CLASSICAL</label>
-          <input type='radio' value='country' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_country'>
-          <label for='scrapelistprompt_genre_country'>COUNTRY</label>
-          <input type='radio' value='devotional' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_devotional'>
-          <label for='scrapelistprompt_genre_devotional'>DEVOTIONAL</label>
+          <%= f.radio_button :genre, 'all', checked: true %>
+          <%= f.label :genre, 'ALL', value: 'all' %>
+          <%= f.radio_button :genre, 'acoustic' %>
+          <%= f.label :genre, 'ACOUSTIC', value: 'acoustic' %>
+          <%= f.radio_button :genre, 'alternative' %>
+          <%= f.label :genre, 'ALTERNATIVE', value: 'alternative' %>
+          <%= f.radio_button :genre, 'ambient' %>
+          <%= f.label :genre, 'AMBIENT', value: 'ambient' %>
+          <%= f.radio_button :genre, 'blues' %>
+          <%= f.label :genre, 'BLUES', value: 'blues' %>
+          <%= f.radio_button :genre, 'classical' %>
+          <%= f.label :genre, 'CLASSICAL', value: 'classical' %>
+          <%= f.radio_button :genre, 'country' %>
+          <%= f.label :genre, 'COUNTRY', value: 'country' %>
+          <%= f.radio_button :genre, 'devotional' %>
+          <%= f.label :genre, 'DEVOTIONAL', value: 'devotional' %>
         </div>
         <div id="inactive-list-group" class="picky-genre-menu-group picky-genre-menu-group-two">
-          <input type='radio' value='electronic' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_electronic'>
-          <label for='scrapelistprompt_genre_electronic'>ELECTRONIC</label>
-          <input type='radio' value='experimental' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_experimental'>
-          <label for='scrapelistprompt_genre_experimental'>EXPERIMENTAL</label>
-          <input type='radio' value='folk' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_folk'>
-          <label for='scrapelistprompt_genre_folk'>FOLK</label>
-          <input type='radio' value='funk' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_funk'>
-          <label for='scrapelistprompt_genre_funk'>FUNK</label>
-          <input type='radio' value='hip-hop-rap' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_hip-hop/rap'>
-          <label for='scrapelistprompt_genre_hip-hop/rap'>HIP-HOP/RAP</label>
-          <input type='radio' value='jazz' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_jazz'>
-          <label for='scrapelistprompt_genre_jazz'>JAZZ</label>
-          <input type='radio' value='latin' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_latin'>
-          <label for='scrapelistprompt_genre_latin'>LATIN</label>
-          <input type='radio' value='metal' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_metal'>
-          <label for='scrapelistprompt_genre_metal'>METAL</label>
+          <%= f.radio_button :genre, 'electronic' %>
+          <%= f.label :genre, 'ELECTRONIC', value: 'electronic' %>
+          <%= f.radio_button :genre, 'experimental' %>
+          <%= f.label :genre, 'EXPERIMENTAL', value: 'experimental' %>
+          <%= f.radio_button :genre, 'folk' %>
+          <%= f.label :genre, 'FOLK', value: 'folk' %>
+          <%= f.radio_button :genre, 'funk' %>
+          <%= f.label :genre, 'FUNK', value: 'funk' %>
+          <%= f.radio_button :genre, 'hip-hop-rap' %>
+          <%= f.label :genre, 'HIP-HOP/RAP', value: 'hip-hop-rap' %>
+          <%= f.radio_button :genre, 'jazz' %>
+          <%= f.label :genre, 'JAZZ', value: 'jazz' %>
+          <%= f.radio_button :genre, 'latin' %>
+          <%= f.label :genre, 'LATIN', value: 'latin' %>
+          <%= f.radio_button :genre, 'metal' %>
+          <%= f.label :genre, 'METAL', value: 'metal' %>
         </div>
         <div id="inactive-list-group" class="picky-genre-menu-group picky-genre-menu-group-three">
-          <input type='radio' value='pop' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_pop'>
-          <label for='scrapelistprompt_genre_pop'>POP</label>
-          <input type='radio' value='punk' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_punk'>
-          <label for='scrapelistprompt_genre_punk'>PUNK</label>
-          <input type='radio' value='r-b-soul' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_r&b/soul'>
-          <label for='scrapelistprompt_genre_r&b/soul'>R&B/SOUL</label>
-          <input type='radio' value='reggae' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_reggae'>
-          <label for='scrapelistprompt_genre_reggae'>REGGAE</label>
-          <input type='radio' value='rock' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_rock'>
-          <label for='scrapelistprompt_genre_rock'>ROCK</label>
-          <input type='radio' value='soundtrack' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_soundtrack'>
-          <label for='scrapelistprompt_genre_soundtrack'>SOUNDTRACK</label>
-          <input type='radio' value='world' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_world'>
-          <label for='scrapelistprompt_genre_world'>WORLD</label>
+          <%= f.radio_button :genre, 'pop' %>
+          <%= f.label :genre, 'POP', value: 'pop' %>
+          <%= f.radio_button :genre, 'punk' %>
+          <%= f.label :genre, 'PUNK', value: 'punk' %>
+          <%= f.radio_button :genre, 'r-b-soul' %>
+          <%= f.label :genre, 'R&B/SOUL', value: 'r-b-soul' %>
+          <%= f.radio_button :genre, 'reggae' %>
+          <%= f.label :genre, 'REGGAE', value: 'reggae' %>
+          <%= f.radio_button :genre, 'rock' %>
+          <%= f.label :genre, 'ROCK', value: 'rock' %>
+          <%= f.radio_button :genre, 'soundtrack' %>
+          <%= f.label :genre, 'SOUNDTRACK', value: 'soundtrack' %>
+          <%= f.radio_button :genre, 'world' %>
+          <%= f.label :genre, 'WORLD', value: 'world' %>
           <input type='radio' value='' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_surprise'>
           <label for='scrapelistprompt_genre_surprise' data-action="click->picky-genre-menu#selectSurprise">SURPRISE ME</label>
         </div>
@@ -64,7 +63,7 @@
             <div class="down-picky-menu-action" data-action="click->picky-genre-menu#scrollDown"><p class="arrow">&#x2193;</p></div>
           </div>
         </div>
-      </form>
+      <% end %>
     </div>
     <div class="picky-dialogue">
       <div class="picky-dialogue-contents">
@@ -78,7 +77,7 @@
       </div>
     </div>
   </div>
-  <div id="display-none" class="picky-selectors-container" data-picky-genre-menu-target="windowtwo">
+  <div id="display-none" class="picky-selectors-container form-window" data-picky-genre-menu-target="windowtwo">
     <div class="subgenre-container">
       <h1>Subgenre? <em>(if you do not wish to be so specific, pick all)</em></h1>
       <div class="subgenre-buttons-container">
@@ -127,5 +126,7 @@
         <button class="picky-nav-btn-windowtwo" id="next-btn-windowtwo" data-action="click->picky-genre-menu#nextWindow" data-picky-genre-menu-target="nextbtnwindowtwo">Next</button>
       </div>
     </div>
+  </div>
+  <div id="display-none" class="location-selector-container form-window">
   </div>
 </div>
