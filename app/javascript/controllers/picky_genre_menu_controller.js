@@ -93,7 +93,6 @@ export default class extends Controller {
     }
     // redefine the iterator after the change is shown to reflect where on the menu the user currently is
     WINDOWCOUNT += 1;
-
   }
 
   previousWindow(event) {
@@ -110,5 +109,22 @@ export default class extends Controller {
     }
     // redefine the iterator after the change is shown to reflect where on the menu the user currently is
     WINDOWCOUNT -= 1;
+  }
+
+  genreThenShowSubgenres() {
+    const genre_buttons = document.querySelectorAll('input[name="scrapelistprompt[genre]"]');
+    const subgenre_buttons = document.querySelectorAll('.subgenre-buttons');
+    // hide all the subgenre buttons everytime this function is called
+    subgenre_buttons.forEach((button) => {
+      button.setAttribute('id', 'display-none');
+    });
+    // select which subgenre buttons to show based on which genre button is checked
+    genre_buttons.forEach((button) => {
+      if (button.checked) {
+        const subgenre_toshow = document.querySelector(`.${button.value}-subgenres`);
+        // console.log(subgenre_toshow);
+        subgenre_toshow.removeAttribute('id', 'display-none');
+      }
+    });
   }
 }
