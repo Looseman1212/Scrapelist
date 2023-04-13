@@ -5,8 +5,11 @@
 #inactive-button { // id selector for hiding buttons
   visibility: hidden;
 }
-#display-none { // class selector for hiding elements
+#display-none { // id selector for hiding elements
   display: none;
+}
+#visibility-hidden { // id selector for hiding elements
+  visibility: hidden;
 }
 
 .picky-genre-page-wrapper {

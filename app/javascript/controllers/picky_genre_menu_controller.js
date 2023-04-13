@@ -12,6 +12,7 @@ export default class extends Controller {
     // reset the iterators to 0 whenever the controller is connected
     GROUPCOUNT = 0;
     WINDOWCOUNT = 0;
+    // this.whenBtnsIfAllSubgenres();
   }
 
   scrollUp() {
@@ -93,6 +94,9 @@ export default class extends Controller {
     }
     // redefine the iterator after the change is shown to reflect where on the menu the user currently is
     WINDOWCOUNT += 1;
+    if (WINDOWCOUNT == 1) {
+      this.whenBtnsIfAllSubgenres();
+    }
   }
 
   previousWindow(event) {
@@ -122,9 +126,37 @@ export default class extends Controller {
     genre_buttons.forEach((button) => {
       if (button.checked) {
         const subgenre_toshow = document.querySelector(`.${button.value}-subgenres`);
-        // console.log(subgenre_toshow);
         subgenre_toshow.removeAttribute('id', 'display-none');
       }
+    });
+  }
+
+  whenBtnsIfAllSubgenres() {
+    // define variables
+    const subgenre_buttons = document.querySelectorAll('input[name="scrapelistprompt[subgenre]"]');
+    const release_type_container = document.querySelector('.release-type-container');
+    const when_container = document.querySelector('.when-container');
+    const when_buttons_container = document.querySelector('.when-buttons-container');
+    // reset the release_type and when containers to hidden
+    release_type_container.setAttribute('id', 'visibility-hidden');
+    when_container.setAttribute('id', 'visibility-hidden');
+    // set a click event for if the user clicks any of the subgenre_buttons
+    subgenre_buttons.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        // unhide the release_type and when containers when a subgenre button is clicked
+        release_type_container.removeAttribute('id', 'visibility-hidden');
+        when_container.removeAttribute('id', 'visibility-hidden');
+        // if the user clicks the ALL button, show the when_buttons_container
+        if (button.value.startsWith("all-")) {
+          when_buttons_container.removeAttribute('id', 'visibility-hidden');
+        } else {
+          // if the user clicks any other button, hide the when_buttons_container
+          when_buttons_container.setAttribute('id', 'visibility-hidden');
+          // and set the this_week button to checked
+          const this_week_btn = document.getElementById('scrapelistprompt_time_frame_0')
+          this_week_btn.checked = true;
+        }
+      });
     });
   }
 }
