@@ -1,11 +1,13 @@
 <p><%= @scrapelist %></p>
 <br>
 <ul>
-  <li><p><%= @scrapelist.genre %></p></li>
-  <li><p><%= @scrapelist.subgenre %></p></li>
-  <li><p><%= @scrapelist.release_order %></p></li>
-  <li><p><%= @scrapelist.time_frame %></p></li>
-  <li><p><%= @scrapelist.location %></p></li>
+  <li><p>Genre: <%= @scrapelist.genre %></p></li>
+  <li><p>Subgenre: <%= @scrapelist.subgenre %></p></li>
+  <li><p>Release_order: <%= @scrapelist.release_order %></p></li>
+  <li><p>Time_frame: <%= @scrapelist.time_frame %></p></li>
+  <li><p>Location: <%= @scrapelist.location %></p></li>
+  <% subgenre_regex =  @scrapelist.subgenre.match(/.+~(.+)/) %>
+  <li><p>Regex: <%= subgenre_regex %></p></li>
 </ul>
 <h1>Bandcamp Query</h1>
 <p><%= @scrapelist.bandcamp_query %></p>

@@ -147,7 +147,7 @@ export default class extends Controller {
         release_type_container.removeAttribute('id', 'visibility-hidden');
         when_container.removeAttribute('id', 'visibility-hidden');
         // if the user clicks the ALL button, show the when_buttons_container
-        if (button.value.startsWith("all-")) {
+        if (button.value.endsWith("~all")) {
           when_buttons_container.removeAttribute('id', 'visibility-hidden');
         } else {
           // if the user clicks any other button, hide the when_buttons_container

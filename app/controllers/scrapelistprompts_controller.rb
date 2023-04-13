@@ -62,11 +62,19 @@ class ScrapelistpromptsController < ApplicationController
 
   def create_picky
     @scrapelist = Scrapelistprompt.new(scrapelist_params_picky)
-    if @scrapelist.subgenre == ''
+    # regex for getting the subgenre from the radio buttons value /#{radio_button.value}~(.+)/
+    subgenre_regex = @scrapelist.subgenre.match(/.+~(.+)/)
+    @scrapelist.subgenre = subgenre_regex[1]
+    if subgenre_regex == 'all' # && @scrapelist.location.zero?
       @scrapelist.bandcamp_query = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
     else
       @scrapelist.bandcamp_query = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number}&gn=#{@scrapelist.location}&f=all&t=#{@scrapelist.subgenre}"
     end
+    # if @scrapelist.subgenre == ''
+    #   @scrapelist.bandcamp_query = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
+    # else
+    #   @scrapelist.bandcamp_query = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number}&gn=#{@scrapelist.location}&f=all&t=#{@scrapelist.subgenre}"
+    # end
     if @scrapelist.save!
       redirect_to one_scrapelist_test_path(@scrapelist)
     else
