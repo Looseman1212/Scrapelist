@@ -1,0 +1,8 @@
+<div class="send-to-spotify-wrapper">
+  <div class="send-to-spotify-container">
+    <h1>The Scrapelist creation was a Success<%#= @status %>!</h1>
+    <%= link_to "Click here to see it!", @playlist_link, target: "_blank", class: "show-spotify-btn" %>
+    <!-- <a target="_blank" class="show-spotify-btn" href="/">Click here to see it!</a> -->
+    <%= link_to "Create another Scrapelist", login_path, class: "start-again-btn" %>
+  </div>
+</div>

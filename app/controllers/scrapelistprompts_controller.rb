@@ -89,15 +89,24 @@ class ScrapelistpromptsController < ApplicationController
 
   def send_to_spotify
     # create instance variables to store the current scrapelist and the songs which are in it
+    # puts 'getting scrapelist'
     @scrapelist = Scrapelistprompt.find(params[:id])
+    # puts 'getting songs'
     @songs = Song.where(scrapelistprompt_id: params[:id])
     # array of songs found with spotify search
+    # puts 'grabbing song URIs'
     spotify_uris = grab_song_URIs(@songs)
     # create a new playlist, then populate it with the songs
+    # puts 'creating new playlist'
     new_playlist = create_spotify_playlist(@scrapelist.genre)
+    # puts 'populating playlist'
+    populate_playlist_response_code = populate_new_playlist(new_playlist[:playlist_id], spotify_uris)
+    @playlist_link = new_playlist[:external_url]
     # if statement to catch failure
-    if populate_new_playlist(new_playlist[:playlist_id], spotify_uris) == 201
-      redirect_to new_playlist[:external_url], allow_other_host: true
+    # puts 'redirecting'
+    if populate_playlist_response_code == 201
+      # redirect_to new_playlist[:external_url], allow_other_host: true
+      @status = 'success'
     else
       render :show, status: :unprocessable_entity
     end
