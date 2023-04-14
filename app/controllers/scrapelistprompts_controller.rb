@@ -38,7 +38,7 @@ class ScrapelistpromptsController < ApplicationController
 
   def create_easy
     @scrapelist = Scrapelistprompt.new(scrapelist_params_easy)
-    @scrapelist.subgenre = ''
+    @scrapelist.subgenre = 'all'
     @scrapelist.release_order = 'new'
     @scrapelist.page_number = 0
     @scrapelist.location = 0
@@ -70,7 +70,7 @@ class ScrapelistpromptsController < ApplicationController
     @scrapelist.subgenre = subgenre_regex[1]
 
     # only include the time frame if the subgenre is all
-    if subgenre_regex == 'all' # && @scrapelist.location.zero?
+    if @scrapelist.subgenre == 'all' # && @scrapelist.location.zero?
       @scrapelist.bandcamp_query = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
       @scrapelist.query_two = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 1}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
     else
@@ -89,23 +89,16 @@ class ScrapelistpromptsController < ApplicationController
 
   def send_to_spotify
     # create instance variables to store the current scrapelist and the songs which are in it
-    # puts 'getting scrapelist'
     @scrapelist = Scrapelistprompt.find(params[:id])
-    # puts 'getting songs'
     @songs = Song.where(scrapelistprompt_id: params[:id])
     # array of songs found with spotify search
-    # puts 'grabbing song URIs'
     spotify_uris = grab_song_URIs(@songs)
     # create a new playlist, then populate it with the songs
-    # puts 'creating new playlist'
-    new_playlist = create_spotify_playlist(@scrapelist.genre)
-    # puts 'populating playlist'
+    new_playlist = create_spotify_playlist(@scrapelist.genre, @scrapelist.subgenre)
     populate_playlist_response_code = populate_new_playlist(new_playlist[:playlist_id], spotify_uris)
     @playlist_link = new_playlist[:external_url]
     # if statement to catch failure
-    # puts 'redirecting'
     if populate_playlist_response_code == 201
-      # redirect_to new_playlist[:external_url], allow_other_host: true
       @status = 'success'
     else
       render :show, status: :unprocessable_entity
@@ -219,7 +212,7 @@ class ScrapelistpromptsController < ApplicationController
     spotify_uris
   end
 
-  def create_spotify_playlist(scrapelist_genre)
+  def create_spotify_playlist(genre, subgenre)
     access_token = session[:access_token]
     user_id = session[:user_details]["id"]
     endpoint = "https://api.spotify.com/v1/users/#{user_id}/playlists"
@@ -234,12 +227,20 @@ class ScrapelistpromptsController < ApplicationController
     time = Time.now
     formatted_time = time.strftime('%A %B %d %Y')
 
-    # Set up request body
-    body = {
-      name: "#{scrapelist_genre.capitalize} Scrapelist made #{formatted_time}",
-      description: "A new playlist made with Scrapelist!",
-      public: false
-    }.to_json
+    # If statement to set up request body with or without subgenre
+    if subgenre == 'all'
+      body = {
+        name: "#{genre.capitalize} Scrapelist made #{formatted_time}",
+        description: "A new playlist made with Scrapelist!",
+        public: false
+      }.to_json
+    else
+      body = {
+        name: "#{subgenre.capitalize} Scrapelist made #{formatted_time}",
+        description: "A new playlist made with Scrapelist!",
+        public: false
+      }.to_json
+    end
 
     # send post request
     response = HTTParty.post(
