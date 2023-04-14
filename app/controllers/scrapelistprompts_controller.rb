@@ -10,6 +10,12 @@ class ScrapelistpromptsController < ApplicationController
   def show # if the scraping isn't happening, lines 17 and 18 may be commented out!
     # finding the scrapelistprompt by id
     @scrapelist = Scrapelistprompt.find(params[:id])
+    # setting the instance variable for the view
+    if @scrapelist.subgenre == 'all'
+      @heres_what_we_got = @scrapelist.genre
+    else
+      @heres_what_we_got = @scrapelist.subgenre
+    end
     # getting the url created
     url_page_one = @scrapelist.bandcamp_query
     url_page_two = @scrapelist.query_two

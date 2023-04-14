@@ -150,5 +150,16 @@ html, body {
     margin: auto;
     text-align: center;
     color: #9F2D71;
+    .social-links {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 1em 0;
+      list-style: none;
+      padding: 0;
+      .active-link:hover {
+        filter: invert(23%) sepia(34%) saturate(3497%) hue-rotate(295deg) brightness(94%) contrast(89%);
+      }
+    }
   }
 }
