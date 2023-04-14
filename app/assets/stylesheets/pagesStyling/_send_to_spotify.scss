@@ -1,0 +1,50 @@
+.send-to-spotify-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #511639;
+  .send-to-spotify-container {
+    // background-color: blue;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    line-height: 2.6em;
+    .show-spotify-btn {
+      background-color: $spotify;
+      font-size: 14pt;
+      text-align: center;
+      text-decoration: none;
+      color: $black;
+      margin: 10px;
+      padding: 0.9em 1.7em;
+      border-radius: 3em;
+      box-shadow: -4px 4px 5px rgba(0, 0, 0, 0.3);
+      transition: 0.2s;
+      &:hover {
+        background-color: #3BE376;
+        outline: 2px solid $spotify;
+        box-shadow: none;
+      }
+    }
+    .start-again-btn {
+      background-color: $pink;
+      font-size: 14pt;
+      text-align: center;
+      text-decoration: none;
+      color: $black;
+      margin: 10px;
+      padding: 0.9em 1.7em;
+      border-radius: 3em;
+      box-shadow: -4px 4px 5px rgba(0, 0, 0, 0.3);
+      transition: 0.2s;
+      &:hover {
+        background-color: $bandcamp;
+        outline: 2px solid $spotify;
+        box-shadow: none;
+      }
+    }
+  }
+}
