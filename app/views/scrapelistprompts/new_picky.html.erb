@@ -1,0 +1,749 @@
+<%= form_with model: @scrapelist, html: { id: 'picky-options-selection-form' } do |f| %>
+  <div class="picky-genre-page-wrapper" data-controller="picky-genre-menu">
+    <div class="new-picky-genre-container form-window" data-picky-genre-menu-target="windowone">
+      <div class="picky-selection-container">
+        <div class="picky-genre-menu">
+          <div class="picky-genre-menu-group picky-genre-menu-group-one">
+            <%= f.radio_button :genre, 'all', checked: true %>
+            <%= f.label :genre, 'ALL', value: 'all' %>
+            <%= f.radio_button :genre, 'acoustic' %>
+            <%= f.label :genre, 'ACOUSTIC', value: 'acoustic' %>
+            <%= f.radio_button :genre, 'alternative' %>
+            <%= f.label :genre, 'ALTERNATIVE', value: 'alternative' %>
+            <%= f.radio_button :genre, 'ambient' %>
+            <%= f.label :genre, 'AMBIENT', value: 'ambient' %>
+            <%= f.radio_button :genre, 'blues' %>
+            <%= f.label :genre, 'BLUES', value: 'blues' %>
+            <%= f.radio_button :genre, 'classical' %>
+            <%= f.label :genre, 'CLASSICAL', value: 'classical' %>
+            <%= f.radio_button :genre, 'country' %>
+            <%= f.label :genre, 'COUNTRY', value: 'country' %>
+            <%= f.radio_button :genre, 'devotional' %>
+            <%= f.label :genre, 'DEVOTIONAL', value: 'devotional' %>
+          </div>
+          <div id="inactive-list-group" class="picky-genre-menu-group picky-genre-menu-group-two">
+            <%= f.radio_button :genre, 'electronic' %>
+            <%= f.label :genre, 'ELECTRONIC', value: 'electronic' %>
+            <%= f.radio_button :genre, 'experimental' %>
+            <%= f.label :genre, 'EXPERIMENTAL', value: 'experimental' %>
+            <%= f.radio_button :genre, 'folk' %>
+            <%= f.label :genre, 'FOLK', value: 'folk' %>
+            <%= f.radio_button :genre, 'funk' %>
+            <%= f.label :genre, 'FUNK', value: 'funk' %>
+            <%= f.radio_button :genre, 'hip-hop-rap' %>
+            <%= f.label :genre, 'HIP-HOP/RAP', value: 'hip-hop-rap' %>
+            <%= f.radio_button :genre, 'jazz' %>
+            <%= f.label :genre, 'JAZZ', value: 'jazz' %>
+            <%= f.radio_button :genre, 'latin' %>
+            <%= f.label :genre, 'LATIN', value: 'latin' %>
+            <%= f.radio_button :genre, 'metal' %>
+            <%= f.label :genre, 'METAL', value: 'metal' %>
+          </div>
+          <div id="inactive-list-group" class="picky-genre-menu-group picky-genre-menu-group-three">
+            <%= f.radio_button :genre, 'pop' %>
+            <%= f.label :genre, 'POP', value: 'pop' %>
+            <%= f.radio_button :genre, 'punk' %>
+            <%= f.label :genre, 'PUNK', value: 'punk' %>
+            <%= f.radio_button :genre, 'r-b-soul' %>
+            <%= f.label :genre, 'R&B/SOUL', value: 'r-b-soul' %>
+            <%= f.radio_button :genre, 'reggae' %>
+            <%= f.label :genre, 'REGGAE', value: 'reggae' %>
+            <%= f.radio_button :genre, 'rock' %>
+            <%= f.label :genre, 'ROCK', value: 'rock' %>
+            <%= f.radio_button :genre, 'soundtrack' %>
+            <%= f.label :genre, 'SOUNDTRACK', value: 'soundtrack' %>
+            <%= f.radio_button :genre, 'world' %>
+            <%= f.label :genre, 'WORLD', value: 'world' %>
+            <input type='radio' value='' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_surprise'>
+            <label for='scrapelistprompt_genre_surprise' data-action="click->picky-genre-menu#selectSurprise">SURPRISE ME</label>
+          </div>
+          <div class="picky-genre-menu-controls">
+            <div class="up-down-controls">
+              <div id="inactive-button" class="up-picky-menu-action" data-action="click->picky-genre-menu#scrollUp"><p class="arrow">&#x2191;</p></div>
+              <div class="menu-controls-instructions"><p>Click for more genres...</p></div>
+              <div class="down-picky-menu-action" data-action="click->picky-genre-menu#scrollDown"><p class="arrow">&#x2193;</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="picky-dialogue">
+        <div class="picky-dialogue-contents">
+          <p class="picky-instructions-one">First, pick a genre. Keep in mind that next you will have the option to pick a subgenre</p>
+          <p class="picky-instructions-two">* Only songs that are available on Spotify will be added. *</p>
+          <p class="picky-instructions-three">You will be able to see a list of all the songs scraped, and can investigate the songs that weren`t available on Spotify if you so choose!</p>
+          <div class="picky-form-next-step">
+            <%# <input type="submit" name="commit" value="Create your new Scrapelist" data-disable-with="submit" form="picky-genre-selection-form"> %>
+            <button class="picky-next-btn" id="next-btn" data-action="
+            click->picky-genre-menu#nextWindow
+            click->picky-genre-menu#genreThenShowSubgenres" data-picky-genre-menu-target="nextbtn">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="display-none" class="picky-selectors-container form-window" data-picky-genre-menu-target="windowtwo">
+      <div class="subgenre-container">
+        <h1>Subgenre? <em>(if you do not wish to be so specific, pick all)</em></h1>
+        <div class="subgenre-buttons-container">
+          <div id="display-none" class="acoustic-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'acoustic~all' %>
+            <%= f.label :subgenre, 'All Acoustic', value: 'acoustic~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'acoustic~folk' %>
+            <%= f.label :subgenre, 'Folk', value: 'acoustic~folk', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'acoustic~singer-songwriter' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'Singer-songwriter', value: 'acoustic~singer-songwriter', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'acoustic~rock' %>
+            <%= f.label :subgenre, 'Rock', value: 'acoustic~rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'acoustic~pop' %>
+            <%= f.label :subgenre, 'Pop', value: 'acoustic~pop', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'acoustic~guitar' %>
+            <%= f.label :subgenre, 'Guitar', value: 'acoustic~guitar', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'acoustic~americana' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'Americana', value: 'acoustic~americana', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'acoustic~electro-acoustic' %>
+            <%= f.label :subgenre, 'Electro-acoustic', value: 'acoustic~electro-acoustic', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'acoustic~instrumental' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'Instrumental', value: 'acoustic~instrumental', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'acoustic~piano' %>
+            <%= f.label :subgenre, 'Piano', value: 'acoustic~piano', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'acoustic~bluegrass' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'Bluegrass', value: 'acoustic~bluegrass', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'acoustic~roots' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'Roots', value: 'acoustic~roots', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="alternative-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'alternative~all' %>
+            <%= f.label :subgenre, 'All Alternative', value: 'alternative~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'alternative~indie-rock' %>
+            <%= f.label :subgenre, 'Indie-rock', value: 'alternative~indie-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'alternative~industrial' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'Industrial', value: 'alternative~industrial', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'alternative~shoegaze' %>
+            <%= f.label :subgenre, 'shoegaze', value: 'alternative~shoegaze', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'alternative~grunge' %>
+            <%= f.label :subgenre, 'grunge', value: 'alternative~grunge', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'alternative~goth' %>
+            <%= f.label :subgenre, 'goth', value: 'alternative~goth', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'alternative~dream-pop' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'dream-pop', value: 'alternative~dream-pop', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'alternative~emo' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'Emo', value: 'alternative~emo', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'alternative~math-rock' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'math-rock', value: 'alternative~math-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'alternative~britpop' %>
+            <%= f.label :subgenre, 'britpop', value: 'alternative~britpop', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'alternative~jangle-pop' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'jangle-pop', value: 'alternative~jangle-pop', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="ambient-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'ambient~all' %>
+            <%= f.label :subgenre, 'All Ambient', value: 'ambient~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'ambient~chill-out' %>
+            <%= f.label :subgenre, 'chill-out', value: 'ambient~chill-out', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'ambient~drone' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'drone', value: 'ambient~drone', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'ambient~dark-ambient' %>
+            <%= f.label :subgenre, 'dark-ambient', value: 'ambient~dark-ambient', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'ambient~electronic' %>
+            <%= f.label :subgenre, 'electronic', value: 'ambient~electronic', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'ambient~soundscapes' %>
+            <%= f.label :subgenre, 'soundscapes', value: 'ambient~soundscapes', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'ambient~field-recordings' %>
+            <%= f.label :subgenre, 'Field recordings', value: 'ambient~field-recordings', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'ambient~atmospheric' %>
+            <%= f.label :subgenre, 'atmospheric', value: 'ambient~atmospheric', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'ambient~meditation' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'meditation', value: 'ambient~meditation', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'ambient~noise' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'noise', value: 'ambient~noise', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'ambient~new-age' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'new-age', value: 'ambient~new-age', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'ambient~idm' %>
+            <%= f.label :subgenre, 'Intelligent Dance Music', value: 'ambient~idm', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'ambient~industrial' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'industrial', value: 'ambient~industrial', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="blues-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'blues~all' %>
+            <%= f.label :subgenre, 'All Blues', value: 'blues~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'blues~rhythm-blues' %>
+            <%= f.label :subgenre, 'rhythm & blues ', value: 'blues~rhythm-blues', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'blues~blues-rock' %>
+            <%= f.label :subgenre, 'blues-rock', value: 'blues~blues-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'blues~country-blues' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'country-blues', value: 'blues~country-blues', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'blues~boogie-woogie' %>
+            <%= f.label :subgenre, 'boogie-woogie', value: 'blues~boogie-woogie', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'blues~delta-blues' %>
+            <%= f.label :subgenre, 'delta-blues', value: 'blues~delta-blues', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'blues~americana' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'Americana', value: 'blues~americana', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'blues~electric-blues' %>
+            <%= f.label :subgenre, 'electric-blues', value: 'blues~electric-blues', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'blues~gospel' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'gospel', value: 'blues~gospel', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'blues~bluegrass' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'bluegrass', value: 'blues~bluegrass', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="classical-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'classical~all' %>
+            <%= f.label :subgenre, 'All Classical', value: 'classical~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'classical~orchestral' %>
+            <%= f.label :subgenre, 'Orchestral', value: 'classical~orchestral', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'classical~neo-classical' %>
+            <%= f.label :subgenre, 'neo-classical', value: 'classical~neo-classical', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'classical~chamber-music' %>
+            <%= f.label :subgenre, 'chamber-music', value: 'classical~chamber-music', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'classical~classical-piano' %>
+            <%= f.label :subgenre, 'classical-piano', value: 'classical~classical-piano', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'classical~contemporary-classical' %>
+            <%= f.label :subgenre, 'contemporary-classical', value: 'classical~contemporary-classical', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'classical~baroque' %>
+            <%= f.label :subgenre, 'baroque', value: 'classical~baroque', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'classical~opera' %>
+            <%= f.label :subgenre, 'opera', value: 'classical~opera', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'classical~choral' %>
+            <%= f.label :subgenre, 'choral', value: 'classical~choral', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'classical~modern-classical' %>
+            <%= f.label :subgenre, 'modern-classical', value: 'classical~modern-classical', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'classical~avant-garde' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'avant-garde', value: 'classical~avant-garde', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="country-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'country~all' %>
+            <%= f.label :subgenre, 'All Country', value: 'country~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'country~bluegrass' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'bluegrass', value: 'country~bluegrass', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'country~country-rock' %>
+            <%= f.label :subgenre, 'country-rock', value: 'country~country-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'country~americana' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'americana', value: 'country~americana', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'country~country-folk' %>
+            <%= f.label :subgenre, 'country-folk', value: 'country~country-folk', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'country~alt-country' %>
+            <%= f.label :subgenre, 'alt-country', value: 'country~alt-country', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'country~country-blues' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'country-blues', value: 'country~country-blues', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'country~western' %>
+            <%= f.label :subgenre, 'western', value: 'country~western', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'country~singer-songwriter' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'singer-songwriter', value: 'country~singer-songwriter', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'country~outlaw' %>
+            <%= f.label :subgenre, 'outlaw', value: 'country~outlaw', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'country~honky-tonk' %>
+            <%= f.label :subgenre, 'honky-tonk', value: 'country~honky-tonk', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'country~roots' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'roots', value: 'country~roots', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'country~hillbilly' %>
+            <%= f.label :subgenre, 'hillbilly', value: 'country~hillbilly', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="devotional-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'devotional~all' %>
+            <%= f.label :subgenre, 'All', value: 'devotional~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'devotional~christian' %>
+            <%= f.label :subgenre, 'Christian', value: 'devotional~christian', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'devotional~gospel' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'Gospel', value: 'devotional~gospel', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'devotional~meditation' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'Meditation', value: 'devotional~meditation', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'devotional~spiritual' %>
+            <%= f.label :subgenre, 'Spiritual', value: 'devotional~spiritual', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'devotional~worship' %>
+            <%= f.label :subgenre, 'Worship', value: 'devotional~worship', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'devotional~inspirational' %>
+            <%= f.label :subgenre, 'Inspirational', value: 'devotional~inspirational', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="electronic-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'electronic~all' %>
+            <%= f.label :subgenre, 'All', value: 'electronic~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~house' %>
+            <%= f.label :subgenre, 'house', value: 'electronic~house', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~electronica' %>
+            <%= f.label :subgenre, 'electronica', value: 'electronic~electronica', class: 'subgenre-type-btn' %>
+            <%#= f.radio_button :subgenre, 'downtempo' %>
+            <%#= f.label :subgenre, 'downtempo', value: 'downtempo', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~techno' %>
+            <%= f.label :subgenre, 'techno', value: 'electronic~techno', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~electro' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'electro', value: 'electronic~electro', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~dubstep' %>
+            <%= f.label :subgenre, 'dubstep', value: 'electronic~dubstep', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~beats' %>
+            <%= f.label :subgenre, 'beats', value: 'electronic~beats', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~dance' %>
+            <%= f.label :subgenre, 'dance', value: 'electronic~dance', class: 'subgenre-type-btn' %>
+            <%#= f.radio_button :subgenre, 'idm' %>
+            <%#= f.label :subgenre, 'Intelligent Dance Music', value: 'idm', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~drum-bass' %>
+            <%= f.label :subgenre, 'drum & bass', value: 'electronic~drum-bass', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~breaks' %>
+            <%= f.label :subgenre, 'breaks', value: 'electronic~breaks', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~trance' %>
+            <%= f.label :subgenre, 'trance', value: 'electronic~trance', class: 'subgenre-type-btn' %>
+            <%#= f.radio_button :subgenre, 'glitch' %>
+            <%#= f.label :subgenre, 'Glitch', value: 'glitch', class: 'subgenre-type-btn' %>
+            <%#= f.radio_button :subgenre, 'chiptune' %>
+            <%#= f.label :subgenre, 'Chiptune', value: 'chiptune', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~chillwave' %>
+            <%= f.label :subgenre, 'chillwave', value: 'electronic~chillwave', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~dub' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'dub', value: 'electronic~dub', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~edm' %>
+            <%= f.label :subgenre, 'edm', value: 'electronic~edm', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~instrumental' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'instrumental', value: 'electronic~instrumental', class: 'subgenre-type-btn' %>
+            <%#= f.radio_button :subgenre, 'witch-house' %>
+            <%#= f.label :subgenre, 'witch-house', value: 'witch-house', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~garage' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'garage', value: 'electronic~garage', class: 'subgenre-type-btn' %>
+            <%#= f.radio_button :subgenre, 'juke' %>
+            <%#= f.label :subgenre, 'juke', value: 'juke', class: 'subgenre-type-btn' %>
+            <%#= f.radio_button :subgenre, 'footwork' %>
+            <%#= f.label :subgenre, 'footwork', value: 'footwork', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~vaporwave' %>
+            <%= f.label :subgenre, 'vaporwave', value: 'electronic~vaporwave', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'electronic~synthwave' %>
+            <%= f.label :subgenre, 'synthwave', value: 'electronic~synthwave', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="experimental-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'experimental~all' %>
+            <%= f.label :subgenre, 'All', value: 'experimental~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'experimental~noise' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'noise', value: 'experimental~noise', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'experimental~drone' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'drone', value: 'experimental~drone', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'experimental~avant-garde' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'avant-garde', value: 'experimental~avant-garde', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'experimental~experimental-rock' %>
+            <%= f.label :subgenre, 'experimental-rock', value: 'experimental~experimental-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'experimental~improvisation' %>
+            <%= f.label :subgenre, 'improvisation', value: 'experimental~improvisation', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'experimental~sound-art' %>
+            <%= f.label :subgenre, 'sound-art', value: 'experimental~sound-art', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'experimental~musique-concrete' %>
+            <%= f.label :subgenre, 'musique-concrete', value: 'experimental~musique-concrete', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="folk-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'folk~all' %>
+            <%= f.label :subgenre, 'All', value: 'folk~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'folk~singer-songwriter' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'singer-songwriter', value: 'folk~singer-songwriter', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'folk~folk-rock' %>
+            <%= f.label :subgenre, 'folk-rock', value: 'folk~folk-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'folk~indie-folk' %>
+            <%= f.label :subgenre, 'indie-folk', value: 'folk~indie-folk', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'folk~pop-folk' %>
+            <%= f.label :subgenre, 'pop-folk', value: 'folk~pop-folk', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'folk~traditional' %>
+            <%= f.label :subgenre, 'traditional', value: 'folk~traditional', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'folk~experimental-folk' %>
+            <%= f.label :subgenre, 'experimental-folk', value: 'folk~experimental-folk', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'folk~roots' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'roots', value: 'folk~roots', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="funk-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'funk~all' %>
+            <%= f.label :subgenre, 'All', value: 'funk~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'funk~funk-jam' %>
+            <%= f.label :subgenre, 'funk-jam', value: 'funk~funk-jam', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'funk~deep-funk' %>
+            <%= f.label :subgenre, 'deep-funk', value: 'funk~deep-funk', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'funk~funk-rock' %>
+            <%= f.label :subgenre, 'funk-rock', value: 'funk~funk-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'funk~jazz-funk' %>
+            <%= f.label :subgenre, 'jazz-funk', value: 'funk~jazz-funk', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'funk~boogie' %>
+            <%= f.label :subgenre, 'boogie', value: 'funk~boogie', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'funk~g-funk' %>
+            <%= f.label :subgenre, 'g-funk', value: 'funk~g-funk', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'funk~rare-groove' %>
+            <%= f.label :subgenre, 'rare-groove', value: 'funk~rare-groove', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'funk~electro' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'electro', value: 'funk~electro', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'funk~go-go' %>
+            <%= f.label :subgenre, 'go-go', value: 'funk~go-go', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="hip-hop-rap-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'hip-hop-rap~all' %>
+            <%= f.label :subgenre, 'All', value: 'hip-hop-rap~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'hip-hop-rap~rap' %>
+            <%= f.label :subgenre, 'rap', value: 'hip-hop-rap~rap', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'hip-hop-rap~underground-hip-hop' %>
+            <%= f.label :subgenre, 'underground-hip-hop', value: 'hip-hop-rap~underground-hip-hop', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'hip-hop-rap~instrumental-hip-hop' %>
+            <%= f.label :subgenre, 'instrumental-hip-hop', value: 'hip-hop-rap~instrumental-hip-hop', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'hip-hop-rap~trap' %>
+            <%= f.label :subgenre, 'trap', value: 'hip-hop-rap~trap', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'hip-hop-rap~conscious-hip-hop' %>
+            <%= f.label :subgenre, 'conscious-hip-hop', value: 'hip-hop-rap~conscious-hip-hop', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'hip-hop-rap~boom-bap' %>
+            <%= f.label :subgenre, 'boom-bap', value: 'hip-hop-rap~boom-bap', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'hip-hop-rap~beat-tape' %>
+            <%= f.label :subgenre, 'beat-tape', value: 'hip-hop-rap~beat-tape', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'hip-hop-rap~hardcore' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'hardcore', value: 'hip-hop-rap~hardcore', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'hip-hop-rap~grime' %>
+            <%= f.label :subgenre, 'grime', value: 'hip-hop-rap~grime', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="jazz-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'jazz~all' %>
+            <%= f.label :subgenre, 'All', value: 'jazz~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'jazz~fusion' %>
+            <%= f.label :subgenre, 'fusion', value: 'jazz~fusion', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'jazz~big-band' %>
+            <%= f.label :subgenre, 'big-band', value: 'jazz~big-band', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'jazz~nu-jazz' %>
+            <%= f.label :subgenre, 'nu-jazz', value: 'jazz~nu-jazz', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'jazz~modern-jazz' %>
+            <%= f.label :subgenre, 'modern-jazz', value: 'jazz~modern-jazz', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'jazz~swing' %>
+            <%= f.label :subgenre, 'swing', value: 'jazz~swing', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'jazz~free-jazz' %>
+            <%= f.label :subgenre, 'free-jazz', value: 'jazz~free-jazz', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'jazz~soul-jazz' %>
+            <%= f.label :subgenre, 'soul-jazz', value: 'jazz~soul-jazz', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'jazz~latin-jazz' %>
+            <%= f.label :subgenre, 'latin-jazz', value: 'jazz~latin-jazz', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'jazz~vocal-jazz' %>
+            <%= f.label :subgenre, 'vocal-jazz', value: 'jazz~vocal-jazz', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'jazz~bebop' %>
+            <%= f.label :subgenre, 'bebop', value: 'jazz~bebop', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'jazz~spiritual-jazz' %>
+            <%= f.label :subgenre, 'spiritual-jazz', value: 'jazz~spiritual-jazz', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="latin-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'latin~all' %>
+            <%= f.label :subgenre, 'All', value: 'latin~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'latin~brazilian' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'brazilian', value: 'latin~brazilian', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'latin~cumbia' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'cumbia', value: 'latin~cumbia', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'latin~tango' %>
+            <%= f.label :subgenre, 'tango', value: 'latin~tango', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'latin~latin-rock' %>
+            <%= f.label :subgenre, 'latin-rock', value: 'latin~latin-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'latin~flamenco' %>
+            <%= f.label :subgenre, 'flamenco', value: 'latin~flamenco', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'latin~salsa' %>
+            <%= f.label :subgenre, 'salsa', value: 'latin~salsa', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'latin~reggaeton' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'reggaeton', value: 'latin~reggaeton', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'latin~merengue' %>
+            <%= f.label :subgenre, 'merengue', value: 'latin~merengue', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'latin~bolero' %>
+            <%= f.label :subgenre, 'bolero', value: 'latin~bolero', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'latin~mexico-d.f.' %>
+            <%= f.label :subgenre, 'mexico-d.f.', value: 'latin~mexico-d.f.', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'latin~bachata' %>
+            <%= f.label :subgenre, 'bachata', value: 'latin~bachata', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="metal-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'metal~all' %>
+            <%= f.label :subgenre, 'All', value: 'metal~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'metal~hardcore' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'hardcore', value: 'metal~hardcore', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'metal~black-metal' %>
+            <%= f.label :subgenre, 'black-metal', value: 'metal~black-metal', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'metal~death-metal' %>
+            <%= f.label :subgenre, 'death-metal', value: 'metal~death-metal', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'metal~thrash-metal' %>
+            <%= f.label :subgenre, 'thrash-metal', value: 'metal~thrash-metal', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'metal~grindcore' %>
+            <%= f.label :subgenre, 'grindcore', value: 'metal~grindcore', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'metal~doom' %>
+            <%= f.label :subgenre, 'doom', value: 'metal~doom', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'metal~post-hardcore' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'post-hardcore', value: 'metal~post-hardcore', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'metal~progressive-metal' %>
+            <%= f.label :subgenre, 'progressive-metal', value: 'metal~progressive-metal', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'metal~metalcore' %>
+            <%= f.label :subgenre, 'metalcore', value: 'metal~metalcore', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'metal~sludge-metal' %>
+            <%= f.label :subgenre, 'sludge-metal', value: 'metal~sludge-metal', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'metal~heavy-metal' %>
+            <%= f.label :subgenre, 'heavy-metal', value: 'metal~heavy-metal', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'metal~deathcore' %>
+            <%= f.label :subgenre, 'deathcore', value: 'metal~deathcore', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'metal~noise' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'noise', value: 'metal~noise', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="pop-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'pop~all' %>
+            <%= f.label :subgenre, 'All', value: 'pop~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'pop~indie-pop' %>
+            <%= f.label :subgenre, 'indie-pop', value: 'pop~indie-pop', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'pop~synth-pop' %>
+            <%= f.label :subgenre, 'synth-pop', value: 'pop~synth-pop', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'pop~power-pop' %>
+            <%= f.label :subgenre, 'power-pop', value: 'pop~power-pop', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'pop~new-wave' %>
+            <%= f.label :subgenre, 'new-wave', value: 'pop~new-wave', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'pop~dream-pop' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'dream-pop', value: 'pop~dream-pop', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'pop~noise-pop' %>
+            <%= f.label :subgenre, 'noise-pop', value: 'pop~noise-pop', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'pop~experimental-pop' %>
+            <%= f.label :subgenre, 'experimental-pop', value: 'pop~experimental-pop', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'pop~electro-pop' %>
+            <%= f.label :subgenre, 'electro-pop', value: 'pop~electro-pop', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'pop~adult-contemporary' %>
+            <%= f.label :subgenre, 'adult-contemporary', value: 'pop~adult-contemporary', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'pop~jangle-pop' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'jangle-pop', value: 'pop~jangle-pop', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'pop~j-pop' %>
+            <%= f.label :subgenre, 'j-pop', value: 'pop~j-pop', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="punk-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'punk~all' %>
+            <%= f.label :subgenre, 'All', value: 'punk~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'punk~hardcore-punk' %>
+            <%= f.label :subgenre, 'hardcore-punk', value: 'punk~hardcore-punk', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'punk~garage' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'garage', value: 'punk~garage', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'punk~pop-punk' %>
+            <%= f.label :subgenre, 'pop-punk', value: 'punk~pop-punk', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'punk~punk-rock' %>
+            <%= f.label :subgenre, 'punk-rock', value: 'punk~punk-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'punk~post-punk' %>
+            <%= f.label :subgenre, 'post-punk', value: 'punk~post-punk', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'punk~post-hardcore' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'post-hardcore', value: 'punk~post-hardcore', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'punk~thrash' %>
+            <%= f.label :subgenre, 'thrash', value: 'punk~thrash', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'punk~crust-punk' %>
+            <%= f.label :subgenre, 'crust-punk', value: 'punk~crust-punk', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'punk~folk-punk' %>
+            <%= f.label :subgenre, 'folk-punk', value: 'punk~folk-punk', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'punk~emo' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'emo', value: 'punk~emo', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'punk~ska' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'ska', value: 'punk~ska', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'punk~no-wave' %>
+            <%= f.label :subgenre, 'no-wave', value: 'punk~no-wave', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="r-b-soul-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'r-b-soul~all' %>
+            <%= f.label :subgenre, 'All', value: 'r-b-soul~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'r-b-soul~soul' %>
+            <%= f.label :subgenre, 'soul', value: 'r-b-soul~soul', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'r-b-soul~r-b' %>
+            <%= f.label :subgenre, 'r&b', value: 'r-b-soul~r-b', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'r-b-soul~neo-soul' %>
+            <%= f.label :subgenre, 'neo-soul', value: 'r-b-soul~neo-soul', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'r-b-soul~gospel' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'gospel', value: 'r-b-soul~gospel', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'r-b-soul~contemporary-r-b' %>
+            <%= f.label :subgenre, 'contemporary r&b', value: 'r-b-soul~contemporary-r-b', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'r-b-soul~motown' %>
+            <%= f.label :subgenre, 'motown', value: 'r-b-soul~motown', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'r-b-soul~urban' %>
+            <%= f.label :subgenre, 'urban', value: 'r-b-soul~urban', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="reggae-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'reggae~all' %>
+            <%= f.label :subgenre, 'All', value: 'reggae~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'reggae~dub' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'dub', value: 'reggae~dub', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'reggae~ska' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'ska', value: 'reggae~ska', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'reggae~roots' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'roots', value: 'reggae~roots', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'reggae~dancehall' %>
+            <%= f.label :subgenre, 'dancehall', value: 'reggae~dancehall', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'reggae~rocksteady' %>
+            <%= f.label :subgenre, 'rocksteady', value: 'reggae~rocksteady', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'reggae~ragga' %>
+            <%= f.label :subgenre, 'ragga', value: 'reggae~ragga', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'reggae~lovers-rock' %>
+            <%= f.label :subgenre, 'lovers-rock', value: 'reggae~lovers-rock', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="rock-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'rock~all' %>
+            <%= f.label :subgenre, 'All', value: 'rock~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'rock~indie' %>
+            <%= f.label :subgenre, 'indie', value: 'rock~indie', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'rock~prog-rock' %>
+            <%= f.label :subgenre, 'prog-rock', value: 'rock~prog-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'rock~post-rock' %>
+            <%= f.label :subgenre, 'post-rock', value: 'rock~post-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'rock~rock-roll' %>
+            <%= f.label :subgenre, 'rock & roll', value: 'rock~rock-roll', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'rock~psychedelic-rock' %>
+            <%= f.label :subgenre, 'psychedelic-rock', value: 'rock~psychedelic-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'rock~hard-rock' %>
+            <%= f.label :subgenre, 'hard-rock', value: 'rock~hard-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'rock~garage-rock' %>
+            <%= f.label :subgenre, 'garage-rock', value: 'rock~garage-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'rock~surf-rock' %>
+            <%= f.label :subgenre, 'surf-rock', value: 'rock~surf-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'rock~instrumental' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'instrumental', value: 'rock~instrumental', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'rock~math-rock' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'math-rock', value: 'rock~math-rock', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'rock~rockabilly' %>
+            <%= f.label :subgenre, 'rockabilly', value: 'rock~rockabilly', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="soundtrack-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'soundtrack~all' %>
+            <%= f.label :subgenre, 'All', value: 'soundtrack~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'soundtrack~film-music' %>
+            <%= f.label :subgenre, 'film music', value: 'soundtrack~film-music', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'soundtrack~video-game-music' %>
+            <%= f.label :subgenre, 'video game music', value: 'soundtrack~video-game-music', class: 'subgenre-type-btn' %>
+          </div>
+          <div id="display-none" class="world-subgenres subgenre-buttons">
+            <%= f.radio_button :subgenre, 'world~all' %>
+            <%= f.label :subgenre, 'All', value: 'world~all', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'world~latin' %>
+            <%= f.label :subgenre, 'latin', value: 'world~latin', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'world~roots' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'roots', value: 'world~roots', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'world~african' %>
+            <%= f.label :subgenre, 'african', value: 'world~african', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'world~tropical' %>
+            <%= f.label :subgenre, 'tropical', value: 'world~tropical', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'world~tribal' %>
+            <%= f.label :subgenre, 'tribal', value: 'world~tribal', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'world~brazilian' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'brazilian', value: 'world~brazilian', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'world~celtic' %>
+            <%= f.label :subgenre, 'celtic', value: 'world~celtic', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'world~world-fusion' %>
+            <%= f.label :subgenre, 'world-fusion', value: 'world~world-fusion', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'world~cumbia' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'cumbia', value: 'world~cumbia', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'world~gypsy' %>
+            <%= f.label :subgenre, 'gypsy', value: 'world~gypsy', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'world~new-age' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'new-age', value: 'world~new-age', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'world~balkan' %>
+            <%= f.label :subgenre, 'balkan', value: 'world~balkan', class: 'subgenre-type-btn' %>
+            <%= f.radio_button :subgenre, 'world~reggaeton' %> <!-- REPEAT BUTTON -->
+            <%= f.label :subgenre, 'reggaeton', value: 'world~reggaeton', class: 'subgenre-type-btn' %>
+          </div>
+        </div>
+      </div>
+      <div id="visibility-hidden" class="release-type-container">
+        <h1>What kind of releases would you like to see?</h1>
+        <div class="release-type-buttons-container">
+            <%= f.radio_button :release_order, 'top', checked: true  %>
+            <%= f.label :release_order, 'Best-selling', value: 'top', class: 'release-type-btn' %>
+            <%= f.radio_button :release_order, 'new' %>
+            <%= f.label :release_order, 'New Arrivals', value: 'new', class: 'release-type-btn' %>
+        </div>
+      </div>
+      <div id="visibility-hidden" class="when-container">
+        <h1>When? <em>(Only available if you choose all subgenres)</em></h1>
+        <div class="when-buttons-container">
+            <%= f.radio_button :time_frame, '-1'  %>
+            <%= f.label :time_frame, 'Today', value: '-1', class: 'when-btn' %>
+            <%= f.radio_button :time_frame, '0', checked: true %>
+            <%= f.label :time_frame, 'This week', value: '0', class: 'when-btn' %>
+            <%= f.radio_button :time_frame, '761' %>
+            <%= f.label :time_frame, 'Last week', value: '761', class: 'when-btn' %>
+            <%= f.radio_button :time_frame, '760' %>
+            <%= f.label :time_frame, '2 weeks ago', value: '760', class: 'when-btn' %>
+            <%= f.radio_button :time_frame, '759' %>
+            <%= f.label :time_frame, '3 weeks ago', value: '759', class: 'when-btn' %>
+            <%= f.radio_button :time_frame, '758' %>
+            <%= f.label :time_frame, '4 weeks ago', value: '758', class: 'when-btn' %>
+            <%= f.radio_button :time_frame, '757' %>
+            <%= f.label :time_frame, '5 weeks ago', value: '757', class: 'when-btn' %>
+            <%= f.radio_button :time_frame, '756' %>
+            <%= f.label :time_frame, '6 weeks ago', value: '756', class: 'when-btn' %>
+        </div>
+      </div>
+      <div class="navigation-buttons-container">
+        <div class="back-button-container">
+          <button class="picky-nav-btn-windowtwo" id="back-btn-windowtwo" data-action="click->picky-genre-menu#previousWindow" data-picky-genre-menu-target="backbtnwindowtwo">Back</button>
+        </div>
+        <div class="next-button-container">
+          <button class="picky-nav-btn-windowtwo" id="next-btn-windowtwo" data-action="click->picky-genre-menu#nextWindow" data-picky-genre-menu-target="nextbtnwindowtwo">Next</button>
+        </div>
+      </div>
+    </div>
+    <div id="display-none" class="location-selector-container form-window" data-picky-genre-menu-target="windowthree">
+      <h1>Location <em>(Where shall the artists come from?)</em></h1>
+      <div class="location-form-buttons">
+          <%= f.radio_button :location, '0', checked: true  %>
+          <%= f.label :location, 'ANYWHERE', value: '0', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2759794' %>
+          <%= f.label :location, 'AMSTERDAM', value: '2759794', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4180439' %>
+          <%= f.label :location, 'ATLANTA', value: '4180439', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4671654' %>
+          <%= f.label :location, 'AUSTIN', value: '4671654', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4347778' %>
+          <%= f.label :location, 'BALTIMORE', value: '4347778', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2950159' %>
+          <%= f.label :location, 'BERLIN', value: '2950159', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4930956' %>
+          <%= f.label :location, 'BOSTON', value: '4930956', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5110302' %>
+          <%= f.label :location, 'BROOKLYN', value: '5110302', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4887398' %>
+          <%= f.label :location, 'CHICAGO', value: '4887398', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5419384' %>
+          <%= f.label :location, 'DENVER', value: '5419384', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4990729' %>
+          <%= f.label :location, 'DETROIT', value: '4990729', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2964574' %>
+          <%= f.label :location, 'DUBLIN', value: '2964574', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '3333231' %>
+          <%= f.label :location, 'GLASGOW', value: '3333231', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2643743' %>
+          <%= f.label :location, 'LONDON', value: '2643743', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5368361' %>
+          <%= f.label :location, 'LOS ANGELES', value: '5368361', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '3117735' %>
+          <%= f.label :location, 'MADRID', value: '3117735', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2643123' %>
+          <%= f.label :location, 'MANCHESTER', value: '2643123', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2158177' %>
+          <%= f.label :location, 'MELBOURNE', value: '2158177', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '3530597' %>
+          <%= f.label :location, 'MEXICO CITY', value: '3530597', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4164138' %>
+          <%= f.label :location, 'MIAMI', value: '4164138', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5037649' %>
+          <%= f.label :location, 'MINNEAPOLIS', value: '5037649', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '6077243' %>
+          <%= f.label :location, 'MONTREAL', value: '6077243', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4644585' %>
+          <%= f.label :location, 'NASHVILLE', value: '4644585', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4335045' %>
+          <%= f.label :location, 'NEW ORLEANS', value: '4335045', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5128581' %>
+          <%= f.label :location, 'NEW YORK CITY', value: '5128581', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5378538' %>
+          <%= f.label :location, 'OAKLAND', value: '5378538', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2988507' %>
+          <%= f.label :location, 'PARIS', value: '2988507', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4560349' %>
+          <%= f.label :location, 'PHILADELPHIA', value: '4560349', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5746545' %>
+          <%= f.label :location, 'PORTLAND', value: '5746545', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5391959' %>
+          <%= f.label :location, 'SAN FRANCISCO', value: '5391959', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '5809844' %>
+          <%= f.label :location, 'SEATTLE', value: '5809844', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '2147714' %>
+          <%= f.label :location, 'SYDNEY', value: '2147714', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '6167865' %>
+          <%= f.label :location, 'TORONTO', value: '6167865', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '6173331' %>
+          <%= f.label :location, 'VANCOUVER', value: '6173331', class: 'location-type-btn' %>
+          <%= f.radio_button :location, '4140963' %>
+          <%= f.label :location, 'WASHINGTON D.C.', value: '4140963', class: 'location-type-btn' %>
+      </div>
+      <div class="location-nav-container">
+        <div class="back-button-container">
+          <button class="location-nav-btn" data-action="click->picky-genre-menu#previousWindow">Back</button>
+        </div>
+        <div class="create-button-container">
+          <%#= link_to "Create your new Scrapelist!", scrapelistprompts_path, class: 'create-btn' %>
+          <input type="submit" name="commit" value="Create your new Scrapelist" class="create-btn" data-disable-with="submit" form="picky-options-selection-form">
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -19,10 +19,14 @@ class ScrapelistpromptsController < ApplicationController
     @songs = Song.where(scrapelistprompt_id: @scrapelist.id)
   end
 
+  def show_test
+    @scrapelist = Scrapelistprompt.find(params[:id])
+  end
+
   def choose
     # Extract the authorization code from the query parameters
     authorization_code = params[:code]
-    # set the access token for the session with this function
+    # set the access token for the session with this function using the authorization code
     set_access_token_for_session(authorization_code)
     # set the user account details for the session with this function
     grab_user_account_details(session[:access_token])
@@ -42,9 +46,9 @@ class ScrapelistpromptsController < ApplicationController
     @scrapelist.spotify_account = 'TODO'
     @scrapelist.bandcamp_query = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
     @scrapelist.query_two = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 1}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
-    @scrapelist.query_three = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 2}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
-    @scrapelist.query_four = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 3}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
-    @scrapelist.query_five = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 4}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
+    # @scrapelist.query_three = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 2}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
+    # @scrapelist.query_four = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 3}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
+    # @scrapelist.query_five = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 4}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
     if @scrapelist.save!
       redirect_to one_scrapelist_path(@scrapelist)
     else
@@ -52,9 +56,36 @@ class ScrapelistpromptsController < ApplicationController
     end
   end
 
-  def new_picky; end
+  def new_picky
+    @scrapelist = Scrapelistprompt.new
+  end
 
-  def create_picky; end
+  def create_picky
+    # create new scrapelist object
+    @scrapelist = Scrapelistprompt.new(scrapelist_params_picky)
+    @scrapelist.page_number = 0
+
+    # regex for getting the subgenre from the radio buttons value /#{radio_button.value}~(.+)/
+    subgenre_regex = @scrapelist.subgenre.match(/.+~(.+)/)
+    @scrapelist.subgenre = subgenre_regex[1]
+
+    # only include the time frame if the subgenre is all
+    if subgenre_regex == 'all' # && @scrapelist.location.zero?
+      @scrapelist.bandcamp_query = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
+      @scrapelist.query_two = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 1}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
+    else
+      @scrapelist.bandcamp_query = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number}&gn=#{@scrapelist.location}&f=all&t=#{@scrapelist.subgenre}"
+      @scrapelist.query_two = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 1}&gn=#{@scrapelist.location}&f=all&t=#{@scrapelist.subgenre}"
+    end
+
+    # redirect to the scrapelist view page if the scrapelist is saved
+    if @scrapelist.save!
+      # redirect_to one_scrapelist_test_path(@scrapelist)
+      redirect_to one_scrapelist_path(@scrapelist)
+    else
+      render :new_picky, status: :unprocessable_entity
+    end
+  end
 
   def send_to_spotify
     # create instance variables to store the current scrapelist and the songs which are in it
@@ -79,7 +110,7 @@ class ScrapelistpromptsController < ApplicationController
   end
 
   def scrapelist_params_picky
-    params.require(:scrapelistprompt).permit(:spotify_account, :genre, :subgenre, :release_order, :time_frame, :location)
+    params.require(:scrapelistprompt).permit(:genre, :subgenre, :release_order, :time_frame, :location)
   end
 
   def scrape_bandcamp(link)
@@ -150,7 +181,7 @@ class ScrapelistpromptsController < ApplicationController
     spotify_uris = []
 
     # search for each song in the scrapelist on spotify
-    @songs.each do |song|
+    songs.each do |song|
       # regex to separate collaborating artists if there are any (which is represented by 'x', 'X', or '/' between artist names)
       # if there are not, then the whole artist will be returned as the first element in artist_array
       artist_names = song.artist

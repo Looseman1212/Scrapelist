@@ -1,3 +1,9 @@
+  <!--- <%= form_with model: @scrapelist do |f| %>
+      <%= f.label :XYZ %>
+      <%= f.radio_button :genre, :XYZ %>
+      <%= f.submit %>
+    <% end %> --->
+
   <!-- _genre_form
   <%= form_tag do %>
     <%= radio_button_tag(:genre, "acoustic") %>
@@ -59,3 +65,68 @@
     </div>
   </div>
 </div> -->
+
+<!-- <form action="/scrapelist/new_picky" accept-charset="UTF-8" method="post" class="picky-genre-menu" id="picky-genre-selection-form">
+  <input type="hidden" name="authenticity_token" value="DA7pwQgUWXSQrdyRzNozDXj04mAg2uaQsx3K8aZ9io62jj-H5ojDLOAzqLjBS7UKbWoQaYbGtvhxQhfKDXvm6A" autocomplete="off">
+  <div class="picky-genre-menu-group picky-genre-menu-group-one">
+    <input type='radio' value='all' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_all'>
+    <label for='scrapelistprompt_genre_all'>ALL</label>
+    <input type='radio' value='acoustic' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_acoustic'>
+    <label for='scrapelistprompt_genre_acoustic'>ACOUSTIC</label>
+    <input type='radio' value='alternative' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_alternative'>
+    <label for='scrapelistprompt_genre_alternative'>ALTERNATIVE</label>
+    <input type='radio' value='ambient' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_ambient'>
+    <label for='scrapelistprompt_genre_ambient'>AMBIENT</label>
+    <input type='radio' value='blues' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_blues'>
+    <label for='scrapelistprompt_genre_blues'>BLUES</label>
+    <input type='radio' value='classical' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_classical'>
+    <label for='scrapelistprompt_genre_classical'>CLASSICAL</label>
+    <input type='radio' value='country' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_country'>
+    <label for='scrapelistprompt_genre_country'>COUNTRY</label>
+    <input type='radio' value='devotional' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_devotional'>
+    <label for='scrapelistprompt_genre_devotional'>DEVOTIONAL</label>
+  </div>
+  <div id="inactive-list-group" class="picky-genre-menu-group picky-genre-menu-group-two">
+    <input type='radio' value='electronic' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_electronic'>
+    <label for='scrapelistprompt_genre_electronic'>ELECTRONIC</label>
+    <input type='radio' value='experimental' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_experimental'>
+    <label for='scrapelistprompt_genre_experimental'>EXPERIMENTAL</label>
+    <input type='radio' value='folk' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_folk'>
+    <label for='scrapelistprompt_genre_folk'>FOLK</label>
+    <input type='radio' value='funk' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_funk'>
+    <label for='scrapelistprompt_genre_funk'>FUNK</label>
+    <input type='radio' value='hip-hop-rap' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_hip-hop/rap'>
+    <label for='scrapelistprompt_genre_hip-hop/rap'>HIP-HOP/RAP</label>
+    <input type='radio' value='jazz' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_jazz'>
+    <label for='scrapelistprompt_genre_jazz'>JAZZ</label>
+    <input type='radio' value='latin' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_latin'>
+    <label for='scrapelistprompt_genre_latin'>LATIN</label>
+    <input type='radio' value='metal' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_metal'>
+    <label for='scrapelistprompt_genre_metal'>METAL</label>
+  </div>
+  <div id="inactive-list-group" class="picky-genre-menu-group picky-genre-menu-group-three">
+    <input type='radio' value='pop' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_pop'>
+    <label for='scrapelistprompt_genre_pop'>POP</label>
+    <input type='radio' value='punk' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_punk'>
+    <label for='scrapelistprompt_genre_punk'>PUNK</label>
+    <input type='radio' value='r-b-soul' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_r&b/soul'>
+    <label for='scrapelistprompt_genre_r&b/soul'>R&B/SOUL</label>
+    <input type='radio' value='reggae' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_reggae'>
+    <label for='scrapelistprompt_genre_reggae'>REGGAE</label>
+    <input type='radio' value='rock' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_rock'>
+    <label for='scrapelistprompt_genre_rock'>ROCK</label>
+    <input type='radio' value='soundtrack' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_soundtrack'>
+    <label for='scrapelistprompt_genre_soundtrack'>SOUNDTRACK</label>
+    <input type='radio' value='world' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_world'>
+    <label for='scrapelistprompt_genre_world'>WORLD</label>
+    <input type='radio' value='' name='scrapelistprompt[genre]' id='scrapelistprompt_genre_surprise'>
+    <label for='scrapelistprompt_genre_surprise' data-action="click->picky-genre-menu#selectSurprise">SURPRISE ME</label>
+  </div>
+  <div class="picky-genre-menu-controls">
+    <div class="up-down-controls">
+      <div id="inactive-button" class="up-picky-menu-action" data-action="click->picky-genre-menu#scrollUp"><p class="arrow">&#x2191;</p></div>
+      <div class="menu-controls-instructions"><p>Click for more genres...</p></div>
+      <div class="down-picky-menu-action" data-action="click->picky-genre-menu#scrollDown"><p class="arrow">&#x2193;</p></div>
+    </div>
+  </div>
+</form> -->
