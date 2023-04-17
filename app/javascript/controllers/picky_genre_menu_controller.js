@@ -117,16 +117,27 @@ export default class extends Controller {
 
   genreThenShowSubgenres() {
     const genre_buttons = document.querySelectorAll('input[name="scrapelistprompt[genre]"]');
+    const subgenre_container = document.querySelector('.subgenre-container');
     const subgenre_buttons = document.querySelectorAll('.subgenre-buttons');
+    const release_type_container = document.querySelector('.release-type-container');
+    const when_buttons_container = document.querySelector('.when-buttons-container');
+    const when_container = document.querySelector('.when-container');
     // hide all the subgenre buttons everytime this function is called
     subgenre_buttons.forEach((button) => {
       button.setAttribute('id', 'display-none');
     });
     // select which subgenre buttons to show based on which genre button is checked
     genre_buttons.forEach((button) => {
-      if (button.checked) {
+      if (button.checked && button.value == 'all') {
+        subgenre_container.setAttribute('id', 'display-none');
+        release_type_container.removeAttribute('id', 'visibility-hidden');
+        when_container.removeAttribute('id', 'visibility-hidden');
+        when_buttons_container.removeAttribute('id', 'visibility-hidden');
+        console.log('all genres selected');
+      } else if (button.checked) {
         const subgenre_toshow = document.querySelector(`.${button.value}-subgenres`);
         subgenre_toshow.removeAttribute('id', 'display-none');
+        console.log(`${button.value} selected`);
       }
     });
   }

@@ -45,7 +45,7 @@ class ScrapelistpromptsController < ApplicationController
   def create_easy
     @scrapelist = Scrapelistprompt.new(scrapelist_params_easy)
     @scrapelist.subgenre = 'all'
-    @scrapelist.release_order = 'new'
+    @scrapelist.release_order = 'top'
     @scrapelist.page_number = 0
     @scrapelist.location = 0
     @scrapelist.time_frame = 0
@@ -70,6 +70,8 @@ class ScrapelistpromptsController < ApplicationController
     # create new scrapelist object
     @scrapelist = Scrapelistprompt.new(scrapelist_params_picky)
     @scrapelist.page_number = 0
+    # handle scrapelist subgenre if genre is all
+    @scrapelist.subgenre = (@scrapelist.genre == 'all' ? 'all~all' : @scrapelist.subgenre)
 
     # regex for getting the subgenre from the radio buttons value /#{radio_button.value}~(.+)/
     subgenre_regex = @scrapelist.subgenre.match(/.+~(.+)/)
