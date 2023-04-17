@@ -135,6 +135,7 @@ export default class extends Controller {
         when_buttons_container.removeAttribute('id', 'visibility-hidden');
         console.log('all genres selected');
       } else if (button.checked) {
+        subgenre_container.removeAttribute('id', 'display-none');
         const subgenre_toshow = document.querySelector(`.${button.value}-subgenres`);
         subgenre_toshow.removeAttribute('id', 'display-none');
         console.log(`${button.value} selected`);
