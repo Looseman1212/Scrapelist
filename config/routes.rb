@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'pages#home', as: 'home'
   get 'login', to: 'pages#login', as: 'login'
   get 'error-no-songs', to: 'pages#error_no_songs', as: 'error_no_songs'
+  get 'error-general', to: 'pages#error_general', as: 'error_general'
 
   get 'scrapelists', to: 'scrapelistprompts#index', as: 'all_scrapelists'
   get 'scrapelists/:id', to: 'scrapelistprompts#show', as: 'one_scrapelist'
