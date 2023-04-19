@@ -101,15 +101,19 @@ class ScrapelistpromptsController < ApplicationController
     @songs = Song.where(scrapelistprompt_id: params[:id])
     # array of songs found with spotify search
     spotify_uris = grab_song_URIs(@songs)
+    # if statement to throw error if no songs are found
+    redirect_to error_no_songs_path if spotify_uris.empty?
     # create a new playlist, then populate it with the songs
     new_playlist = create_spotify_playlist(@scrapelist.genre, @scrapelist.subgenre)
     populate_playlist_response_code = populate_new_playlist(new_playlist[:playlist_id], spotify_uris)
+    # create instance variable to pass to the view
     @playlist_link = new_playlist[:external_url]
     # if statement to catch failure
     if populate_playlist_response_code == 201
       @status = 'success'
     else
-      render :show, status: :unprocessable_entity
+      # render :show, status: :unprocessable_entity
+      redirect_to error_general_path
     end
   end
 

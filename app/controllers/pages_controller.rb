@@ -12,4 +12,8 @@ class PagesController < ApplicationController
     url += '&scope=playlist-modify-public playlist-modify-private user-read-email user-read-private'
     redirect_to url, allow_other_host: true
   end
+
+  def error_no_songs; end
+
+  def error_general; end
 end
