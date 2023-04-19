@@ -16,4 +16,6 @@ class PagesController < ApplicationController
   def error_no_songs; end
 
   def error_general; end
+
+  def error_no_scrape; end
 end
