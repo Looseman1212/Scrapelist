@@ -102,7 +102,7 @@ class ScrapelistpromptsController < ApplicationController
     # if statement to throw error if no songs are found
     redirect_to error_no_songs_path if spotify_uris.empty?
     # create a new playlist, then populate it with the songs
-    new_playlist = create_spotify_playlist(@scrapelist.genre, @scrapelist.subgenre)
+    new_playlist = create_spotify_playlist(@scrapelist)
     populate_playlist_response_code = populate_new_playlist(new_playlist[:playlist_id], spotify_uris)
     # create instance variable to pass to the view
     @playlist_link = new_playlist[:external_url]
@@ -222,7 +222,7 @@ class ScrapelistpromptsController < ApplicationController
     spotify_uris
   end
 
-  def create_spotify_playlist(genre, subgenre)
+  def create_spotify_playlist(scrapelist) # genre, subgenre, release_order, location
     access_token = session[:access_token]
     user_id = session[:user_details]["id"]
     endpoint = "https://api.spotify.com/v1/users/#{user_id}/playlists"
@@ -238,16 +238,16 @@ class ScrapelistpromptsController < ApplicationController
     formatted_time = time.strftime('%A %B %d %Y')
 
     # If statement to set up request body with or without subgenre
-    if subgenre == 'all'
+    if scrapelist.subgenre == 'all'
       body = {
-        name: "#{genre.capitalize} Scrapelist made #{formatted_time}",
-        description: "A new playlist made with Scrapelist!",
+        name: "#{scrapelist.genre.capitalize} Scrapelist made #{formatted_time}",
+        description: "#{scrapelist.release_order.capitalize} songs from #{scrapelist.location}, made with Scrapelist!",
         public: false
       }.to_json
     else
       body = {
-        name: "#{subgenre.capitalize} Scrapelist made #{formatted_time}",
-        description: "A new playlist made with Scrapelist!",
+        name: "#{scrapelist.subgenre.capitalize} Scrapelist made #{formatted_time}",
+        description: "#{scrapelist.release_order.capitalize} songs from #{scrapelist.location}, made with Scrapelist!",
         public: false
       }.to_json
     end
