@@ -1,7 +1,9 @@
 .show-wrapper {
+  // background-color: $pink;
+  background: rgb(249,238,244);
+  background: linear-gradient(151deg, rgba(249,238,244,1) 0%, rgba(189,83,146,1) 100%);
   width: 100dvw;
   height: 100dvh;
-  background-color: $pink;
   display: flex;
   align-items: center;
   .show-container {

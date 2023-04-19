@@ -10,15 +10,16 @@ class ScrapelistpromptsController < ApplicationController
   def show # if the scraping isn't happening, lines 17 and 18 may be commented out!
     # finding the scrapelistprompt by id
     @scrapelist = Scrapelistprompt.find(params[:id])
-    # setting an instance variable for the view
-    @heres_what_we_got = (@scrapelist.subgenre == 'all' ? @scrapelist.genre : @scrapelist.subgenre)
-    # getting the url created
-    url_page_one = @scrapelist.bandcamp_query
-    url_page_two = @scrapelist.query_two
-    scrape_bandcamp(url_page_one) # two functions for scraping
-    scrape_bandcamp(url_page_two)
     # create an instance variable where we can access the songs
     @songs = Song.where(scrapelistprompt_id: @scrapelist.id)
+    # setting an instance variable for the view
+    @heres_what_we_got = (@scrapelist.subgenre == 'all' ? @scrapelist.genre : @scrapelist.subgenre)
+    # only scrape if there are no songs in the database
+    return unless @songs.empty?
+
+    scrape_bandcamp(@scrapelist.bandcamp_query) # two functions for scraping
+    scrape_bandcamp(@scrapelist.query_two)
+    redirect_to error_no_scrape_path if @songs.empty?
   end
 
   def show_test
@@ -45,7 +46,6 @@ class ScrapelistpromptsController < ApplicationController
     @scrapelist.page_number = 0
     @scrapelist.location = 0
     @scrapelist.time_frame = 0
-    @scrapelist.spotify_account = 'TODO'
     @scrapelist.bandcamp_query = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
     @scrapelist.query_two = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 1}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
     # @scrapelist.query_three = "https://bandcamp.com/?g=#{@scrapelist.genre}&s=#{@scrapelist.release_order}&p=#{@scrapelist.page_number + 2}&gn=#{@scrapelist.location}&f=all&w=#{@scrapelist.time_frame}"
@@ -100,19 +100,15 @@ class ScrapelistpromptsController < ApplicationController
     # array of songs found with spotify search
     spotify_uris = grab_song_URIs(@songs)
     # if statement to throw error if no songs are found
-    redirect_to error_no_songs_path if spotify_uris.empty?
+    redirect_to error_no_songs_path and return if spotify_uris.empty?
+
     # create a new playlist, then populate it with the songs
     new_playlist = create_spotify_playlist(@scrapelist)
     populate_playlist_response_code = populate_new_playlist(new_playlist[:playlist_id], spotify_uris)
     # create instance variable to pass to the view
     @playlist_link = new_playlist[:external_url]
-    # if statement to catch failure
-    if populate_playlist_response_code == 201
-      @status = 'success'
-    else
-      # render :show, status: :unprocessable_entity
-      redirect_to error_general_path
-    end
+    # unless statement to catch failure
+    redirect_to error_general_path unless populate_playlist_response_code == 201
   end
 
   private
@@ -214,10 +210,15 @@ class ScrapelistpromptsController < ApplicationController
 
       # make the request
       response = HTTParty.get('https://api.spotify.com/v1/search', query: query, headers: headers)
-      # Parse the response body as JSON and extract the search results
-      results = JSON.parse(response.body)["tracks"]["items"]
-      # save the URI from the first result to the array if it isnt null
-      spotify_uris << results[0]['uri'] unless results[0].nil?
+      # if the response includes the string error, then redirect to general error page
+      if response.body.include?('error')
+        redirect_to error_general_path
+      else
+        # Parse the response body as JSON and extract the search results
+        results = JSON.parse(response.body)["tracks"]["items"]
+        # save the URI from the first result to the array if it isnt null
+        spotify_uris << results[0]['uri'] unless results[0].nil?
+      end
     end
     spotify_uris
   end

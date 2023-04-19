@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_04_041053) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_19_015724) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "scrapelistprompts", force: :cascade do |t|
-    t.string "spotify_account"
     t.string "genre"
     t.string "subgenre"
     t.string "release_order"

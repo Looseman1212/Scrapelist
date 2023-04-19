@@ -3,9 +3,11 @@
 // }
 
 .easy-genre-page-wrapper {
+  // background-color: $pink;
+  background: rgb(249,238,244);
+  background: linear-gradient(151deg, rgba(249,238,244,1) 0%, rgba(189,83,146,1) 100%);
   width: 100dvw;
   height: 100dvh;
-  background-color: $pink;
   display: flex;
   align-items: center;
 }
@@ -33,12 +35,13 @@
 }
 
 label {
+  // background-color: $darkblue;
+  background: rgba(52, 73, 102, 0.9);
   width: 100%;
   padding: 1.5em 0;
   margin: 0.5em 0;
   text-align: center;
   color: white;
-  background-color: $darkblue;
   border-radius: 20px;
   cursor: pointer;
 }
@@ -72,7 +75,9 @@ input[type="radio"] { // hide radio button
 }
 
 input[type="radio"]:checked + label { // changes the colour of the label when the radio button is checked
-  background-color: $bandcamp;
+  // background-color: $bandcamp;
+  background: rgb(33,200,245);
+  background: linear-gradient(0deg, rgba(33,200,245,0.9) 0%, rgba(52,73,102,0.9) 100%);
   outline: 3px solid $darkblue;
 }
 
