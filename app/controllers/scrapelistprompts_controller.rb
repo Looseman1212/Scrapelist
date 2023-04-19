@@ -10,15 +10,15 @@ class ScrapelistpromptsController < ApplicationController
   def show # if the scraping isn't happening, lines 17 and 18 may be commented out!
     # finding the scrapelistprompt by id
     @scrapelist = Scrapelistprompt.find(params[:id])
-    # setting an instance variable for the view
-    @heres_what_we_got = (@scrapelist.subgenre == 'all' ? @scrapelist.genre : @scrapelist.subgenre)
-    # getting the url created
-    url_page_one = @scrapelist.bandcamp_query
-    url_page_two = @scrapelist.query_two
-    scrape_bandcamp(url_page_one) # two functions for scraping
-    scrape_bandcamp(url_page_two)
     # create an instance variable where we can access the songs
     @songs = Song.where(scrapelistprompt_id: @scrapelist.id)
+    # setting an instance variable for the view
+    @heres_what_we_got = (@scrapelist.subgenre == 'all' ? @scrapelist.genre : @scrapelist.subgenre)
+    # only scrape if there are no songs in the database
+    return unless @songs.empty?
+
+    scrape_bandcamp(@scrapelist.bandcamp_query) # two functions for scraping
+    scrape_bandcamp(@scrapelist.query_two)
   end
 
   def show_test
