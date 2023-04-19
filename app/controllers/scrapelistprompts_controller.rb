@@ -233,21 +233,22 @@ class ScrapelistpromptsController < ApplicationController
       'Content-Type' => 'application/json'
     }
 
-    # create and format a time for the playlist name
+    # create and format a time and location for the playlist
     time = Time.now
     formatted_time = time.strftime('%A %B %d %Y')
+    playlist_location = location_integer_tostring(scrapelist.location)
 
     # If statement to set up request body with or without subgenre
     if scrapelist.subgenre == 'all'
       body = {
         name: "#{scrapelist.genre.capitalize} Scrapelist made #{formatted_time}",
-        description: "#{scrapelist.release_order.capitalize} songs from #{scrapelist.location}, made with Scrapelist!",
+        description: "#{scrapelist.release_order.capitalize} releases from #{playlist_location}, made with Scrapelist!",
         public: false
       }.to_json
     else
       body = {
         name: "#{scrapelist.subgenre.capitalize} Scrapelist made #{formatted_time}",
-        description: "#{scrapelist.release_order.capitalize} songs from #{scrapelist.location}, made with Scrapelist!",
+        description: "#{scrapelist.release_order.capitalize} releases from #{playlist_location}, made with Scrapelist!",
         public: false
       }.to_json
     end
@@ -285,5 +286,47 @@ class ScrapelistpromptsController < ApplicationController
     )
 
     response.code
+  end
+
+  def location_integer_tostring(integer)
+    locations = {
+      'EVERYWHERE': 0,
+      'AMSTERDAM': 2759794,
+      'ATLANTA': 4180439,
+      'AUSTIN': 4671654,
+      'BALTIMORE': 4347778,
+      'BERLIN': 2950159,
+      'BOSTON': 4930956,
+      'BROOKLYN': 5110302,
+      'CHICAGO': 4887398,
+      'DENVER': 5419384,
+      'DETROIT': 4990729,
+      'DUBLIN': 2964574,
+      'GLASGOW': 3333231,
+      'LONDON': 2643743,
+      'LOS ANGELES': 5368361,
+      'MADRID': 3117735,
+      'MANCHESTER': 2643123,
+      'MELBOURNE': 2158177,
+      'MEXICO CITY': 3530597,
+      'MIAMI': 4164138,
+      'MINNEAPOLIS': 5037649,
+      'MONTREAL': 6077243,
+      'NASHVILLE': 4644585,
+      'NEW ORLEANS': 4335045,
+      'NEW YORK CITY': 5128581,
+      'OAKLAND': 5378538,
+      'PARIS': 2988507,
+      'PHILADELPHIA': 4560349,
+      'PORTLAND': 5746545,
+      'SAN FRANCISCO': 5391959,
+      'SEATTLE': 5809844,
+      'SYDNEY': 2147714,
+      'TORONTO': 6167865,
+      'VANCOUVER': 6173331,
+      'WASHINGTON DC': 4140963
+    }
+    place_symbol = locations.key(integer)
+    place_symbol == :EVERYWHERE ? place_symbol.to_s.downcase : place_symbol.to_s.downcase.capitalize
   end
 end
