@@ -1,4 +1,4 @@
-<%= form_with model: @scrapelist, html: { id: 'picky-options-selection-form' } do |f| %>
+<%= form_with model: @scrapelist, url: scrapelistprompts_picky_path, html: { id: 'picky-options-selection-form' } do |f| %>
   <div class="picky-genre-page-wrapper" data-controller="picky-genre-menu">
     <div class="new-picky-genre-container form-window" data-picky-genre-menu-target="windowone">
       <div class="picky-selection-container">
