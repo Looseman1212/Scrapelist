@@ -1,5 +1,7 @@
 .choices-pink-backdrop {
-  background-color: $pink;
+  // background-color: $pink;
+  background: rgb(249,238,244);
+  background: linear-gradient(151deg, rgba(249,238,244,1) 0%, rgba(189,83,146,1) 100%);
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -18,7 +20,9 @@
 }
 
 .easy-route, .picky-route {
-  background-color: $darkblue;
+  // background-color: $darkblue;
+  background: rgb(30,160,195);
+  background: linear-gradient(322deg, rgba(30,160,195,0.821187850140056) 0%, rgba(52,73,102,0.9500393907563025) 100%);
   width: 45%;
   height: 100%;
   border-radius: 20px;
@@ -27,13 +31,15 @@
 }
 
 .easy-route:hover {
-  background-color: $bandcamp;
-  outline: 3px solid white;
+  outline: 1.5px solid white;
+  transform: translateY(-5px);
+  box-shadow: -4px 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 .picky-route:hover {
-  background-color: $bandcamp;
-  outline: 3px solid white;
+  outline: 1.5px solid white;
+  transform: translateY(-5px);
+  box-shadow: -4px 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 .easy-text {
