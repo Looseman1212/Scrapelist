@@ -1,6 +1,11 @@
 <% @scrapelists.each do |s| %>
   <%= s.id %>
   <%= s.genre %>
+  <%= s.subgenre %>
+  <%= s.release_order %>
+  <%= s.time_frame %>
+  <%= s.location %>
   <%= s.bandcamp_query %>
+  <br>
   <br>
 <% end %>
