@@ -10,12 +10,8 @@ class ScrapelistpromptsController < ApplicationController
   def show # if the scraping isn't happening, lines 17 and 18 may be commented out!
     # finding the scrapelistprompt by id
     @scrapelist = Scrapelistprompt.find(params[:id])
-    # setting the instance variable for the view
-    if @scrapelist.subgenre == 'all'
-      @heres_what_we_got = @scrapelist.genre
-    else
-      @heres_what_we_got = @scrapelist.subgenre
-    end
+    # setting an instance variable for the view
+    @heres_what_we_got = (@scrapelist.subgenre == 'all' ? @scrapelist.genre : @scrapelist.subgenre)
     # getting the url created
     url_page_one = @scrapelist.bandcamp_query
     url_page_two = @scrapelist.query_two
@@ -58,7 +54,8 @@ class ScrapelistpromptsController < ApplicationController
     if @scrapelist.save!
       redirect_to one_scrapelist_path(@scrapelist)
     else
-      render :new_easy, status: :unprocessable_entity
+      # render :new_easy, status: :unprocessable_entity
+      redirect_to error_general_path
     end
   end
 
@@ -91,7 +88,8 @@ class ScrapelistpromptsController < ApplicationController
       # redirect_to one_scrapelist_test_path(@scrapelist)
       redirect_to one_scrapelist_path(@scrapelist)
     else
-      render :new_picky, status: :unprocessable_entity
+      # render :new_picky, status: :unprocessable_entity
+      redirect_to error_general_path
     end
   end
 
