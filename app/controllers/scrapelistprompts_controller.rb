@@ -124,7 +124,8 @@ class ScrapelistpromptsController < ApplicationController
 
   def scrape_bandcamp(link)
     # creating a new browser and passing it the url
-    browser = Watir::Browser.new :chrome, args: %w[--headless --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222]
+    args = %w[--no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222]
+    browser = Watir::Browser.new :chrome, headless: true, options: { args: args }
     browser.goto(link)
     # grabbing a group of links to songs from the page
     links = browser.links(class: 'item-link')
