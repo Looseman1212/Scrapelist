@@ -10,10 +10,10 @@ Rails.application.routes.draw do
   get 'error_no_scrape', to: 'pages#error_no_scrape', as: 'error_no_scrape'
 
   get 'scrapelists', to: 'scrapelistprompts#index', as: 'all_scrapelists'
-  get 'scrapelists/:id', to: 'scrapelistprompts#show', as: 'one_scrapelist'
+  get 'scrapelist/:id', to: 'scrapelistprompts#show', as: 'one_scrapelist'
 
   # this route is for debugging purposes
-  get 'scrapelists/:id/test', to: 'scrapelistprompts#show_test', as: 'one_scrapelist_test'
+  get 'scrapelist/:id/test', to: 'scrapelistprompts#show_test', as: 'one_scrapelist_test'
 
   # resources :scrapelistprompts, only: [:index, :show]
 
