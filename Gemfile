@@ -86,4 +86,4 @@ gem 'watir', '~> 7.2', '>= 7.2.2'
 gem 'nokogiri', '~> 1.14', '>= 1.14.2'
 
 # getting appropriate drivers for watir gem
-gem 'webdrivers', '~> 3.2'
+gem 'webdrivers' # , '~> 3.2'
