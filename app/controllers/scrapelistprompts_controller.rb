@@ -162,7 +162,7 @@ class ScrapelistpromptsController < ApplicationController
       body: {
         grant_type: "authorization_code",
         code: auth_code,
-        redirect_uri: 'http://scrapelist-web-app.herokuapp.com/scrapelist/choice_page'
+        redirect_uri: 'https://scrapelist-web-app.herokuapp.com/scrapelist/choice_page'
       }
     })
     # set the access token to session variable

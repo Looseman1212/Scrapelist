@@ -7,7 +7,7 @@ class PagesController < ApplicationController
     url = authorise
     url += "?client_id=#{clientID}"
     url += '&response_type=code'
-    url += '&redirect_uri=http://scrapelist-web-app.herokuapp.com/scrapelist/choice_page'
+    url += '&redirect_uri=https://scrapelist-web-app.herokuapp.com/scrapelist/choice_page'
     url += '&show_dialog=true'
     url += '&scope=playlist-modify-public playlist-modify-private user-read-email user-read-private'
     redirect_to url, allow_other_host: true
