@@ -85,5 +85,5 @@ gem 'watir', '~> 7.2', '>= 7.2.2'
 # nokogiri for parsing html from dummy browser
 gem 'nokogiri', '~> 1.14', '>= 1.14.2'
 
-# # getting appropriate drivers for watir gem
-# gem 'webdrivers', '~> 3.2'
+# getting appropriate drivers for watir gem
+gem 'webdrivers', '~> 3.2'

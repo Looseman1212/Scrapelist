@@ -1,5 +1,6 @@
 require 'httparty'
 require 'watir'
+require 'webdrivers'
 require 'nokogiri'
 
 class ScrapelistpromptsController < ApplicationController
