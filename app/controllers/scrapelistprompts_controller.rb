@@ -196,7 +196,7 @@ class ScrapelistpromptsController < ApplicationController
       # regex to separate collaborating artists if there are any (which is represented by 'x', 'X', or '/' between artist names)
       # if there are not, then the whole artist will be returned as the first element in artist_array
       artist_names = song.artist
-      artist_regex = /(?:\s+x\s+|\s+\/\s+|\s+X\s+)/
+      artist_regex = /(?:\s+x\s+|\s+\/\s+|\s+X\s+|\s+&\s+)/
       artist_array = artist_names.split(artist_regex).map(&:strip)
 
       # Set the search parameters
