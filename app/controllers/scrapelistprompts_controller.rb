@@ -164,8 +164,8 @@ class ScrapelistpromptsController < ApplicationController
       body: {
         grant_type: "authorization_code",
         code: auth_code,
-        redirect_uri: 'https://scrapelist-web-app.herokuapp.com/scrapelist/choice_page'
-        # redirect_uri: 'http://127.0.0.1:3000/scrapelist/choice_page' # for local testing
+        # redirect_uri: 'https://scrapelist-web-app.herokuapp.com/scrapelist/choice_page'
+        redirect_uri: 'http://127.0.0.1:3000/scrapelist/choice_page' # for local testing
       }
     })
     # set the access token to session variable
@@ -199,6 +199,9 @@ class ScrapelistpromptsController < ApplicationController
       artist_regex = /(?:\s+x\s+|\s+\/\s+|\s+X\s+|\s+&\s+)/
       artist_array = artist_names.split(artist_regex).map(&:strip)
 
+      if artist_names == 'El Michels Affair & Black Thought'
+        raise
+      end
       # Set the search parameters
       query = {
         q: "artist:#{artist_array[0]} track:#{song.title}", # only searching with artist and track has been returning better results
