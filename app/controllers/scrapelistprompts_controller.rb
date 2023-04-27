@@ -106,10 +106,10 @@ class ScrapelistpromptsController < ApplicationController
     # create a new playlist, then populate it with the songs
     new_playlist = create_spotify_playlist(@scrapelist)
     populate_playlist_response_code = populate_new_playlist(new_playlist[:playlist_id], spotify_uris)
+    # redirect to error unless the correct response code is received
+    redirect_to error_general_path unless populate_playlist_response_code == 201
     # create instance variable to pass to the view
     @playlist_link = new_playlist[:external_url]
-    # unless statement to catch failure
-    redirect_to error_general_path unless populate_playlist_response_code == 201
   end
 
   private
@@ -199,9 +199,6 @@ class ScrapelistpromptsController < ApplicationController
       artist_regex = /(?:\s+x\s+|\s+\/\s+|\s+X\s+|\s+&\s+)/
       artist_array = artist_names.split(artist_regex).map(&:strip)
 
-      if artist_names == 'El Michels Affair & Black Thought'
-        raise
-      end
       # Set the search parameters
       query = {
         q: "artist:#{artist_array[0]} track:#{song.title}", # only searching with artist and track has been returning better results
@@ -215,7 +212,7 @@ class ScrapelistpromptsController < ApplicationController
       }
 
       # make the request
-      response = HTTParty.get('https://api.spotify.com/v1/search', query: query, headers: headers)
+      response = HTTParty.get('https://api.spotify.com/v1/search', query:, headers:)
       # if the response includes the string error, then redirect to general error page
       if response.body.include?('error')
         redirect_to error_general_path
@@ -267,9 +264,14 @@ class ScrapelistpromptsController < ApplicationController
       body: body
     )
 
-    playlist_id = response.parsed_response['id']
-    external_url = response.parsed_response['external_urls']['spotify']
-    { playlist_id:, external_url: }
+    # if the response includes the string error, then redirect to general error page
+    if response.body.include?('error')
+      redirect_to error_general_path
+    else
+      playlist_id = response.parsed_response['id']
+      external_url = response.parsed_response['external_urls']['spotify']
+      { playlist_id:, external_url: }
+    end
   end
 
   def populate_new_playlist(playlist, songs)
