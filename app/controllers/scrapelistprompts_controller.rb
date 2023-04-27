@@ -168,8 +168,15 @@ class ScrapelistpromptsController < ApplicationController
         # redirect_uri: 'http://127.0.0.1:3000/scrapelist/choice_page' # for local testing
       }
     })
-    # set the access token to session variable
-    session[:access_token] = response['access_token']
+    case response.code
+    when 200
+      # set the access token to session variable
+      session[:access_token] = response['access_token']
+    when 500
+      redirect_to error_not_registered_path
+    else
+      redirect_to error_general_path
+    end
   end
 
   def grab_user_account_details(access_token)

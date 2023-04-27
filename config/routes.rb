@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'pages#home', as: 'home'
   get 'login', to: 'pages#login', as: 'login'
-  get 'error_no_songs', to: 'pages#error_no_songs', as: 'error_no_songs'
   get 'error_general', to: 'pages#error_general', as: 'error_general'
+  get 'error_no_songs', to: 'pages#error_no_songs', as: 'error_no_songs'
   get 'error_no_scrape', to: 'pages#error_no_scrape', as: 'error_no_scrape'
+  get 'error_not_registered', to: 'pages#error_not_registered', as: 'error_not_registered'
 
   get 'scrapelists', to: 'scrapelistprompts#index', as: 'all_scrapelists'
   get 'scrapelists/:id', to: 'scrapelistprompts#show', as: 'one_scrapelist'

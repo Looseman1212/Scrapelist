@@ -19,4 +19,6 @@ class PagesController < ApplicationController
   def error_general; end
 
   def error_no_scrape; end
+
+  def error_not_registered; end
 end
