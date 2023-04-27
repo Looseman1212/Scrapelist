@@ -7,6 +7,14 @@ https://scrapelist-web-app.herokuapp.com/
 
 ## See a demo of the app in action <a href="https://www.youtube.com/watch?v=RLuMJm2zTOE" target="_blank">here</a>
 
+## Technologies used
+![Rails](https://img.shields.io/badge/rails-%23CC0000.svg?style=for-the-badge&logo=ruby-on-rails&logoColor=white)
+![Spotify](https://img.shields.io/badge/Spotify-1ED760?style=for-the-badge&logo=spotify&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
+
+
 ## What I learned building this app
 I learnt a lot about what it takes to manage building a full stack project solo. Getting my SQL database just right and practising my version tracking with git, making a web app can involve a lot of interconnecting parts, and steps which may seem small in the beginning, but then turn into more than what initially met the eye. I also am very happy with how much practise I got with scraping data from existing websites using Watir and Nokogiri, learning how to make efficient and effective server side HTTP requests, and reading Spotify's API documentation in order to learn how to use some of the features that their API has.
 

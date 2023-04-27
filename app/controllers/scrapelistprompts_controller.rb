@@ -106,10 +106,10 @@ class ScrapelistpromptsController < ApplicationController
     # create a new playlist, then populate it with the songs
     new_playlist = create_spotify_playlist(@scrapelist)
     populate_playlist_response_code = populate_new_playlist(new_playlist[:playlist_id], spotify_uris)
+    # redirect to error unless the correct response code is received
+    redirect_to error_general_path unless populate_playlist_response_code == 201
     # create instance variable to pass to the view
     @playlist_link = new_playlist[:external_url]
-    # unless statement to catch failure
-    redirect_to error_general_path unless populate_playlist_response_code == 201
   end
 
   private
@@ -164,8 +164,8 @@ class ScrapelistpromptsController < ApplicationController
       body: {
         grant_type: "authorization_code",
         code: auth_code,
-        redirect_uri: 'https://scrapelist-web-app.herokuapp.com/scrapelist/choice_page'
-        # redirect_uri: 'http://127.0.0.1:3000/scrapelist/choice_page' # for local testing
+        # redirect_uri: 'https://scrapelist-web-app.herokuapp.com/scrapelist/choice_page'
+        redirect_uri: 'http://127.0.0.1:3000/scrapelist/choice_page' # for local testing
       }
     })
     # set the access token to session variable
@@ -196,7 +196,7 @@ class ScrapelistpromptsController < ApplicationController
       # regex to separate collaborating artists if there are any (which is represented by 'x', 'X', or '/' between artist names)
       # if there are not, then the whole artist will be returned as the first element in artist_array
       artist_names = song.artist
-      artist_regex = /(?:\s+x\s+|\s+\/\s+|\s+X\s+)/
+      artist_regex = /(?:\s+x\s+|\s+\/\s+|\s+X\s+|\s+&\s+)/
       artist_array = artist_names.split(artist_regex).map(&:strip)
 
       # Set the search parameters
@@ -212,7 +212,7 @@ class ScrapelistpromptsController < ApplicationController
       }
 
       # make the request
-      response = HTTParty.get('https://api.spotify.com/v1/search', query: query, headers: headers)
+      response = HTTParty.get('https://api.spotify.com/v1/search', query:, headers:)
       # if the response includes the string error, then redirect to general error page
       if response.body.include?('error')
         redirect_to error_general_path
@@ -264,9 +264,14 @@ class ScrapelistpromptsController < ApplicationController
       body: body
     )
 
-    playlist_id = response.parsed_response['id']
-    external_url = response.parsed_response['external_urls']['spotify']
-    { playlist_id:, external_url: }
+    # if the response includes the string error, then redirect to general error page
+    if response.body.include?('error')
+      redirect_to error_general_path
+    else
+      playlist_id = response.parsed_response['id']
+      external_url = response.parsed_response['external_urls']['spotify']
+      { playlist_id:, external_url: }
+    end
   end
 
   def populate_new_playlist(playlist, songs)
