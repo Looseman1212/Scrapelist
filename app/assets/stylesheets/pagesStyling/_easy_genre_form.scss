@@ -158,6 +158,9 @@ input[type="radio"]:checked + label {
           }
         }
       }
+      .easy-selection-container::-webkit-scrollbar {
+        display: none;
+      }
     }
   }
   #inactive-list-group {
