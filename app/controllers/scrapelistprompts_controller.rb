@@ -164,21 +164,12 @@ class ScrapelistpromptsController < ApplicationController
       body: {
         grant_type: "authorization_code",
         code: auth_code,
-        # redirect_uri: 'https://scrapelist-web-app.herokuapp.com/scrapelist/choice_page'
-        redirect_uri: 'http://127.0.0.1:3000/scrapelist/choice_page' # for local testing
+        redirect_uri: 'https://scrapelist-web-app.herokuapp.com/scrapelist/choice_page'
+        # redirect_uri: 'http://127.0.0.1:3000/scrapelist/choice_page' # for local testing
       }
     })
     # set the access token to session variable
     session[:access_token] = response['access_token']
-
-    # case response.code
-    # when 200
-    #   session[:access_token] = response['access_token']
-    # when 500
-    #   redirect_to error_not_registered_path
-    # else
-    #   redirect_to error_general_path
-    # end
   end
 
   def grab_user_account_details(access_token)
