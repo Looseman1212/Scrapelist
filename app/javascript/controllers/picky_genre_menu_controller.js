@@ -97,6 +97,8 @@ export default class extends Controller {
     if (WINDOWCOUNT == 1) {
       this.whenBtnsIfAllSubgenres();
     }
+    // relocate the scroll to the top of the page
+    window.scrollTo(0, 0);
   }
 
   previousWindow(event) {
@@ -113,6 +115,8 @@ export default class extends Controller {
     }
     // redefine the iterator after the change is shown to reflect where on the menu the user currently is
     WINDOWCOUNT -= 1;
+    // relocate the scroll to the top of the page
+    window.scrollTo(0, 0);
   }
 
   genreThenShowSubgenres() {
