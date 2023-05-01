@@ -153,15 +153,18 @@ export default class extends Controller {
     const release_type_container = document.querySelector('.release-type-container');
     const when_container = document.querySelector('.when-container');
     const when_buttons_container = document.querySelector('.when-buttons-container');
+    const next_btn_windowtwo = document.querySelector('#next-btn-windowtwo');
     // reset the release_type and when containers to hidden
     release_type_container.setAttribute('id', 'visibility-hidden-picky');
     when_container.setAttribute('id', 'visibility-hidden-picky');
+    next_btn_windowtwo.setAttribute('id', 'visibility-hidden-picky');
     // set a click event for if the user clicks any of the subgenre_buttons
     subgenre_buttons.forEach((button) => {
       button.addEventListener('click', (event) => {
         // unhide the release_type and when containers when a subgenre button is clicked
         release_type_container.removeAttribute('id', 'visibility-hidden-picky');
         when_container.removeAttribute('id', 'visibility-hidden-picky');
+        next_btn_windowtwo.removeAttribute('id', 'visibility-hidden-picky');
         // if the user clicks the ALL button, show the when_buttons_container
         if (button.value.endsWith("~all")) {
           when_buttons_container.removeAttribute('id', 'visibility-hidden-picky');
