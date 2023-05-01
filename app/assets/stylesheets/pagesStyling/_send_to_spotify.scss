@@ -48,3 +48,21 @@
     }
   }
 }
+
+@media (max-width: 650px) {
+  .send-to-spotify-wrapper {
+    .send-to-spotify-container {
+      padding: 90px;
+      .show-spotify-btn {
+        white-space: nowrap;
+        display: inline-block;
+        padding: 10px 20px;
+      }
+      .start-again-btn {
+        white-space: nowrap;
+        display: inline-block;
+        padding: 10px 20px;
+      }
+    }
+  }
+}

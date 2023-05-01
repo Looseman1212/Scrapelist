@@ -1,41 +1,5 @@
-// body {
-//   background-color: $pink;
-// }
-
-.easy-genre-page-wrapper {
-  // background-color: $pink;
-  background: rgb(249,238,244);
-  background: linear-gradient(151deg, rgba(249,238,244,1) 0%, rgba(189,83,146,1) 100%);
-  width: 100dvw;
-  height: 100dvh;
-  display: flex;
-  align-items: center;
-}
-
-.new-easy-genre-container {
-  width: 70%;
-  height: 78%;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.easy-selection-container, .easy-dialogue {
-  width: 50%;
-  height: 100%;
-}
-
-.easy-genre-menu {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
+// Styling for the labels and radio buttons
 label {
-  // background-color: $darkblue;
   background: rgba(52, 73, 102, 0.9);
   width: 100%;
   padding: 1.5em 0;
@@ -45,123 +9,203 @@ label {
   border-radius: 20px;
   cursor: pointer;
 }
-
-.easy-genre-menu-group-one {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.easy-genre-menu-group-two {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.easy-genre-menu-group-three {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-input[type="radio"] { // hide radio button
+// hide the radio buttons
+input[type="radio"] {
   display: none;
 }
-
-input[type="radio"]:checked + label { // changes the colour of the label when the radio button is checked
-  // background-color: $bandcamp;
+// changes the colour of the label when clicked
+input[type="radio"]:checked + label {
   background: rgb(33,200,245);
   background: linear-gradient(0deg, rgba(33,200,245,0.9) 0%, rgba(52,73,102,0.9) 100%);
   outline: 3px solid $darkblue;
 }
 
-.easy-genre-menu-controls {
-  margin-top: 1.2em;
-  width: 100%;
-  height: 2em;
+// ID's for hiding things
+// id selector for hiding list groups
+#inactive-list-group {
+  display: none;
+}
+// id selector for hiding buttons
+#inactive-button {
+  visibility: hidden;
+}
+
+.easy-genre-page-wrapper {
+  // background-color: $pink;
+  background: rgb(249,238,244);
+  background: linear-gradient(151deg, rgba(249,238,244,1) 0%, rgba(189,83,146,1) 100%);
+  width: 100dvw;
+  height: 100dvh;
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  .up-down-controls {
-    width: 50%;
-    height: 100%;
+  .new-easy-genre-container {
+    width: 70%;
+    height: 78%;
+    margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .menu-controls-instructions {
-      font-size: 15pt;
-      font-weight: 300;
-      font-style: italic;
-    }
-    .up-easy-menu-action, .down-easy-menu-action {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 40px;
-      height: 40px;
-      background-color: $bandcamp;
-      margin: auto;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: 0.2s;
-      &:hover {
-        background-color: $darkblue;
-        outline: 3px solid $bandcamp;
+    .easy-selection-container {
+      width: 50%;
+      height: 100%;
+      .easy-genre-menu {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .easy-genre-menu-group-one, .easy-genre-menu-group-two, .easy-genre-menu-group-three {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .easy-genre-menu-controls {
+          margin-top: 1.2em;
+          width: 100%;
+          height: 2em;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          .up-down-controls {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .menu-controls-instructions {
+              font-size: 15pt;
+              font-weight: 300;
+              font-style: italic;
+              text-align: center;
+            }
+            .up-easy-menu-action, .down-easy-menu-action {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 40px;
+              height: 40px;
+              background-color: $bandcamp;
+              margin: auto;
+              border-radius: 50%;
+              cursor: pointer;
+              transition: 0.2s;
+              &:hover {
+                background-color: $darkblue;
+                outline: 3px solid $bandcamp;
+              }
+            }
+          }
+        }
       }
     }
-  }
-}
-
-.easy-dialogue {
-  display: flex;
-  align-items: center;
-  .easy-dialogue-contents {
-    height: fit-content;
-    width: 75%;
-    margin: auto auto;
-    font-size: 17pt;
-    .easy-instructions-one, .easy-instructions-three {
-      // margin: 0;
-      font-weight: 300;
-      font-style: italic;
-    }
-    .easy-instructions-two {
-      // margin: 0;
-      font-weight: 400;
-      font-style: italic;
-    }
-    .easy-form-submission {
-      text-align: center;
-      input[type=submit] {
-        background-color: $spotify;
-        box-shadow: -4px 4px 5px rgba(0, 0, 0, 0.3);
-        border-radius: 20px;
-        color: white;
-        padding: 16px 32px;
-        text-decoration: none;
-        margin: 4px 2px;
-        cursor: pointer;
-        transition: 0.2s;
-        &:hover {
-          background-color: #3BE376;
-          outline: 1px solid $spotify;
-          box-shadow: none;
+    .easy-dialogue {
+      display: flex;
+      align-items: center;
+      width: 50%;
+      height: 100%;
+      .easy-dialogue-contents {
+        height: fit-content;
+        width: 75%;
+        margin: auto auto;
+        font-size: 17pt;
+        .easy-instructions-one, .easy-instructions-three {
+          // margin: 0;
+          font-weight: 300;
+          font-style: italic;
+        }
+        .easy-instructions-two {
+          // margin: 0;
+          font-weight: 400;
+          font-style: italic;
+        }
+        .easy-form-submission {
+          text-align: center;
+          input[type=submit] {
+            background-color: $spotify;
+            box-shadow: -4px 4px 5px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            color: white;
+            padding: 16px 32px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition: 0.2s;
+            &:hover {
+              background-color: #3BE376;
+              outline: 1px solid $spotify;
+              box-shadow: none;
+            }
+          }
         }
       }
     }
   }
 }
 
-#inactive-list-group { // id selector for hiding list groups
-  display: none;
+@media (max-width: 1000px) {
+  .easy-genre-page-wrapper {
+    .new-easy-genre-container {
+      .easy-selection-container {
+        overflow: scroll;
+        padding: 10px;
+        .easy-genre-menu {
+          justify-content: start;
+          .easy-genre-menu-controls {
+            display: none;
+          }
+        }
+      }
+      .easy-selection-container::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+  #inactive-list-group {
+    display: flex;
+  }
 }
 
-#inactive-button { // id selector for hiding buttons
-  visibility: hidden;
+@media (max-width: 700px) {
+  // hiding the scroll bar for various browsers
+  body::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+  body {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .easy-genre-page-wrapper {
+    height: fit-content;
+    .new-easy-genre-container {
+      flex-direction: column;
+      width: auto;
+      margin: 30px 10px;
+      .easy-selection-container {
+        width: 80%;
+      }
+      .easy-dialogue {
+        width: 80%;
+        .easy-dialogue-contents {
+          margin-bottom: 25px;
+          .easy-instructions-one {
+            margin-top: 5px;
+          }
+          p {
+            font-size: 13pt;
+          }
+          .easy-form-submission {
+            display: flex;
+            justify-content: center;
+            input[type=submit] {
+              padding: 20px 35px;
+              font-size: 14pt;
+            }
+          }
+        }
+      }
+    }
+  }
 }

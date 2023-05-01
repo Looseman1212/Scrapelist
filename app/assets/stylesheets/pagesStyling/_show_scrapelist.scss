@@ -176,3 +176,56 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+@media (max-width: 800px) {
+  .show-wrapper {
+    .show-container {
+      flex-direction: column;
+      .text-wrapper {
+        width: 100%;
+        height: 50%;
+        padding-bottom: 70px;
+        .text-container {
+          .show-title {
+            font-size: 16pt;
+          }
+          .show-explanation {
+            font-size: 9pt;
+          }
+          .show-spotify-button-container {
+            .show-spotify-btn {
+              font-size: 12pt;
+              padding: 10px 20px;
+            }
+          }
+          .show-again-button-container {
+            .show-again-btn {
+              font-size: 12pt;
+              padding: 10px 20px;
+            }
+          }
+        }
+      }
+      .songs-wrapper {
+        width: 100%;
+        height: 50%;
+        .songs-container {
+          .song-card {
+            height: 20%;
+            .song-art-container {
+              width: 30%;
+            }
+            .song-info-container {
+              width: 70%;
+              .song-info {
+                p {
+                  font-size: 8pt;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

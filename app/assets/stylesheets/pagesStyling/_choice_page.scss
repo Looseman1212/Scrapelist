@@ -1,213 +1,253 @@
 .choices-pink-backdrop {
-  // background-color: $pink;
   background: rgb(249,238,244);
   background: linear-gradient(151deg, rgba(249,238,244,1) 0%, rgba(189,83,146,1) 100%);
   height: 100vh;
   width: 100vw;
   display: flex;
-}
-
-.choices-container {
-  width: 70%;
-  height: 78%;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-}
-
-.link-to-remove-styling {
-  text-decoration: none;
-}
-
-.easy-route, .picky-route {
-  // background-color: $darkblue;
-  background: rgb(30,160,195);
-  background: linear-gradient(322deg, rgba(30,160,195,0.821187850140056) 0%, rgba(52,73,102,0.9500393907563025) 100%);
-  width: 45%;
-  height: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  transition: 0.15s;
-}
-
-.easy-route:hover {
-  outline: 1.5px solid white;
-  transform: translateY(-5px);
-  box-shadow: -4px 5px 20px rgba(0, 0, 0, 0.3);
-}
-
-.picky-route:hover {
-  outline: 1.5px solid white;
-  transform: translateY(-5px);
-  box-shadow: -4px 5px 20px rgba(0, 0, 0, 0.3);
-}
-
-.easy-text {
-  color: white;
-  text-align: center;
-  width: 80%;
-  margin: auto;
-  padding-top: 10%;
-  font-size: 19pt;
-  font-weight: 700;
-}
-
-.easy-diagram {
-  width: 80%;
-  height: 60%;
-  // background-color: white;
-  margin: auto;
-  // padding-top: 9%;
-  display: flex;
-  justify-content: space-between;
-  align-items:flex-start;
-  .graphics {
-    width: 30%;
-    .dot {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      display: block;
-      margin: 0 7%;
-    }
-    #pink {
-      background-color: #D161A4;
-      margin-top: 13%;
-    }
-    .arrow {
-      padding-left: 28%;
-      color: $bandcamp;
-      font-size: 30pt;
-      margin-top: 27%;
-      margin-bottom: 27%;
-    }
-    #green {
-      background-color: $spotify;
-    }
-  }
-  .descriptions {
+  .choices-container {
     width: 70%;
-    color: white;
-    font-size: 15pt;
-    .top {
-      margin-top: 15%;
+    height: 78%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+  }
+  .easy-route {
+    background: rgb(30,160,195);
+    background: linear-gradient(322deg, rgba(30,160,195,0.821187850140056) 0%, rgba(52,73,102,0.9500393907563025) 100%);
+    width: 45%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: 0.15s;
+    &:hover {
+      outline: 1.5px solid white;
+      transform: translateY(-5px);
+      box-shadow: -4px 5px 20px rgba(0, 0, 0, 0.3);
     }
-    .middle {
-      margin-top: 25%;
-      font-style: italic;
-      font-weight: 300;
+    .link-to-remove-styling {
+      text-decoration: none;
+      .easy-text {
+        color: white;
+        text-align: center;
+        width: 80%;
+        margin: auto;
+        padding-top: 10%;
+        font-size: 19pt;
+        font-weight: 700;
+      }
+      .easy-diagram {
+        width: 80%;
+        height: 60%;
+        // background-color: white;
+        margin: auto;
+        // padding-top: 9%;
+        display: flex;
+        justify-content: space-between;
+        align-items:flex-start;
+        .graphics {
+          width: 30%;
+          .dot {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 7%;
+          }
+          #pink {
+            background-color: #D161A4;
+            margin-top: 13%;
+          }
+          .arrow {
+            padding-left: 28%;
+            color: $bandcamp;
+            font-size: 30pt;
+            margin-top: 27%;
+            margin-bottom: 27%;
+          }
+          #green {
+            background-color: $spotify;
+          }
+        }
+        .descriptions {
+          width: 70%;
+          color: white;
+          font-size: 15pt;
+          .top {
+            margin-top: 15%;
+          }
+          .middle {
+            margin-top: 25%;
+            font-style: italic;
+            font-weight: 300;
+          }
+          .bottom {
+            margin-top: 25%;
+          }
+        }
+      }
     }
-    .bottom {
-      margin-top: 25%;
+  }
+  .picky-route {
+    background: rgb(30,160,195);
+    background: linear-gradient(322deg, rgba(30,160,195,0.821187850140056) 0%, rgba(52,73,102,0.9500393907563025) 100%);
+    width: 45%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: 0.15s;
+    &:hover {
+      outline: 1.5px solid white;
+      transform: translateY(-5px);
+      box-shadow: -4px 5px 20px rgba(0, 0, 0, 0.3);
+    }
+    .link-to-remove-styling {
+      text-decoration: none;
+      .picky-text {
+        color: white;
+        text-align: center;
+        width: 80%;
+        margin: auto;
+        padding-top: 10%;
+        font-size: 19pt;
+        font-weight: 700;
+      }
+      .picky-diagram {
+        width: 80%;
+        height: 60%;
+        margin: 56px auto 0px auto;
+        .row-1, .row-2, .row-3, .row-4, .row-5 {
+          height: 16%;
+          width: 100%;
+          margin-bottom: 3px;
+        }
+        .row-1 {
+          // background-color: $spotify;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          .dot {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+          }
+          #pink {
+            background-color: #D161A4;
+          }
+          .arrow {
+            color: $bandcamp;
+            font-size: 30pt;
+          }
+        }
+        .row-2 {
+          // background-color: black;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          .b1 {
+            width: 0px;
+          }
+          #mix-match {
+            color: white;
+            font-size: 1rem;
+            font-weight: 300;
+            font-style: italic;
+          }
+          .arrow {
+            color: $bandcamp;
+            font-size: 30pt;
+            padding-right: 35px;
+          }
+        }
+        .row-3 {
+          // background-color: white;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          .dot {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+          }
+          #pink {
+            background-color: #D161A4;
+          }
+          .arrow {
+            color: $bandcamp;
+            font-size: 30pt;
+          }
+        }
+        .row-4 {
+          // background-color: red;
+          .arrow {
+            color: $bandcamp;
+            font-size: 30pt;
+            padding: 6px 0px 0px 66px;
+            margin: 0;
+          }
+        }
+        .row-5 {
+          // background-color: $bandcamp;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          #picky-spotify-appears {
+            color: white;
+            font-size: 1rem;
+            font-weight: 400;
+          }
+          .dot {
+            background-color: $spotify;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            margin-left: 21px;
+            #green {
+              background-color: $spotify;
+            }
+          }
+        }
+      }
     }
   }
 }
 
-.picky-text {
-  color: white;
-  text-align: center;
-  width: 80%;
-  margin: auto;
-  padding-top: 10%;
-  font-size: 19pt;
-  font-weight: 700;
-}
-
-.picky-diagram {
-  width: 80%;
-  height: 60%;
-  margin: 56px auto 0px auto;
-  .row-1, .row-2, .row-3, .row-4, .row-5 {
-    height: 16%;
-    width: 100%;
-    margin-bottom: 3px;
-  }
-  .row-1 {
-    // background-color: $spotify;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    .dot {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      display: block;
-    }
-    #pink {
-      background-color: #D161A4;
-    }
-    .arrow {
-      color: $bandcamp;
-      font-size: 30pt;
-    }
-  }
-  .row-2 {
-    // background-color: black;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    .b1 {
-      width: 0px;
-    }
-    #mix-match {
-      color: white;
-      font-size: 1rem;
-      font-weight: 300;
-      font-style: italic;
-    }
-    .arrow {
-      color: $bandcamp;
-      font-size: 30pt;
-      padding-right: 35px;
-    }
-  }
-  .row-3 {
-    // background-color: white;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    .dot {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      display: block;
-    }
-    #pink {
-      background-color: #D161A4;
-    }
-    .arrow {
-      color: $bandcamp;
-      font-size: 30pt;
-    }
-  }
-  .row-4 {
-    // background-color: red;
-    .arrow {
-      color: $bandcamp;
-      font-size: 30pt;
-      padding: 6px 0px 0px 66px;
-      margin: 0;
-    }
-  }
-  .row-5 {
-    // background-color: $bandcamp;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    #picky-spotify-appears {
-      color: white;
-      font-size: 1rem;
-      font-weight: 400;
-    }
-    .dot {
-      background-color: $spotify;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      display: block;
-      margin-left: 21px;
-      #green {
-        background-color: $spotify;
+@media (max-width: 1355px) {
+  .choices-pink-backdrop {
+    .choices-container {
+      flex-direction: column;
+      justify-content: space-around;
+      .easy-route {
+        width: 100%;
+        height: fit-content;
+        .link-to-remove-styling {
+          .easy-text {
+            padding-top: 0;
+            h3 {
+              font-size: 18pt;
+            }
+          }
+          .easy-diagram {
+            display: none;
+          }
+        }
+      }
+      .picky-route {
+        width: 100%;
+        height: fit-content;
+        .link-to-remove-styling {
+          .picky-text {
+            padding-top: 0;
+            h3 {
+              font-size: 18pt;
+            }
+          }
+          .picky-diagram {
+            display: none;
+          }
+        }
       }
     }
   }
